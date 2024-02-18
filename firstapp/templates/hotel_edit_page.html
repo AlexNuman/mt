@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hotel_regist_page.css' %}">
+    <title>Редактирование гостиницы</title>
+</head>
+<body>
+<div class="hotel_form">
+      <form method="post" id="HotelForm" action="">
+          {% csrf_token %}
+          <div class="hotel_input">
+              <div class="hotel_label">Измените данные гостиницы</div>
+              <p></p>
+              <input type="text" name="hotel_name" value="{{hotel_name}}" id="hotel_name" class="hotel_name" required>
+              <input type="text" name="hotel_city" value="{{hotel_city}}" id="hotel_city" class="hotel_city" >
+              <input type="text" name="hotel_stars" value="{{hotel_stars}}" id="hotel_stars" class="hotel_stars" >
+              <input type="text" name="hotel_info" value="{{hotel_info}}" id="hotel_info" class="hotel_info" >
+              <input type="submit" name="hotel_regist" id="hotel_regist" value="Сохранить" class="hotel_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/hotel_edit_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

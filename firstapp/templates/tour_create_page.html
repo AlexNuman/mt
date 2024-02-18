@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание нового тура</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tour_create_page.css/' %}">
+</head>
+<body>
+<div class="TourCreatePage">
+    <form method="post" id="NewTourForm" action="">
+        <div class="label">
+            <p class="label-p" style="text-align: center;">Введите данные нового тура!</p>
+        </div>
+        {% csrf_token %}
+        <div class="NewTourData">
+            <label for="TourContainer_1" class="container_label">Выберите рейс:</label>
+            <p></p>
+            <div id="TourContainer_1" class="TourContainer_1">
+                <select id="FlightType" name="FlightType" class="FlightType" required>
+                    <option value="C пересадкой">С пересадкой</option>
+                    <option value="Прямой рейс">Прямой рейс</option>
+                </select>
+                <input type="text" name="PaketName" placeholder="Название пакета" id="PaketName" class="PaketName" required>
+                <input type="text" name="TourRoute" placeholder="Маршрут" id="TourRoute" class="TourRoute" required>
+                <p></p>
+            </div>
+            <label for="FlightToContainer" class="container_label">Туда: </label>
+            <p></p>
+            <div id="FlightToContainer" class="FlightToContainer">
+                <label for="DepartureFromOrigin"> Вылет: </label>
+                <input type="datetime-local" name="DepartureFromOrigin" id="DepartureFromOrigin" class="DepartureFromOrigin" required>
+                <label for="TransitToArrival">Пересадка: </label>
+                <input type="datetime-local" name="TransitToArrival" id="TransitToArrival" class="TransitToArrival" required>
+                <input type="datetime-local" name="TransitToDeparture" id="TransitToDeparture" class="TransitToDeparture" required>
+                <label for="ArrivalDestination">Прилет: </label>
+                <input type="datetime-local" name="ArrivalDestination" id="ArrivalDestination" class="ArrivalDestination" required>
+                <p>Ожидание (часы):
+                    <span id="WaitingTimeTo" class="WaitingTimeTo">0</span>
+                </p>
+            </div>
+            <label for="FlightFromContainer" class="container_label">Обратно: </label>
+            <p></p>
+            <div id="FlightFromContainer" class="FlightFromContainer">
+                <label for="DepartureFromDestination"> Вылет: </label>
+                <input type="datetime-local" name="DepartureFromDestination" id="DepartureFromDestination" class="DepartureFromDestination" required>
+                <label for="TransitFromArrival">Пересадка: </label>
+                <input type="datetime-local" name="TransitFromArrival" id="TransitFromArrival" class="TransitFromArrival" required>
+                <input type="datetime-local" name="TransitFromDeparture" id="TransitFromDeparture" class="TransitFromDeparture" required>
+                <label for="ArrivalOrigin">Прилет: </label>
+                <input type="datetime-local" name="ArrivalOrigin" id="ArrivalOrigin" class="ArrivalOrigin" required>
+                <p>Ожидание (часы):
+                    <span id="WaitingTimeFrom" class="WaitingTimeFrom">0</span>
+                </p>
+            </div>
+            <label for="TourContainer_2" class="container_label"> Данные тура:</label>
+            <p></p>
+            <div id="TourContainer_2" class="TourContainer_2">
+                <input type="text" name="TouristQuantity" placeholder="Количество мест" id="TouristQuantity" class="TouristQuantity" required>
+                <br>
+                <label for="HotelMekka"> Отель в Мекке: </label>
+                <select id="HotelMekka" name="HotelMekka" class="HotelMekka" required>
+                    {% for i in HotelData %}
+                    <option value="{{i.HotelName}}">{{i.HotelName}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="HotelMedina"> Отель в Медине: </label>
+                <select id="HotelMedina" name="HotelMedina" class="HotelJidda" required>
+                    {% for i in HotelData %}
+                    <option value="{{i.HotelName}}">{{i.HotelName}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="FoodChoose"> Выберите питание: </label>
+                <select id="FoodChoose" name="FoodChoose" class="FoodChoose" required>
+                    <option value="RO">RO - Room Only</option>
+                    <option value="BB">BB - Bed&Breakfast</option>
+                    <option value="HB">HB - Half board</option>
+                    <option value="FB">FB - Full board</option>
+                    <option value="AI">AI - All inclusive</option>
+                </select>
+                <br>
+                <label for="GidChoose">  Выбор гида: </label>
+                <select id="GidChoose" name="GidChoose" class="GidChoose" required>
+                    {% for i in GidData %}
+                    <option value="{{i.GidName}}">{{i.GidName}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="TransferChoose">  Выбор трансфера: </label>
+                <select id="TransferChoose" name="TransferChoose" class="TransferChoose" required>
+                    {% for i in TransferData %}
+                    <option value="{{i.TransportType}}">{{i.TransportType}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label for="DeadlineContainer" class="container_label"> Срок регистрации туристов: </label>
+            <p></p>
+            <div id="DeadlineContainer" class="DeadlineContainer">
+                <input type="datetime-local" name="TourDeadline" id="TourDeadline" class="TourDeadline" required>
+            </div>
+            <label for="PriceContainer" class="container_label">Формирование цен ($): </label>
+            <p></p>
+            <div id="PriceContainer" class="PriceContainer">
+                <input type="text" placeholder="Авиабилет" name="FlightTicketPrice" id="FlightTicketPrice" class="FlightTicket" required>
+                <input type="text" placeholder="Виза туриста" name="TouristVisaPrice" id="TouristVisaPrice" class="TouristVisa" required>
+                <input type="text" placeholder="Отель в Мекке" name="MekkaHotelPrice" id="MekkaHotelPrice" class="PriceMekkaHotel" required>
+                <input type="text" placeholder="Отель в Медине" name="MedinaHotelPrice" id="MedinaHotelPrice" class="PriceMedinaHotel" required>
+                <input type="text" placeholder="Питание" name="TourFoodPrice" id="TourFoodPrice" class="TourFood" required>
+                <input type="text" placeholder="Трансфер" name="TransferPrice" id="TransferPrice" class="Transfer" required>
+                <input type="text" placeholder="Хадж набор" name="HadjKitPrice" id="HadjKitPrice" class="HadjKit" required>
+                <input type="text" placeholder="Гид" name="GidPrice" id="GidPrice" class="Gid" required>
+                <input type="text" placeholder="Комиссия" name="Comission" id="Comission" class="Comission" required>
+                <input type="text" placeholder="Скидка" name="TourDiscount" id="TourDiscount" class="TourDiscount" required>
+                <p>Итого:
+                <span id="TourSummary" class="TourSummary">0</span>
+                    $
+                </p>
+
+            </div>
+            <input type="submit" id="TourRegistBtn" class="TourRegistBtn" value="Создать">
+            <p></p>
+            <p style="text-align: center;">Mihrab Travel 2024</p>
+        </div>
+    </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/tour_create_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+</body>
+</html>

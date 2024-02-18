@@ -1,0 +1,57 @@
+.user_info {
+   display: flex;
+   flex-direction: column;
+   text-align: left;
+}
+
+.info_fio, .info_birth, .info_ardess, .info_mail, .info_tel, .info_pass {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 300px;
+    font-size: 12pt;
+    text-align: left;
+}
+
+.info_login {
+    margin-bottom: 10px;
+}
+.info_change, .info_ok {
+   border: 1px solid transparent;
+   width: 170px;
+   text-align: center;
+   cursor: default;
+   margin-right: 10px;
+}
+.info_ok {
+   border: 1px solid transparent;
+   width: 100px;
+   text-align: center;
+   cursor: default;
+}
+.info_change:hover, .info_ok:hover {
+   border: 1px solid;
+   border-radius: 5px;
+   background-color: rgb(202, 193, 235);
+   color: rgb(88, 68, 68);
+   -webkit-transition: .5s ease-in-out;
+   -moz-transition: .5s ease-in-out;
+   -o-transition: .5s ease-in-out;
+   transition: .5s ease-in-out;
+   cursor: pointer;
+   display: absolute;
+   text-decoration: none;
+}
+.change_container {
+   display: flex;
+   flex-direction: row;
+   text-align: left;
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}

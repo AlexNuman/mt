@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Менеджера по продажам</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_manager.css' %}">
+</head>
+<body class="body">
+    <div class="upper_container">
+        <div class="img_logo">
+            <img src="/static/img/logo.png" class="img_logo_inside" alt="">
+        </div>
+        <div class="info_block_container">
+            <div class="info_block">
+                Туристическо-информационная система Mihrab Travel.
+            </div>
+        </div>
+        <div class="user_block">
+            <p class="UserLoginBtn" id="UserWindowBtn"> Логин:  {{session_login}} </p>
+            <div id="LogOut" class="LogOut">Выйти</div>
+        </div>
+    </div>
+<!------------Меню сайта ----------------------------------->
+    <div class="menu_container">
+        <div id="ActiveTourBtn" class="menu_2"> Активные туры </div>
+    </div>
+<!-------------------------------------------------------------->
+<!------------Инфо о странице ----------------------------------->
+    <div class="user_type_container">
+        <div class="user_type"> Менеджера по продажам</div>
+    </div>
+<!-------------------------------------------------------------->
+<!------------Основной блок ----------------------------------->
+    <div class="middle_container">
+        <div id="info_reciever">Добро пожаловать</div>
+    </div>
+<!-------------------------------------------------------------->
+<!------------Подвал сайта ----------------------------------->
+    <div class="bottom_container"></div>
+<!-------------------------------------------------------------->
+<!------------Модальное окно информации ----------------------------------->
+    <div id="ModalWindow" class="modal">
+        <div class="ModalWindow">
+            <div class="ModalWindowHeader" id="InfoHead">
+                <span class="close">&times;</span>
+                <h2>Информация</h2>
+            </div>
+            <div id="ModalInfoBlock" class="ModalInfoBlock"> Пусто</div>
+        </div>
+    </div>
+<!-------------------------------------------------------------->
+    <!------ Добавляем JQuery и JS файл страницы----->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/cabinet_manager.js/' %}"></script>
+<!-------------------------------------------------------------->
+</body>
+</html>

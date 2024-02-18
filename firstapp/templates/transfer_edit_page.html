@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/transfer_regist_page.css' %}">
+    <title>Изменение данных транспорта</title>
+</head>
+<body>
+<div class="transfer_form">
+      <form method="post" id="TransferForm" action="">
+          {% csrf_token %}
+          <div class="transfer_form">
+              <div class="transfer_label">Измените данные транспорта</div>
+              <p></p>
+              <input type="text" name="TransportType" value="{{TransportType}}" id="TransportType" class="TransportType" required>
+              <input type="text" name="TransportQuality" value="{{TransportQuality}}" id="TransportQuality" class="TransportQuality" >
+              <input type="text" name="TransferSeats" value="{{TransferSeats}}" id="TransferSeats" class="TransferSeats" >
+              <input type="text" name="TransportInfo" value="{{TransportInfo}}" id="TransportInfo" class="TransportInfo" >
+              <input type="submit" name="transfer_regist" id="transfer_regist" value="Сохранить" class="transfer_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/transfer_edit_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

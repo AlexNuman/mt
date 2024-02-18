@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Активные туры</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/active_tours.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <p></p>
+    <table class="tour_table">
+         <caption>
+             Список активных туров
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 120px;" class="tour_list">Действие</th>
+            <th style="width: 120px;" class="tour_list">Рейс</th>
+            <th style="width: 150px;" class="tour_list">Название пакета</th>
+            <th style="width: 300px;" class="tour_list">Маршрут</th>
+            <th style="width: 150px;" class="tour_list">Вылет туда</th>
+            <th style="width: 150px;" class="tour_list">Прилет туда</th>
+            <th style="width: 150px;" class="tour_list">Вылет обратно</th>
+            <th style="width: 150px;" class="tour_list">Прилет обратно</th>
+            <th style="width: 110px;" class="tour_list">Туристы(чел)</th>
+            <th style="width: 150px;" class="tour_list">Срок последней регистрации</th>
+            <th style="width: 150px;" class="tour_list">Итого($)</th>
+            <th style="width: 150px;" class="tour_list">Дата создания</th>
+            <th style="width: 50px;" class="tour_list"> ID </th>
+        </tr>
+        </thead>
+        <tbody id="active_tours">
+        {% for i in tour_data %}
+        <tr>
+            <td class="tour_list"> </td>
+            <td class="tour_list"> {{i.FlightType}}</td>
+            <td class="tour_list"> {{i.PaketName}}</td>
+            <td class="tour_list"> {{i.TourRoute}}</td>
+            <td class="tour_list"> {{i.DepartureFromOrigin}}</td>
+            <td class="tour_list"> {{i.ArrivalDestination}}</td>
+            <td class="tour_list"> {{i.DepartureFromDestination}}</td>
+            <td class="tour_list"> {{i.ArrivalOrigin}}</td>
+            <td class="tour_list"> {{i.TouristQuantity}}</td>
+            <td class="tour_list"> {{i.TourDeadline}}</td>
+            <td class="tour_list"> {{i.TourSummary}}</td>
+            <td class="tour_list"> {{i.TourCreateDate}}</td>
+            <td class="tour_list"> {{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество активных туров</th>
+      <td colspan="2"> {{len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/active_tours.js' %}"></script>
+
+
+</body>
+</html>

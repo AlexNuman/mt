@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список гидов</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/transfer_list.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <table class="transfer_table">
+         <caption>
+             Список трансфера
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 300px;" class="transfer_list"> Тип транспорта </th>
+            <th style="width: 200px;" class="transfer_list"> Качество  транспорта</th>
+            <th style="width: 200px;" class="transfer_list"> Количество мест</th>
+            <th style="width: 800px;" class="transfer_list"> Информация о транспорте</th>
+            <th style="width: 50px;" class="transfer_list"> ID</th>
+        </tr>
+        </thead>
+        <tbody id="transfer_list">
+        {% for i in TransferData %}
+        <tr>
+            <td class="transfer_list"> {{i.TransportType}}</td>
+            <td class="transfer_list"> {{i.TransportQuality}}</td>
+            <td class="transfer_list"> {{i.TransferSeats}}</td>
+            <td class="transfer_list"> {{i.TransportInfo}}</td>
+            <td class="transfer_list"> {{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество транспорта</th>
+      <td colspan="2"> {{Len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+<p></p>
+<div id="add_new_transfer" class="add_new_transfer" name="add_new_transfer">Добавить новый трансфер</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/transfer_list.js/' %}"></script>
+
+
+</body>
+</html>

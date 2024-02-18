@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список туристов</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/clients_list.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <p></p>
+    <table class="tourist_table">
+         <caption>
+             Список туристов
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 70px;" class="tourist_list"> № </th>
+            <th style="width: 70px;" class="tourist_list"> Тур </th>
+            <th style="width: 70px;" class="tourist_list"> ID </th>
+            <th style="width: 400px;" class="tourist_list"> ФИО туриста </th>
+            <th style="width: 150px;" class="tourist_list">Дата рождения</th>
+            <th style="width: 150px;" class="tourist_list">Адрес туриста</th>
+            <th style="width: 150px;" class="tourist_list">Email</th>
+            <th style="width: 150px;" class="tourist_list">Телефон</th>
+            <th style="width: 150px;" class="tourist_list">ИИН</th>
+            <th style="width: 150px;" class="tourist_list">Оплата </th>
+            <th style="width: 150px;" class="tourist_list">Тариф</th>
+            <th style="width: 150px;" class="tourist_list">Менеджер</th>
+            <th style="width: 150px;" class="tourist_list">Дата регистрации</th>
+            <th style="width: 150px;" class="tourist_list">Бухгальтер</th>
+            <th style="width: 150px;" class="tourist_list">Статус</th>
+            <th style="width: 150px;" class="tourist_list">Логин</th>
+            <th style="width: 150px;" class="tourist_list">Пароль</th>
+            <th style="width: 150px;" class="tourist_list">Активность</th>
+        </tr>
+        </thead>
+        <tbody id="clients_list">
+        {% for i in TouristData %}
+        <tr>
+            <td class="tourist_list"> {{loop.i}}</td>
+            <td class="tourist_list"> {{i.TourID}}</td>
+            <td class="tourist_list"> {{i.id}}</td>
+            <td class="tourist_list"> {{i.TouristName}}</td>
+            <td class="tourist_list"> {{i.TouristBirth}}</td>
+            <td class="tourist_list">{{i.TouristAdress}}</td>
+            <td class="tourist_list">{{i.TouristEmail}}</td>
+            <td class="tourist_list">{{i.TouristTel}}</td>
+            <td class="tourist_list">{{i.TouristIIN}}</td>
+            <td class="tourist_list">{{i.TouristPay}}</td>
+            <td class="tourist_list">{{i.TouristType}}</td>
+            <td class="tourist_list">{{i.RegistManager}}</td>
+            <td class="tourist_list">{{i.DateRegist}}</td>
+            <td class="tourist_list">{{i.ConfirmBuh}}</td>
+            <td class="tourist_list">{{i.StatusPay}}</td>
+            <td class="tourist_list">{{i.TouristLogin}}</td>
+            <td class="tourist_list">{{i.TouristPass}}</td>
+            <td class="tourist_list">{{i.TouristLastLogin}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество туристов</th>
+      <td colspan="2"> {{Len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+<p></p>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/clients_list.js' %}"></script>
+
+
+</body>
+</html>

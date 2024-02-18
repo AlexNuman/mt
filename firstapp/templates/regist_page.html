@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/regist_page.css/' %}">
+    <title>Регистрация пользователя</title>
+</head>
+<body>
+<div class="regist_form">
+      <form method="post" id="regist_form" action="">
+          {% csrf_token %}
+          <div class="regist_input">
+              <div class="regist_label">Введите данные нового пользователя</div>
+              <p></p>
+              <input type="text" name="fio_regist" placeholder="ФИО" id="fio_regist" class="fio_regist" required>
+              <label for="birth_regist"> Дата рождения: </label>
+              <input type="date" name="birth_regist" id="birth_regist" class="birth_regist" required>
+              <input type="text" name="adress_regist" placeholder="Адрес" id="adress_regist" class="adress_regist" required>
+              <input type="email" name="email_regist" placeholder="Email" id="email_regist" class="email_regist" required>
+              <input type="text" name="user_tel" placeholder="Телефон" id="user_tel" class="user_tel" required>
+              <input type="text" name="login_regist" placeholder="Логин" id="login_regist" class="login_regist" required>
+              <input type="text" name="pass_in" placeholder="Пароль" id="pass" class="pass" required>
+              <span id="pass_len" class="pass_len">*Длина пароля не менее 8 и не более 20 символов</span>
+              <span id="pass_Az_09" class="pass_Az_09">*Пароль должен состоят из букв A-z и цифр 0-9</span>
+              <span id="pass_upper_lower" class="pass_upper_lower">*Пароль должен состоят из строчных и прописных букв</span>
+              <span id="pass_symbol" class="pass_symbol">*Пароль должен состоят из спец символов (.,:;?!*+%-<>@$#)</span>
+              <br>
+              <label for="user_type">Выберите тип пользователя:</label>
+              <select id="user_type" name="user_type" class="user_type" required>
+                  <option value="СУПЕРАДМИН">СУПЕРАДМИН</option>
+                  <option value="Администратор">Администратор</option>
+                  <option value="Директор">Директор</option>
+                  <option value="Менеджер">Менеджер по продажам</option>
+                  <option value="Бухгальтер">Бухгальтер</option>
+              </select>
+              <input type="submit" name="button_regist" id="button_regist" value="Сохранить" class="button_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/regist_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

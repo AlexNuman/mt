@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваучер</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tourist_info.css' %}">
+</head>
+<body>
+<div>
+    <table class="tourist_info">
+        <caption>
+            Информация о туристе
+        </caption>
+        <thead>
+            <tr>
+                <th style="width: 150px; padding-left: 5px;">
+                    Разделы
+                </th>
+                <th>
+                    Инфо
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    ФИО
+                </td>
+                <td>
+                    {{TouristData.TouristName}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата рождения
+                </td>
+                <td>
+                    {{TouristData.TouristBirth}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Адрес
+                </td>
+                <td>
+                    {{TouristData.TouristAdress}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ИИН
+                </td>
+                <td>
+                    {{TouristData.TouristIIN}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    № паспорта
+                </td>
+                <td>
+                    {{TouristData.TouristPassNumber}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Срок паспорта
+                </td>
+                <td>
+                    {{TouristData.TouristPassEx}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Телефон
+                </td>
+                <td>
+                    {{TouristData.TouristTel}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Размешение
+                </td>
+                <td>
+                    {{TouristData.TouristRoomType}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Питание
+                </td>
+                <td>
+                    {{TouristData.TouristFoodType}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Долг
+                </td>
+                <td>
+                    {{TouristData.TouristDebt}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Группа
+                </td>
+                <td>
+                    {{TouristData.TouristGroup}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Менеджер
+                </td>
+                <td>
+                    {{TouristData.RegistManager}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Регистрация
+                </td>
+                <td>
+                    {{TouristData.DateRegist}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Статус
+                </td>
+                <td>
+                    {{TouristData.StatusPay}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Логин
+                </td>
+                <td>
+                    {{TouristData.TouristLogin}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Пароль
+                </td>
+                <td>
+                    {{TouristData.TouristPass}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Активность
+                </td>
+                <td>
+                    {{TouristData.TouristLastLogin}}
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/tourist_info.js/' %}"></script>
+</body>
+</html>

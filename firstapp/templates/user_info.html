@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о пользователе</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_info.css' %}">
+</head>
+<body>
+<div class="info_container">
+    <div class="user_info">
+        <label for="info_fio">ФИО: </label>
+        <input type="text" name="info_fio" value="{{get_user_name}}" id="info_fio" class="info_fio" required>
+        <label for="info_birth">Дата рождения: {{get_birth}} </label>
+        <input type="date" name="info_birth"  id="info_birth" class="info_birth" required>
+        <label for="info_ardess">Адрес: </label>
+        <input type="text" name="info_ardess" value="{{get_adress}}" id="info_ardess" class="info_ardess" required>
+        <label for="info_mail">Email: </label>
+        <input type="text" name="info_mail" value="{{get_email}}" id="info_mail" class="info_mail" required>
+        <label for="info_tel">Телефон: </label>
+        <input type="text" name="info_tel" value="{{get_tel}}" id="info_tel" class="info_tel" required>
+        <div class="info_login">Логин: {{get_login}}</div>
+        <input type="text" name="info_pass" placeholder="Пароль" id="info_pass" class="info_pass" required>
+        <div id="change_container" class="change_container" name="change_container">
+            <div id="info_change" class="info_change" name="info_change">Сохранить изменения</div>
+            <div id="info_ok" class="info_ok" name="info_ok">OK</div>
+        </div>
+
+
+
+    </div>
+
+</div>
+<script type="text/javascript" src="{% static 'js/user_info.js' %}"></script>
+</body>
+</html>

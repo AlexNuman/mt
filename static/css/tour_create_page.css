@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
+/* Образцы шрифтов
+font-family: 'Alegreya', serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Poiret One', sans-serif;
+font-family: 'Prata', serif;
+font-family: 'Tektur', sans-serif;
+font-family: 'Unbounded', sans-serif;
+*/
+.TourCreatePage {
+  display: flex;
+  justify-content: center;
+}
+.NewTourData {
+  font-family: 'Unbounded', sans-serif;
+  letter-spacing: 1px;
+  margin: auto;
+  font-size: 12pt;
+  padding-left: 5px;
+  font-color: black;
+
+}
+label {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14pt;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.FlightType, .PaketName, .TourDestination, .TourHotel,.TouristQuantity,.TourPrice, .TourDeadline, .TourType, .TourRoute, .HotelMekka, .HotelJidda {
+  font-family: 'Unbounded', sans-serif;
+  margin-top: 10px;
+  width: 300px;
+  height: 30px;
+  font-size: 12pt;
+  border-radius: 3px;
+}
+.DepartureFromOrigin, .ArrivalDestination, .ArrivalOrigin, .DepartureFromDestination, .TransitToArrival, .TransitToDeparture, .TransitFromArrival, .TransitFromDeparture, .TransitPlaceDeparture, .WaitingTime, .FlightTicket, .TouristVisa, .PriceMekkaHotel, .PriceMedinaHotel, .TourFood, .FoodChoose, .Transfer, .HadjKit, .Gid, .GidChoose, .TransferChoose, .Comission, .TourDiscount, .TourSummary {
+  font-family: 'Unbounded', sans-serif;
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  font-size: 12pt;
+  border-radius: 3px;
+}
+.TourRegistBtn {
+  font-family: 'Unbounded', sans-serif;
+  text-align: left;
+  font-size: 14pt;
+  padding-top: 5px;
+  border: 1px solid;
+  font-size: 14pt;
+  margin-top: 10px;
+  height: 40px;
+  width: 140px;
+  border-radius: 5px;
+  cursor: default;
+  padding-left: 5px;
+  font-align: center;
+}
+.TourRegistBtn:hover {
+  font-family: 'Unbounded', sans-serif;
+  background-color: rgb(202, 193, 235);
+}
+.FlightToContainer, .FlightFromContainer, .TourContainer, .TourContainer_1, .TourContainer_2, .DeadlineContainer, .PriceContainer {
+  font-family: 'Unbounded', sans-serif;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  border: groove 3px;
+  border-radius: 5px;
+  width: 1100px;
+  background-color: #F8F8FF;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.FlightToContainer:hover, .FlightFromContainer:hover, .TourContainer:hover, .TourContainer_1:hover, .TourContainer_2:hover, .DeadlineContainer:hover, .PriceContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
+  transition: all 0.5s ease 0s;
+}
+.label-p {
+  font-family: 'Unbounded', sans-serif;
+  border: groove 3px;
+  border-radius: 5px;
+  background-color: #F8F8FF;
+  width: 400px;
+  height: 40px;
+  font-align: center;
+  padding-top: 10px;
+}
+.label {
+  display: flex;
+  justify-content: center;
+}
+.container_label {
+  border: 3px groove;
+  background-color: aliceblue;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  -webkit-box-shadow: 6px 10px 21px -5px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 6px 10px 21px -5px rgba(34, 60, 80, 0.2);
+  box-shadow: 6px 10px 21px -5px rgba(34, 60, 80, 0.2);
+}
+

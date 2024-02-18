@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список гидов</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gid_list.css/' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <table class="gid_table">
+         <caption>
+             Список гидов
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 400px;" class="tourist_list"> ФИО гида </th>
+            <th style="width: 150px;" class="tourist_list">Дата рождения</th>
+            <th style="width: 150px;" class="tourist_list">Адрес гида</th>
+            <th style="width: 150px;" class="tourist_list">Email</th>
+            <th style="width: 150px;" class="tourist_list">Телефон</th>
+            <th style="width: 300px;" class="tourist_list">Дата регистрации</th>
+            <th style="width: 70px;" class="tourist_list"> ID </th>
+        </tr>
+        </thead>
+        <tbody id="gid_list">
+        {% for i in GidData %}
+        <tr>
+            <td class="tourist_list"> {{i.GidName}}</td>
+            <td class="tourist_list"> {{i.GidBirth}}</td>
+            <td class="tourist_list"> {{i.GidAdress}}</td>
+            <td class="tourist_list"> {{i.GidEmail}}</td>
+            <td class="tourist_list"> {{i.GidTel}}</td>
+            <td class="tourist_list">{{i.GidCreateDate}}</td>
+            <td class="tourist_list">{{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество гидов</th>
+      <td colspan="2"> {{Len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+<p></p>
+<div id="add_new_gid" class="add_new_gid" name="add_new_gid">Добавить нового гида</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/gid_list.js/' %}"></script>
+
+
+</body>
+</html>

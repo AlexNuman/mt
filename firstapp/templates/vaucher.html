@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ваучер</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vaucher.css/' %}">
+</head>
+<body>
+    <div id="main_container" class="main_container">
+        <div id="company_container" class="company_container">
+            <div id="company_logo" class="company_logo">
+                <img src="/static/img/logo.png" class="img_logo_inside" alt="Лого" style="width: 180px; height: 50px;">
+            </div>
+            <div id="company_name" class="company_name">MIHRAB TRAVEL</div>
+        </div>
+        <hr>
+        <div id="vaucher_label" class="vaucher_lbl">ВАУЧЕР</div>
+        <hr>
+        <div id="upper_container" class="upper_container">
+            <div id="tourist_info_label" class="tourist_info_label">Информация о туристе</div>               
+            <div id="tourist_info_block" class="tourist_info_block">
+                <div class="tourist_info_table_container">
+                    <table id="tourist_info_table" class="tourist_info_table">
+                        <tr>
+                            <td>Для кого</td>
+                            <td>{{TouristInfo.TouristName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Откуда</td>
+                            <td>{{TouristInfo.TouristAdress}}</td>
+                        </tr>
+                        <tr>
+                            <td>№ договора</td>
+                            <td>MT-24{{TouristInfo.id}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>                
+            <div id="flight_info_label" class="flight_info_label"> Детали перелета</div>
+            <div id="flight_info_block" class="flight_info_block">
+                <div class="flight_info_block_container">
+                    <table id="flight_info_table_to" class="flight_info_table_to">
+                        <thead>
+                            <th>
+                                <td>ТУДА</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>ОБРАТНО</td>
+                                <td></td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Дата и время вылета</td>
+                                <td>{{TourInfo.DepartureFromOrigin}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Дата и время вылета</td>
+                                <td>{{TourInfo.DepartureFromDestination}}</td>
+                            </tr>
+                            <tr>
+                                <td>Транзит прилет</td>
+                                <td>{{TourInfo.TransitToArrival}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Транзит прилет</td>
+                                <td>{{TourInfo.TransitFromArrival}}</td>
+                            </tr>
+                            <tr>
+                                <td>Транзит вылет</td>
+                                <td>{{TourInfo.TransitFromArrival}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Транзит вылет</td>
+                                <td>{{TourInfo.TransitToDeparture}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ожидание</td>
+                                <td>{{TourInfo.WaitingTimeTo}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Ожидание</td>
+                                <td>{{TourInfo.WaitingTimeFrom}}</td>
+                            </tr>
+                            <tr>
+                                <td>Дата прилета</td>
+                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Дата прилета</td>
+                                <td>{{TourInfo.ArrivalOrigin}}</td>
+                            </tr>
+                            <tr>
+                                <td>Тип рейса</td>
+                                <td>{{TourInfo.FlightType}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Тип рейса</td>
+                                <td>{{TourInfo.FlightType}}</td>
+                            </tr>
+                            <tr>
+                                <td>Маршрут</td>
+                                <td>{{TourInfo.TourRoute}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Маршрут</td>
+                                <td>{{TourInfo.TourRoute}}</td>
+                            </tr>
+                        </tbody>                        
+                    </table>                    
+                </div>
+                
+            </div>            
+            <div id="hotel_info_label" class="hotel_info_label">Детали проживания</div>
+            <div id="hotel_info_block" class="hotel_info_block">
+                <div id="hotel_info_block_container" class="hotel_info_block_container">
+                    <table id="hotel_info_table" class="hotel_info_table">
+                        <thead>
+                            <th>
+                                <td>Медина</td>
+                                <td></td>
+                                <td></td>
+                                <td>Мекка</td>
+                                <td></td>
+                                <td></td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Отель</td>
+                                <td>{{TourInfo.HotelMekka}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>Отель</td>
+                                <td>{{TourInfo.HotelMedina}}</td>
+                            </tr>
+                            <tr>
+                                <td>Дата заезда</td>
+                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>Дата заезда</td>
+                                <td>{{TourInfo.ArrivalDestination}}</td>
+                            </tr>
+                            <tr>
+                                <td>Дата выезда</td>
+                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>Дата выезда</td>
+                                <td>{{TourInfo.ArrivalDestination}}</td>
+                            </tr>
+                            <tr>
+                                <td>Тип размещения</td>
+                                <td>Quadro</td>
+                                <td></td>
+                                <td></td>
+                                <td>Дата выезда</td>
+                                <td>11.01.2024</td>
+                            </tr>
+                            <tr>
+                                <td>Имя</td>
+                                <td>Abdullaeb Mansur</td>
+                                <td></td>
+                                <td></td>
+                                <td>Имя</td>
+                                <td>Abdullaeb Mansur</td>
+                            </tr>
+                            <tr>
+                                <td>Питание</td>
+                                <td>BB</td>
+                                <td></td>
+                                <td></td>
+                                <td>Питание</td>
+                                <td>BB</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+            <div id="transfer_info_label" class="transfer_info_label">Информация о трансфере</div>
+            <div id="transfer_info_block" class="transfer_info_block">
+                <div id="transfer_info_block_container" class="transfer_info_block_container">
+                    <table id="transfer_info_table" class="transfer_info_table">
+                        <thead>
+                            <th>
+                                <td>В Медине и Мекке</td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Вид транспорта</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Автобус</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="service_info_label" class="service_info_label"> Информация о сервисе</div>
+            <div id="service_info_block" class="service_info_block">
+                <div id="service_info_block_container" class="service_info_block_container">
+                    <table id="service_info_table" class="service_info_table">
+                        <thead>
+                            <th>
+                                <td>Ваш гид</td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Данные</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Rakhmanov Abdulla</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
+            <div id="info_for_tourist_label" class="info_for_tourist_label">Памятка для туриста</div>
+
+            <div id="info_for_tourist_block" class="info_for_tourist_block">
+                <div id="info_for_tourist_block_container" class="info_for_tourist_block_container">
+                    <table id="tourist_info_table_bottom" class="tourist_info_table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span>- Уважаемые поломники, просим Вас быть в аэропорту за 3 часа до отправлениямеждународного рейса!</span><br>
+                                    <span>- Регистрация начинается за 2 часа до вылета.</span><br>
+                                    <span>- За 40 минут до вылета регистрация завершается.</span><br>
+                                    <span>- Багаж 20 кг.</span> <br>
+                                    <span>- Ручная кладь 7 кг.</span><br>
+                                    <span>- Питание не включено в стоимость билета, но можно заказать еду на платной основе (можно взять собой для перекуса)</span>
+                                </td>
+                                <td>
+                                    <span>1. В аэропорту наш гид будет ожидать Вас при выход из зоны паспортного контроля и таможенного контроля.</span><br>
+                                    <span>2. Все вопросы, связанные с экскурсией и совершение дополнительных обрядов, а также личных вопросов можно обратится к гиду.</span><br>
+                                    <span>3. Просим Вас не опаздывать на назначенное время экскурсии и других выездов, в случае опаздания необходимо самостоятельно оплачивать дполнительную поездку за свой счет</span>
+                                    <span>4. Комания MIHRAB TRAVEL не несет отетственности в случае изменения расписания рейсов, задержки, а также других форс-можорных обстоятельств.</span><br>
+                                    <span>5. Всю ответственность за утерю и порчу багажа несет авиакомпания.</span><br>
+                                    <span>6. Получение данного ваучера рассматривается как автоматическое ознакомление и согласие с условяими работы нашей компании.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        
+            <div id="flight_info" class="flight_info">
+                <div id="departure_info" class="departure_info"></div>
+                <div id="transit_info" class="transit_info"></div>
+                <div id="arrival_info" class="arrival_info"></div>
+            </div>
+            <div id="hotel_info" class="hotel_info">
+                <div id="medine_info" class="medine_info"></div>
+                <div id="mekka_info" class="mekka_info"></div>
+            </div>
+        
+        <div id="midlle_container" class="midlle_container">
+            <div id="transfer_info" class="transfer_info">
+                <div id="transfer_to" class="transfer_to"></div>
+                <div id="transfer_from" class="transfer_from"></div>
+            </div>
+        </div>
+        <div id="bottom_container" class="bottom_container">
+            <div id="service_info" class="service_info">
+                <div id="gid_info" class="gid_info"></div>
+            </div>
+        </div>
+        <div id="info_container" class="info_container">
+            <div id="flight_service_info" class="flight_service_info"></div>
+            <div id="tourist_info_advice" class="tourist_info_advice"></div>
+        </div>
+    </div>
+
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/vaucher.js' %}"></script>
+</html>

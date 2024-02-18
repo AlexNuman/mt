@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваучер</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tour_info.css/' %}">
+</head>
+<body>
+<div>
+    <table class="tour_info">
+        <thead>
+            <tr>
+                <th style="width: 200px; padding-left: 5px;">
+                    Разделы
+                </th>
+                <th>
+                    Инфо
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Дата вылета туда
+                </td>
+                <td>
+                    {{TourData.DepartureFromOrigin}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Транзит туда - прилет
+                </td>
+                <td>
+                    {{TourData.TransitToArrival}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Транзит туда - вылет
+                </td>
+                <td>
+                    {{TourData.TransitToDeparture}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата прилета туда
+                </td>
+                <td>
+                    {{TourData.ArrivalDestination}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ожидание транзит - туда
+                </td>
+                <td>
+                    {{TourData.WaitingTimeTo}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Дата вылета обратно
+                </td>
+                <td>
+                    {{TourData.DepartureFromDestination}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Транзит обратно - прилет
+                </td>
+                <td>
+                    {{TourData.TransitFromArrival}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Транзит обратно - вылет
+                </td>
+                <td>
+                    {{TourData.TransitFromDeparture}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата прилета обратно
+                </td>
+                <td>
+                    {{TourData.ArrivalOrigin}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ожидание транзит - обратно
+                </td>
+                <td>
+                    {{TourData.WaitingTimeFrom}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Количество туристов
+                </td>
+                <td>
+                    {{TourData.TouristQuantity}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Отель в Мекке
+                </td>
+                <td>
+                    {{TourData.HotelMekka}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Отель в Медина
+                </td>
+                <td>
+                    {{TourData.HotelMedina}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выбор питания
+                </td>
+                <td>
+                    {{TourData.FoodChoose}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выбор гида
+                </td>
+                <td>
+                    {{TourData.GidChoose}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выбор трансфера
+                </td>
+                <td>
+                    {{TourData.TransferChoose}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Срок последней регистрации
+                </td>
+                <td>
+                    {{TourData.TourDeadline}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Цена авиабилета
+                </td>
+                <td>
+                    {{TourData.FlightTicketPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Цена визы туриста
+                </td>
+                <td>
+                    {{TourData.TouristVisaPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Цена отеля в Мекке
+                </td>
+                <td>
+                    {{TourData.MekkaHotelPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Цена отеля в Медина
+                </td>
+                <td>
+                    {{TourData.MedinaHotelPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Питание
+                </td>
+                <td>
+                    {{TourData.TourFoodPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Трансфер
+                </td>
+                <td>
+                    {{TourData.TransferPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Хадж набор
+                </td>
+                <td>
+                    {{TourData.HadjKitPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Гид
+                </td>
+                <td>
+                    {{TourData.GidPrice}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Комиссия
+                </td>
+                <td>
+                    {{TourData.Comission}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Скидка
+                </td>
+                <td>
+                    {{TourData.TourDiscount}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Итого тура
+                </td>
+                <td>
+                    {{TourData.TourSummary}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата создания тура
+                </td>
+                <td>
+                    {{TourData.TourCreateDate}}
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/tour_info.js/' %}"></script>
+</body>
+</html>

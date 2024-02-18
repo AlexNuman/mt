@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main_page.css/' %}">
+    <title>Mihrab Travel</title>
+</head>
+<body>
+    <div class="main_container">
+        <div class="main_form">
+            <img style="margin-top: 200px;" src="{% static 'img/logo.png/' %}">
+            <form method="post" action="check_login/">
+            {% csrf_token %}
+                <div class="login_input">
+                    <p style="display: {{error_login}}; color: red; margin-top: 0; margin-bottom: 0;"> Неправильный логин/пароль</p>
+                    <p></p>
+                    <div class="login_label">АВТОРИЗАЦИЯ</div>
+                    <p></p>
+                    <label for="login">Логин</label>
+                    <p></p>
+                    <input type="text" name="login" placeholder="Логин" id="login" class="login" required>
+                    <p></p>
+                    <label for="pass"> Пароль</label>
+                    <p></p>
+                    <input type="password" name="pass_in" placeholder="Пароль" id="pass" class="pass" required>
+                    <p></p>
+                    <input type="submit" name="button_in" id="button_in" value="Отправить" class="but_in">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer_container">
+        <div class="main_footer">MIHRAB TRAVEL 2024</div>
+    </div>
+</body>
+</html>

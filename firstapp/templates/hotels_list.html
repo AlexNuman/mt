@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список гостиниц</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hotels_list.css/' %}">
+</head>
+<body>
+
+<p></p>
+<div class="MainContainer">
+    <table class="hotels_table">
+         <caption>
+             Список гостиниц
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 200px;" class="hotels_list"> Назввание гостиницы</th>
+            <th style="width: 200px;" class="hotels_list">Город расположения</th>
+            <th style="width: 200px;" class="hotels_list">Уровень</th>
+            <th style="width: 800px;" class="hotels_list">Информация о гостиницу</th>
+            <th style="width: 50px;" class="hotels_list">ID</th>
+        </tr>
+        </thead>
+        <tbody id="hotels_list">
+        {% for i in HotelsData %}
+        <tr>
+            <td class="hotels_list"> {{i.HotelName}}</td>
+            <td class="hotels_list"> {{i.HotelCity}}</td>
+            <td class="hotels_list"> {{i.HotelStars}}</td>
+            <td class="hotels_list"> {{i.HotelInfo}}</td>
+            <td class="hotels_list">{{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество гостиниц</th>
+      <td colspan="2"> {{Len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+<p></p>
+<div id="add_new_hotel" class="add_new_hotel" name="add_new_hotel">Добавить гостиницу</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/hotels_list.js' %}"></script>
+
+
+</body>
+</html>

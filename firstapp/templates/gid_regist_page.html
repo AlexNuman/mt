@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gid_regist_page.css/' %}">
+    <title>Регистрация гида</title>
+</head>
+<body>
+<div class="regist_form">
+      <form method="post" id="GidForm" action="">
+          {% csrf_token %}
+          <div class="regist_input">
+              <div class="regist_label">Введите данные гида</div>
+              <p></p>
+              <input type="text" name="fio_gid" placeholder="ФИО гида" id="fio_gid" class="fio_gid">
+              <label for="birth_gid"> Дата рождения: </label>
+              <input type="date" name="birth_gid" id="birth_gid" class="birth_gid">
+              <input type="text" name="adress_gid" placeholder="Адрес" id="adress_gid" class="adress_gid">
+              <input type="email" name="email_gid" placeholder="Email" id="email_gid" class="email_gid">
+              <input type="text" name="tel_gid" placeholder="Телефон" id="tel_gid" class="tel_gid">
+              <input type="submit" name="button_regist" id="button_regist" value="Сохранить" class="button_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/gid_regist_page.js/' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

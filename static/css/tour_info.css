@@ -1,0 +1,23 @@
+.tour_info {
+    border: 1px solid #eee;
+	table-layout: fixed;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.tour_info th {
+	font-weight: bold;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+.tour_info td {
+	border: 1px solid #dddddd;
+}
+.tour_info tr {
+	width: 100px;
+	grid-template-rows: 150px;
+	grid-template-columns: 100px;
+}
+tr:hover {
+    background-color: aliceblue;
+}

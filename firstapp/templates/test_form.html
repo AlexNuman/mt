@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="test_form" id="testForm">
+      <form method="post" id="ajax_form" action="">
+          {% csrf_token %}
+          <div class="test_input" id="result_form">
+              <input type="text" name="fio" placeholder="ФИО" id="fio" class="fio">
+              <input type="date" name="birth" id="birth" class="birth">
+              <input type="text" name="adress" placeholder="Адрес" id="adress" class="adress">
+              <input type="submit" name="testbtn" id="testbtn" value="Сохранить" class="testbtn">
+          </div>
+          <div id="recieve">Ничего нет</div>
+      </form>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/test_form.js' %}"></script>
+
+</body>
+</html>

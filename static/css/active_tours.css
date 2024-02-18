@@ -1,0 +1,21 @@
+.tour_table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px groove;
+  cursor: default;
+  }
+
+.tour_list {
+    border: groove 3px;
+}
+tr:hover {
+    background-color: aliceblue;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список туристов</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tourist_list.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <p>Информация о туре: ID - <span id="tour_id">{{tour.id}}</span> </p>
+    <div id="TourInfoContainer" class="TourInfoContainer">
+        <img id="OpenInfo" src="/static/img/OpenBtn.png">
+        <img id="CloseInfo" src="/static/img/CloseBtn.png" style="display: none;">
+        <div id="TourInfoData" style="display: none;" class="TourInfoData">
+            <table>
+                <tbody class="InfoTable">
+                <tr>
+                    <td class="InfoTable"> Направление рейса</td>
+                    <td class="InfoTable"> --- {{tour.FlightType}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Название пакета</td>
+                    <td class="InfoTable"> --- {{tour.PaketName}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Маршрут</td>
+                    <td class="InfoTable"> --- {{tour.TourRoute}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Дата вылета туда</td>
+                    <td class="InfoTable"> --- {{tour.DepartureFromOrigin}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Транзит туда - прилет</td>
+                    <td class="InfoTable"> --- {{tour.TransitToArrival}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Транзит туда - вылет</td>
+                    <td class="InfoTable"> --- {{tour.TransitToDeparture}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Дата прилета туда</td>
+                    <td class="InfoTable"> --- {{tour.ArrivalDestination}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Ожидание транзит - туда</td>
+                    <td class="InfoTable"> --- {{tour.WaitingTimeTo}} час</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Дата вылета обратно</td>
+                    <td class="InfoTable"> --- {{tour.DepartureFromDestination}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Транзит обратно - прилет</td>
+                    <td class="InfoTable"> --- {{tour.TransitFromArrival}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Транзит обратно - вылет</td>
+                    <td class="InfoTable"> --- {{tour.TransitFromDeparture}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Направление рейса</td>
+                    <td class="InfoTable"> --- {{tour.FlightType}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Дата прилета обратно</td>
+                    <td class="InfoTable"> --- {{tour.ArrivalOrigin}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Ожидание транзит - обратно</td>
+                    <td class="InfoTable"> --- {{tour.WaitingTimeFrom}} час</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Количество туристов</td>
+                    <td class="InfoTable"> --- {{tour.TouristQuantity}} чел</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Отель в Мекке</td>
+                    <td class="InfoTable"> --- {{tour.HotelMekka}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Отель в Медина</td>
+                    <td class="InfoTable"> --- {{tour.HotelMedina}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Выбор питания</td>
+                    <td class="InfoTable"> --- {{tour.FoodChoose}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Срок последней регистрации</td>
+                    <td class="InfoTable"> --- {{tour.TourDeadline}}</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена авиабилета</td>
+                    <td class="InfoTable"> --- {{tour.FlightTicketPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена визы туриста</td>
+                    <td class="InfoTable"> --- {{tour.TouristVisaPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена отеля в Мекке</td>
+                    <td class="InfoTable"> --- {{tour.MekkaHotelPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена отеля в Медина</td>
+                    <td class="InfoTable"> --- {{tour.MedinaHotelPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена питание</td>
+                    <td class="InfoTable"> --- {{tour.TourFoodPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена трансфер</td>
+                    <td class="InfoTable"> --- {{tour.TransferPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена хадж набор</td>
+                    <td class="InfoTable"> --- {{tour.HadjKitPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Цена гида</td>
+                    <td class="InfoTable"> --- {{tour.GidPrice}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Комиссия</td>
+                    <td class="InfoTable"> --- {{tour.Comission}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Скидка</td>
+                    <td class="InfoTable"> --- {{tour.TourDiscount}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Итого тура</td>
+                    <td class="InfoTable"> --- {{tour.TourSummary}} $</td>
+                </tr>
+                <tr>
+                    <td class="InfoTable"> Дата создания тура</td>
+                    <td class="InfoTable"> --- {{tour.TourCreateDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p></p>
+    <table class="tourist_table">
+         <caption>
+             Список туристов
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 100px; margin: auto;" class="tourist_list">Действие</th>
+            <th style="width: 400px;" class="tourist_list">ФИО туриста</th>
+            <th style="width: 150px;" class="tourist_list">Дата рождения</th>
+            <th style="width: 150px;" class="tourist_list">Адрес туриста</th>
+            <th style="width: 150px;" class="tourist_list">ИИН</th>
+            <th style="width: 150px;" class="tourist_list">Телефон</th>
+            <th style="width: 150px;" class="tourist_list">Оплаченная сумма</th>
+            <th style="width: 150px;" class="tourist_list">Долг</th>
+            <th style="width: 150px;" class="tourist_list">Статус</th>
+            <th style="width: 50px;" class="tourist_list">ID</th>
+        </tr>
+        </thead>
+        <tbody id="tourist_list">
+        {% for i in TouristData %}
+        <tr>
+            <td class="tourist_list"> <div></div></td>
+            <td class="tourist_list"> {{i.TouristName}}</td>
+            <td class="tourist_list"> {{i.TouristBirth}}</td>
+            <td class="tourist_list"> {{i.TouristAdress}}</td>
+            <td class="tourist_list"> {{i.TouristIIN}}</td>
+            <td class="tourist_list">{{i.TouristTel}}</td>
+            <td class="tourist_list">{{i.TouristPay}}</td>
+            <td class="tourist_list">{{i.TouristDebt}}</td>
+            <td class="tourist_list">{{i.StatusPay}}</td>
+            <td class="tourist_list">{{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+    <p>Количество туристов:  <span>{{Len}}</span></p>
+</div>
+<p></p>
+<div id="add_new_tourist" class="add_new_tourist" name="add_new_tourist">Добавить нового туриста</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/tourist_list.js/' %}"></script>
+
+
+</body>
+</html>
