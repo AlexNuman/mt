@@ -7,4 +7,6 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postg
 
 https://habr.com/ru/articles/790886/
 
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+
 
