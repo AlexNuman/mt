@@ -12,7 +12,7 @@ AddNewTourist.onclick = function() {
       Info = data;
       modal.style.display = "block";
       ModalWindow.style.width = "340px";
-      ModalWindow.style.height = "810px";
+      ModalWindow.style.height = "820px";
       $('#ModalInfoBlock').empty();
       $('#ModalInfoBlock').html(Info);
     }

@@ -34,7 +34,7 @@ label {
   font-size: 12pt;
   border-radius: 3px;
 }
-.DepartureFromOrigin, .ArrivalDestination, .ArrivalOrigin, .DepartureFromDestination, .TransitToArrival, .TransitToDeparture, .TransitFromArrival, .TransitFromDeparture, .TransitPlaceDeparture, .WaitingTime, .FlightTicket, .TouristVisa, .PriceMekkaHotel, .PriceMedinaHotel, .TourFood, .FoodChoose, .Transfer, .HadjKit, .Gid, .GidChoose, .TransferChoose, .Comission, .TourDiscount, .TourSummary {
+.DepartureFromOrigin, .ArrivalDestination, .ArrivalOrigin, .DepartureFromDestination, .TransitToArrival, .TransitToDeparture, .TransitFromArrival, .TransitFromDeparture, .TransitPlaceDeparture, .WaitingTime, .FlightTicket, .TouristVisa, .PriceMekkaHotel, .PriceMedinaHotel, .TourFood, .FoodChoose, .Transfer, .HadjKit, .Gid, .GidChoose, .TransferChoose, .Comission, .TourDiscount, .TourSummary, .HotelMekkaIn, .HotelMekkaOut, .HotelMedinaIn, .HotelMedinaOut {
   font-family: 'Unbounded', sans-serif;
   margin-top: 10px;
   width: 180px;

@@ -16,6 +16,7 @@ class Users(models.Model):  #Класс для создания нового п�
     user_status = models.CharField(max_length=1) # Статус пользователя
 #----------------------------------------------------------------------------
 #-------Класс БД нового тура ------------------------------------------------
+
 class Tours (models.Model):
     FlightType = models.CharField(max_length=200)                                # Направление рейса
     PaketName = models.CharField(max_length=200)                                 # Название пакета
@@ -32,7 +33,11 @@ class Tours (models.Model):
     WaitingTimeFrom = models.CharField(max_length=50)                            # <-- Ожидание транзит - обратно
     TouristQuantity = models.SmallIntegerField()                                 # Количество туристов
     HotelMekka = models.CharField(max_length=200)                                # Отель в Мекке
+    HotelMekkaIn = models.DateTimeField(auto_now=False, blank=True)              # Заезд в отель в Мекке
+    HotelMekkaOut = models.DateTimeField(auto_now=False, blank=True)             # Выезд из отеля в Мекке
     HotelMedina = models.CharField(max_length=200)                               # Отель в Медина
+    HotelMedinaIn = models.DateTimeField(auto_now=False, blank=True)             # Заезд в отель в Медина
+    HotelMedinaOut = models.DateTimeField(auto_now=False, blank=True)            # Выезд из отеля в Медина
     FoodChoose = models.CharField(max_length=200)                                # Выбор питания
     GidChoose = models.CharField(max_length=200)                                 # Выбор гида
     TransferChoose = models.CharField(max_length=200)                            # Выбор трансфера
@@ -49,7 +54,8 @@ class Tours (models.Model):
     TourDiscount = models.CharField(max_length=200)                              # Скидка
     TourSummary = models.CharField(max_length=200)                               # Итого тура
     TourCreateDate = models.DateTimeField(auto_now=False, blank=True)            # Дата создания тура
-#-------------------------------------------32 строк---------------------------------
+#-------------------------------------------36 строк---------------------------------
+
 #-------Класс БД гиды -----------------------------------------------
 class Gids (models.Model):
     GidName = models.CharField(max_length=200)                        # ФИО гида
@@ -76,6 +82,7 @@ class TourTransfer (models.Model):
 
 #----------------------------------------------------------------------------
 #-------Класс БД нового туриста -----------------------------------------------
+
 class Clients(models.Model):
     TouristName = models.CharField(max_length=200)           # ФИО туриста
     TouristBirth = models.DateField(auto_now=False)          # Дата рождения
@@ -96,8 +103,10 @@ class Clients(models.Model):
     TouristLogin = models.CharField(max_length=100)          # Логин
     TouristPass = models.CharField(max_length=100)           # Пароль
     TouristLastLogin= models.DateTimeField(auto_now=True)    # Активность
+    Comments = models.CharField(max_length=200)              # Комментарии к клиенту
     TourID = models.CharField(max_length=50)                 # Тур ID
 #----------------------------------------------------------------------------
+
 #-------Класс проверка БД --------------------------------------------------
 class test_db(models.Model):
     name = models.CharField(max_length=20)

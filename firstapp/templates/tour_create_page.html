@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Создание нового тура</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/tour_create_page.css/' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tour_create_page.css' %}">
 </head>
 <body>
 <div class="TourCreatePage">
@@ -64,6 +64,15 @@
                     <option value="{{i.HotelName}}">{{i.HotelName}}</option>
                     {% endfor %}
                 </select>
+                <div id="Mekka_days_container" class="Mekka_days_container">
+                    <label for="HotelMekkaIn"> Заезд: </label>
+                    <input type="datetime-local" name="HotelMekkaIn" id="HotelMekkaIn" class="HotelMekkaIn" required>
+                    <label for="HotelMekkaOut"> Выезд: </label>
+                    <input type="datetime-local" name="HotelMekkaOut" id="HotelMekkaOut" class="HotelMekkaOut" required>
+                    <span>Дни:
+                        <span id="MekkaHotel-Days" class="MekkaHotel-Days">0</span>
+                    </span>
+                </div>
                 <br>
                 <label for="HotelMedina"> Отель в Медине: </label>
                 <select id="HotelMedina" name="HotelMedina" class="HotelJidda" required>
@@ -71,6 +80,15 @@
                     <option value="{{i.HotelName}}">{{i.HotelName}}</option>
                     {% endfor %}
                 </select>
+                <div id="Medina_days_container" class="Medina_days_container">
+                    <label for="HotelMedinaIn"> Заезд: </label>
+                    <input type="datetime-local" name="HotelMedinaIn" id="HotelMedinaIn" class="HotelMedinaIn" required>
+                    <label for="HotelMedinaOut"> Выезд: </label>
+                    <input type="datetime-local" name="HotelMedinaOut" id="HotelMedinaOut" class="HotelMedinaOut" required>
+                    <span>Дни:
+                        <span id="MedinaHotel-Days" class="MedinaHotel-Days">0</span>
+                    </span>
+                </div>
                 <br>
                 <label for="FoodChoose"> Выберите питание: </label>
                 <select id="FoodChoose" name="FoodChoose" class="FoodChoose" required>

@@ -186,56 +186,59 @@ def AjaxServer(request):
     elif switcher == 'NewTourCreate':
         done = {1: 'Тур создан!', 2: request.GET.get('TourDead')}
         error = {1: 'Ощибка создания тура! По пробуйте еще!'}
-        try:
-            FlightType = request.GET.get('FlightType')
-            PaketName = request.GET.get('PaketName')
-            TourRoute = request.GET.get('TourRoute')
-            DepartureFromOrigin = request.GET.get('DepartureFromOrigin')
-            TransitToArrival = request.GET.get('TransitToArrival')
-            TransitToDeparture = request.GET.get('TransitToDeparture')
-            ArrivalDestination = request.GET.get('ArrivalDestination')
-            WaitingTimeTo = request.GET.get('WaitingTimeTo')
-            DepartureFromDestination = request.GET.get('DepartureFromDestination')
-            TransitFromArrival = request.GET.get('TransitFromArrival')
-            TransitFromDeparture = request.GET.get('TransitFromDeparture')
-            ArrivalOrigin = request.GET.get('ArrivalOrigin')
-            WaitingTimeFrom = request.GET.get('WaitingTimeFrom')
-            TouristQuantity = request.GET.get('TouristQuantity')
-            HotelMekka = request.GET.get('HotelMekka')
-            HotelMedina = request.GET.get('HotelMedina')
-            FoodChoose = request.GET.get('FoodChoose')
-            GidChoose = request.GET.get('GidChoose')
-            TransferChoose = request.GET.get('TransferChoose')
-            TourDeadline = request.GET.get('TourDeadline')
-            FlightTicketPrice = request.GET.get('FlightTicketPrice')
-            TouristVisaPrice = request.GET.get('TouristVisaPrice')
-            MekkaHotelPrice = request.GET.get('MekkaHotelPrice')
-            MedinaHotelPrice = request.GET.get('MedinaHotelPrice')
-            TourFoodPrice = request.GET.get('TourFoodPrice')
-            TransferPrice = request.GET.get('TransferPrice')
-            HadjKitPrice = request.GET.get('HadjKitPrice')
-            GidPrice = request.GET.get('GidPrice')
-            Comission = request.GET.get('Comission')
-            TourDiscount = request.GET.get('TourDiscount')
-            TourSummary = request.GET.get('TourSummary')
-            TourCreateDate = datetime.now()
-            new_tour = Tours.objects.create(FlightType=FlightType, PaketName=PaketName, TourRoute=TourRoute,
-                                            DepartureFromOrigin=DepartureFromOrigin, TransitToArrival=TransitToArrival,
-                                            TransitToDeparture=TransitToDeparture, ArrivalDestination=ArrivalDestination,
-                                            WaitingTimeTo=WaitingTimeTo, DepartureFromDestination=DepartureFromDestination,
-                                            TransitFromArrival=TransitFromArrival, TransitFromDeparture=TransitFromDeparture,
-                                            ArrivalOrigin=ArrivalOrigin, WaitingTimeFrom=WaitingTimeFrom,
-                                            TouristQuantity=TouristQuantity, HotelMekka=HotelMekka, HotelMedina=HotelMedina,
-                                            FoodChoose=FoodChoose, GidChoose=GidChoose, TransferChoose=TransferChoose,
-                                            TourDeadline=TourDeadline, FlightTicketPrice=FlightTicketPrice,
-                                            TouristVisaPrice=TouristVisaPrice, MekkaHotelPrice=MekkaHotelPrice,
-                                            MedinaHotelPrice=MedinaHotelPrice, TourFoodPrice=TourFoodPrice,
-                                            TransferPrice=TransferPrice, HadjKitPrice=HadjKitPrice, GidPrice=GidPrice,
-                                            Comission=Comission, TourDiscount=TourDiscount, TourSummary=TourSummary,
-                                            TourCreateDate=TourCreateDate)
-            return JsonResponse(done)
-        except:
-            return JsonResponse(error)
+        FlightType = request.GET.get('FlightType')
+        PaketName = request.GET.get('PaketName')
+        TourRoute = request.GET.get('TourRoute')
+        DepartureFromOrigin = request.GET.get('DepartureFromOrigin')
+        TransitToArrival = request.GET.get('TransitToArrival')
+        TransitToDeparture = request.GET.get('TransitToDeparture')
+        ArrivalDestination = request.GET.get('ArrivalDestination')
+        WaitingTimeTo = request.GET.get('WaitingTimeTo')
+        DepartureFromDestination = request.GET.get('DepartureFromDestination')
+        TransitFromArrival = request.GET.get('TransitFromArrival')
+        TransitFromDeparture = request.GET.get('TransitFromDeparture')
+        ArrivalOrigin = request.GET.get('ArrivalOrigin')
+        WaitingTimeFrom = request.GET.get('WaitingTimeFrom')
+        TouristQuantity = request.GET.get('TouristQuantity')
+        HotelMekka = request.GET.get('HotelMekka')
+        HotelMekkaIn = request.GET.get('HotelMekkaIn')
+        HotelMekkaOut = request.GET.get('HotelMekkaOut')
+        HotelMedina = request.GET.get('HotelMedina')
+        HotelMedinaIn = request.GET.get('HotelMedinaIn')
+        HotelMedinaOut = request.GET.get('HotelMedinaOut')
+        FoodChoose = request.GET.get('FoodChoose')
+        GidChoose = request.GET.get('GidChoose')
+        TransferChoose = request.GET.get('TransferChoose')
+        TourDeadline = request.GET.get('TourDeadline')
+        FlightTicketPrice = request.GET.get('FlightTicketPrice')
+        TouristVisaPrice = request.GET.get('TouristVisaPrice')
+        MekkaHotelPrice = request.GET.get('MekkaHotelPrice')
+        MedinaHotelPrice = request.GET.get('MedinaHotelPrice')
+        TourFoodPrice = request.GET.get('TourFoodPrice')
+        TransferPrice = request.GET.get('TransferPrice')
+        HadjKitPrice = request.GET.get('HadjKitPrice')
+        GidPrice = request.GET.get('GidPrice')
+        Comission = request.GET.get('Comission')
+        TourDiscount = request.GET.get('TourDiscount')
+        TourSummary = request.GET.get('TourSummary')
+        TourCreateDate = datetime.now()
+        new_tour = Tours.objects.create(FlightType=FlightType, PaketName=PaketName, TourRoute=TourRoute,
+                                        DepartureFromOrigin=DepartureFromOrigin, TransitToArrival=TransitToArrival,
+                                        TransitToDeparture=TransitToDeparture, ArrivalDestination=ArrivalDestination,
+                                        WaitingTimeTo=WaitingTimeTo, DepartureFromDestination=DepartureFromDestination,
+                                        TransitFromArrival=TransitFromArrival, TransitFromDeparture=TransitFromDeparture,
+                                        ArrivalOrigin=ArrivalOrigin, WaitingTimeFrom=WaitingTimeFrom,
+                                        TouristQuantity=TouristQuantity, HotelMekka=HotelMekka, HotelMekkaIn=HotelMekkaIn,
+                                        HotelMekkaOut=HotelMekkaOut, HotelMedina=HotelMedina, HotelMedinaIn=HotelMedinaIn,
+                                        HotelMedinaOut=HotelMedinaOut, FoodChoose=FoodChoose, GidChoose=GidChoose,
+                                        TransferChoose=TransferChoose, TourDeadline=TourDeadline,
+                                        FlightTicketPrice=FlightTicketPrice, TouristVisaPrice=TouristVisaPrice,
+                                        MekkaHotelPrice=MekkaHotelPrice, MedinaHotelPrice=MedinaHotelPrice,
+                                        TourFoodPrice=TourFoodPrice, TransferPrice=TransferPrice,
+                                        HadjKitPrice=HadjKitPrice, GidPrice=GidPrice, Comission=Comission,
+                                        TourDiscount=TourDiscount, TourSummary=TourSummary, TourCreateDate=TourCreateDate)
+        return JsonResponse(done)
+
 # ---->Изменение данных пользователя --------------
     elif switcher == 'UserInfoChange':
         done = {1: 'Данные изменены!'}
@@ -481,7 +484,7 @@ def AjaxServer(request):
                                                     RegistManager=registManager, DateRegist=dateRegist,
                                                     ConfirmBuh=confirmBuh, StatusPay=statusPay, TouristLogin=touristLogin,
                                                     TouristPass=touristPass, TouristLastLogin=touristLastLogin,
-                                                    TourID=tourID)
+                                                    Comments='-----', TourID=tourID)
                 return JsonResponse(done)
             except:
                 return JsonResponse(error)
