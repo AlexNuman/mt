@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main_page.css/' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main_page.css' %}">
     <title>Mihrab Travel</title>
 </head>
 <body>
     <div class="main_container">
         <div class="main_form">
-            <img style="margin-top: 200px;" src="{% static 'img/logo.png/' %}">
+            <img style="margin-top: 200px;" src="{% static 'img/logo.png' %}">
             <form method="post" action="check_login/">
             {% csrf_token %}
                 <div class="login_input">
