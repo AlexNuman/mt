@@ -1,5 +1,9 @@
 //----Создание нового тура -------------//
 var TourData;
+var TransitToArrival_1;
+var TransitToDeparture_1;
+var TransitFromArrival_1;
+var TransitFromDeparture_1;
 $('#NewTourForm').submit(function() {
   $.ajax({
     url: '/ajax-server/',
@@ -10,13 +14,13 @@ $('#NewTourForm').submit(function() {
       PaketName: $("#PaketName").val(),
       TourRoute: $("#TourRoute").val(),
       DepartureFromOrigin: $("#DepartureFromOrigin").val(),
-      TransitToArrival: $("#TransitToArrival").val(),
-      TransitToDeparture: $("#TransitToDeparture").val(),
+      TransitToArrival: TransitToArrival_1,
+      TransitToDeparture: TransitToDeparture_1,
       ArrivalDestination: $("#ArrivalDestination").val(),
       WaitingTimeTo: $("#WaitingTimeTo").text(),
       DepartureFromDestination: $("#DepartureFromDestination").val(),
-      TransitFromArrival: $("#TransitFromArrival").val(),
-      TransitFromDeparture: $("#TransitFromDeparture").val(),
+      TransitFromArrival: TransitFromArrival_1,
+      TransitFromDeparture: TransitFromDeparture_1,
       ArrivalOrigin: $("#ArrivalOrigin").val(),
       WaitingTimeFrom: $("#WaitingTimeFrom").text(),
       TouristQuantity: $("#TouristQuantity").val(),
@@ -76,6 +80,27 @@ var WaitTimeTo = document.getElementById('WaitingTimeTo');
 var WaitTimeFrom = document.getElementById('WaitingTimeFrom');
 //--срабатывает на клик по документу----//
 document.onclick = function() {
+  if ($("#FlightType").val() == 'Прямой рейс') {
+    $("#TransitToArrival").attr('disabled', true);
+    $("#TransitToDeparture").attr('disabled', true);
+    $("#TransitFromArrival").attr('disabled', true);
+    $("#TransitFromDeparture").attr('disabled', true);
+    $("#wait_lab_1").css('display', 'none');
+    $("#wait_lab_2").css('display', 'none');
+    TransitToArrival_1 = '';
+    TransitToDeparture_1 = '';
+    TransitFromArrival_1 = '';
+    TransitFromDeparture_1 = '';
+  } else {
+      $("#TransitToArrival").attr('disabled', false);
+      $("#TransitToDeparture").attr('disabled', false);
+      $("#TransitFromArrival").attr('disabled', false);
+      $("#TransitFromDeparture").attr('disabled', false);
+      TransitToArrival_1 = $("#TransitToArrival").val();
+      TransitToDeparture_1 = $("#TransitToDeparture").val();
+      TransitFromArrival_1 = $("#TransitFromArrival").val();
+      TransitFromDeparture_1 = $("#TransitFromDeparture").val();
+    };
   SummaryResult.textContent = Number(FlightTicket.value)+Number(TouristVisa.value)+Number(PriceMekkaHotel.value)+
   Number(PriceMedinaHotel.value)+Number(TourFood.value)+Number(HadjKit.value)+Number(Gid.value)+Number(Comission.value)+Number(TourTrans.value);
 //--подсчет разницы времени---//
@@ -92,6 +117,11 @@ document.onclick = function() {
   WaitTimeTo.textContent = getHumanizedValue(ToDateArrive.diff(ToDateDeparture, "hour"));
   WaitTimeFrom.textContent = getHumanizedValue(FromDateArrive.diff(FromDateDeparture, "hour"));
 };
+
+//----переключение между с пересадкой и без пересадкой
+
+
+//-----------------------------------------------------------------
 
 
 

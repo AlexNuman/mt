@@ -17,18 +17,19 @@ class Users(models.Model):  #Класс для создания нового п�
 #----------------------------------------------------------------------------
 #-------Класс БД нового тура ------------------------------------------------
 
+
 class Tours (models.Model):
     FlightType = models.CharField(max_length=200)                                # Направление рейса
     PaketName = models.CharField(max_length=200)                                 # Название пакета
     TourRoute = models.CharField(max_length=200)                                 # Маршрут
     DepartureFromOrigin = models.DateTimeField(auto_now=False, blank=True)       # --> Дата вылета туда
-    TransitToArrival = models.DateTimeField(auto_now=False, blank=True)          # --> Транзит туда - прилет
-    TransitToDeparture = models.DateTimeField(auto_now=False, blank=True)        # --> Транзит туда - вылет
+    TransitToArrival = models.DateTimeField(null=True, blank=True, default=None)     # --> Транзит туда - прилет
+    TransitToDeparture = models.DateTimeField(null=True, blank=True, default=None)   # --> Транзит туда - вылет
     ArrivalDestination = models.DateTimeField(auto_now=False, blank=True)        # --> Дата прилета туда
     WaitingTimeTo = models.CharField(max_length=50)                              # --> Ожидание транзит - туда
     DepartureFromDestination = models.DateTimeField(auto_now=False, blank=True)  # <-- Дата вылета обратно
-    TransitFromArrival = models.DateTimeField(auto_now=False, blank=True)        # <-- Транзит обратно - прилет
-    TransitFromDeparture = models.DateTimeField(auto_now=False, blank=True)      # <-- Транзит обратно - вылет
+    TransitFromArrival = models.DateTimeField(null=True, blank=True, default=None)   # <-- Транзит обратно - прилет
+    TransitFromDeparture = models.DateTimeField(null=True, blank=True, default=None) # <-- Транзит обратно - вылет
     ArrivalOrigin = models.DateTimeField(auto_now=False, blank=True)             # <-- Дата прилета обратно
     WaitingTimeFrom = models.CharField(max_length=50)                            # <-- Ожидание транзит - обратно
     TouristQuantity = models.SmallIntegerField()                                 # Количество туристов
@@ -103,7 +104,7 @@ class Clients(models.Model):
     TouristLogin = models.CharField(max_length=100)          # Логин
     TouristPass = models.CharField(max_length=100)           # Пароль
     TouristLastLogin= models.DateTimeField(auto_now=True)    # Активность
-    Comments = models.CharField(max_length=200)              # Комментарии к клиенту
+    Comments = models.CharField(max_length=200)              # Комментарий
     TourID = models.CharField(max_length=50)                 # Тур ID
 #----------------------------------------------------------------------------
 
