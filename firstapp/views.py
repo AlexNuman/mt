@@ -446,35 +446,36 @@ def AjaxServer(request):
         return render(request, 'transfer_regist_page.html')
 # ---->Добавлении туриста в базу данных------------------
     elif switcher == 'TouristData':
+        tourID = request.GET.get('TourId')
         done = {1: 'Турист добавлен!'}
         error = {1: 'Ощибка добавления туриста в базу!'}
         already_regist = {1: 'Такой турист уже добавлен в тур!'}
         touristIIN = request.GET.get('TouristIIN')
         try:
-            Clients.objects.get(TouristIIN=touristIIN)
-            return JsonResponse(already_regist)
-        except:
-            try:
-                touristName = request.GET.get('TouristFIO')             # ФИО туриста
-                touristBirth = request.GET.get('TouristBirth')          # Дата рождения
-                touristAdress = request.GET.get('TouristAdress')        # Адрес
-                touristIIN = request.GET.get('TouristIIN')              # ИИН
-                touristPassNumber = request.GET.get('TouristPassNum')   # № паспорта
-                touristPassEx = request.GET.get('TouristPassEx')        # Срок паспорта
-                touristTel = request.GET.get('TouristTel')              # Телефон
-                touristRoomType = request.GET.get('TouristRoom')        # Размешение туриста
-                touristFoodType = request.GET.get('TouristFood')        # Питание туриста
-                touristPay = request.GET.get('TouristPay')              # Оплаченная сумма
-                touristDebt = request.GET.get('TouristDebt')            # Долг
-                touristGroup = 'none'                                   # Группа
-                registManager = request.session['SessionLogin']         # Менеджер
-                dateRegist = datetime.now()                             # Дата регистрации
-                confirmBuh = 'Не оплачен'                               # Подтвердивщий бухгательтер
-                statusPay = 'Не оплачен'                                # Статус оплаты
-                touristLogin = request.GET.get('TouristIIN')            # Пароль туриста (ИИН)
-                touristPass = request.GET.get('TouristIIN')             # Пароль туриста (ИИН)
-                touristLastLogin = datetime.now()                       # Дата последнего входа туриста
-                tourID = request.GET.get('TourId')                      # Идентификатор тура
+            tour = Clients.objects.get(id=tourID)
+            TouristData = Clients.objects.filter(TourID__exact=tourID)
+            if touristIIN in TouristData.filter(TourID__exact=tourID):
+                return JsonResponse(already_regist)
+            else:
+                touristName = request.GET.get('TouristFIO')  # ФИО туриста
+                touristBirth = request.GET.get('TouristBirth')  # Дата рождения
+                touristAdress = request.GET.get('TouristAdress')  # Адрес
+                touristIIN = request.GET.get('TouristIIN')  # ИИН
+                touristPassNumber = request.GET.get('TouristPassNum')  # № паспорта
+                touristPassEx = request.GET.get('TouristPassEx')  # Срок паспорта
+                touristTel = request.GET.get('TouristTel')  # Телефон
+                touristRoomType = request.GET.get('TouristRoom')  # Размешение туриста
+                touristFoodType = request.GET.get('TouristFood')  # Питание туриста
+                touristPay = request.GET.get('TouristPay')  # Оплаченная сумма
+                touristDebt = request.GET.get('TouristDebt')  # Долг
+                touristGroup = 'none'  # Группа
+                registManager = request.session['SessionLogin']  # Менеджер
+                dateRegist = datetime.now()  # Дата регистрации
+                confirmBuh = 'Не оплачен'  # Подтвердивщий бухгательтер
+                statusPay = 'Не оплачен'  # Статус оплаты
+                touristLogin = request.GET.get('TouristIIN')  # Пароль туриста (ИИН)
+                touristPass = request.GET.get('TouristIIN')  # Пароль туриста (ИИН)
+                touristLastLogin = datetime.now()  # Дата последнего входа туриста
                 new_client = Clients.objects.create(TouristName=touristName, TouristBirth=touristBirth,
                                                     TouristAdress=touristAdress, TouristIIN=touristIIN,
                                                     TouristPassNumber=touristPassNumber, TouristPassEx=touristPassEx,
@@ -486,8 +487,8 @@ def AjaxServer(request):
                                                     TouristPass=touristPass, TouristLastLogin=touristLastLogin,
                                                     Comments='-----', TourID=tourID)
                 return JsonResponse(done)
-            except:
-                return JsonResponse(error)
+        except:
+            return JsonResponse(error)
 # ---->Добавление гида в базу данных------------------
     elif switcher == 'GidData':
         done = {1: 'Гид добавлен!'}
@@ -552,6 +553,13 @@ def AjaxServer(request):
     elif switcher == 'TourInfo':
         TourId = request.GET.get('TourId')
         TourData = Tours.objects.get(id=TourId)
+        if TourData.FlightType == 'Прямой рейс':
+            TourData.WaitingTimeTo = '---'
+            TourData.WaitingTimeFrom = '---'
+            TourData.TransitToArrival = '---'
+            TourData.TransitToDeparture = '---'
+            TourData.TransitFromArrival = '---'
+            TourData.TransitFromDeparture = '---'
         return render(request, 'tour_info.html',
                       context={'TourData': TourData})
 # ---->Список гидов-----------------------------
@@ -594,6 +602,11 @@ def AjaxServer(request):
                     return JsonResponse(error)
         except:
             return JsonResponse(error)
+    elif switcher == 'Test':
+        done = {1: 'OK'}
+        return JsonResponse(done)
+
+
 # -------------------------------------------------------------------------------------------------------------------
 def ActiveTours(request):
     tours = Tours.objects.values()

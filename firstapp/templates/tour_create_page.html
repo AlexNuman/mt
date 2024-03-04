@@ -30,7 +30,7 @@
             <div id="FlightToContainer" class="FlightToContainer">
                 <label for="DepartureFromOrigin"> Вылет: </label>
                 <input type="datetime-local" name="DepartureFromOrigin" id="DepartureFromOrigin" class="DepartureFromOrigin" required>
-                <label for="TransitToArrival">Пересадка: </label>
+                <label for="TransitToArrival" id="lab_transit_1">Пересадка: </label>
                 <input type="datetime-local" name="TransitToArrival" id="TransitToArrival" class="TransitToArrival" required>
                 <input type="datetime-local" name="TransitToDeparture" id="TransitToDeparture" class="TransitToDeparture" required>
                 <label for="ArrivalDestination">Прилет: </label>
@@ -44,7 +44,7 @@
             <div id="FlightFromContainer" class="FlightFromContainer">
                 <label for="DepartureFromDestination"> Вылет: </label>
                 <input type="datetime-local" name="DepartureFromDestination" id="DepartureFromDestination" class="DepartureFromDestination" required>
-                <label for="TransitFromArrival">Пересадка: </label>
+                <label for="TransitFromArrival" id="lab_transit_2">Пересадка: </label>
                 <input type="datetime-local" name="TransitFromArrival" id="TransitFromArrival" class="TransitFromArrival" required>
                 <input type="datetime-local" name="TransitFromDeparture" id="TransitFromDeparture" class="TransitFromDeparture" required>
                 <label for="ArrivalOrigin">Прилет: </label>
@@ -69,8 +69,8 @@
                     <input type="datetime-local" name="HotelMekkaIn" id="HotelMekkaIn" class="HotelMekkaIn" required>
                     <label for="HotelMekkaOut"> Выезд: </label>
                     <input type="datetime-local" name="HotelMekkaOut" id="HotelMekkaOut" class="HotelMekkaOut" required>
-                    <span>Дни:
-                        <span id="MekkaHotel-Days" class="MekkaHotel-Days">0</span>
+                    <span style="display: none;">Дни:
+                        <span id="MekkaHotel_Days" class="MekkaHotel-Days">0</span>
                     </span>
                 </div>
                 <br>
@@ -85,8 +85,8 @@
                     <input type="datetime-local" name="HotelMedinaIn" id="HotelMedinaIn" class="HotelMedinaIn" required>
                     <label for="HotelMedinaOut"> Выезд: </label>
                     <input type="datetime-local" name="HotelMedinaOut" id="HotelMedinaOut" class="HotelMedinaOut" required>
-                    <span>Дни:
-                        <span id="MedinaHotel-Days" class="MedinaHotel-Days">0</span>
+                    <span style="display: none;">Дни:
+                        <span id="MedinaHotel_Days" class="MedinaHotel-Days">0</span>
                     </span>
                 </div>
                 <br>

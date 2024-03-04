@@ -62,6 +62,7 @@ label {
   background-color: rgb(202, 193, 235);
 }
 .FlightToContainer, .FlightFromContainer, .TourContainer, .TourContainer_1, .TourContainer_2, .DeadlineContainer, .PriceContainer {
+  display: block;
   font-family: 'Unbounded', sans-serif;
   padding-left: 10px;
   padding-bottom: 10px;
