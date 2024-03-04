@@ -56,7 +56,7 @@ UsersBtn.onclick = function() {
   });
 };
 /*------------------------------------------------------------------*/
-/*----------кнопка Гиды---------------------------------------------*/
+/*----------кнопка гиды---------------------------------------------*/
 var GidBtn = document.getElementById('GidBtn');
 GidBtn.onclick = function() {
   $.ajax({
@@ -101,6 +101,21 @@ TransferBtn.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+/*----------кнопка Список туристов---------------------------------------------*/
+var TransferBtn = document.getElementById('ClientsList');
+TransferBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'AllTouristList'},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
 /*--------------скрипт настройка пользователя----------------------*/
 var UserWindowBtn = document.getElementById('UserWindowBtn');
 var UsersInfo;
@@ -137,3 +152,17 @@ LogOut.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+/*----тест запрос AJAX-------------------
+document.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'json',
+    data: {switсh: 'Test'},
+    success: function(data){
+      InfoData = data[1];
+      alert(InfoData);
+    }
+  });
+};
+*/

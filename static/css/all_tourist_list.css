@@ -1,0 +1,59 @@
+.tourist_table, .tour_info_table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px groove;
+  cursor: default;
+  }
+
+.tourist_list, .tour_info {
+    border: groove 3px;
+}
+tr:hover {
+    background-color: aliceblue;
+}
+.add_new_tourist {
+    border: 1px solid transparent;
+    cursor: default;
+    width: 250px;
+}
+.add_new_tourist:hover {
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: rgb(202, 193, 235);
+    color: rgb(88, 68, 68);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    display: absolute;
+    text-decoration: none;
+}
+.TourInfoContainer {
+  border: solid 1px;
+  border-radius: 5px;
+  width: 28px;
+  height: 25px;
+}
+
+.span:hover {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: rgb(202, 193, 235);
+  color: rgb(88, 68, 68);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  display: absolute;
+  text-decoration: none;
+}
+.InfoTable {
+}
+
+
+
+
+

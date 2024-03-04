@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список всех туристов</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all_tourist_list.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <table class="tourist_table">
+        <caption>
+            Список туристов
+            <p></p>
+        </caption>
+        <thead>
+        <tr>
+            <th style="width: 100px; margin: auto;" class="tourist_list">Действие</th>
+            <th style="width: 400px;" class="tourist_list">ФИО туриста</th>
+            <th style="width: 150px;" class="tourist_list">Дата рождения</th>
+            <th style="width: 150px;" class="tourist_list">Адрес туриста</th>
+            <th style="width: 150px;" class="tourist_list">ИИН</th>
+            <th style="width: 150px;" class="tourist_list">Паспорт</th>
+            <th style="width: 150px;" class="tourist_list">Телефон</th>
+            <th style="width: 150px;" class="tourist_list">Логин</th>
+            <th style="width: 150px;" class="tourist_list">Пароль</th>
+            <th style="width: 150px;" class="tourist_list">Активность</th>
+        </tr>
+        </thead>
+        <tbody id="tourist_list">
+        {% for i in TouristData %}
+        <tr>
+            <td class="tourist_list"> <div></div></td>
+            <td class="tourist_list"> {{i.TouristName}}</td>
+            <td class="tourist_list"> {{i.TouristBirth}}</td>
+            <td class="tourist_list"> {{i.TouristAdress}}</td>
+            <td class="tourist_list"> {{i.TouristIIN}}</td>
+            <td class="tourist_list"> {{i.TouristPassNumber}}</td>
+            <td class="tourist_list">{{i.TouristTel}}</td>
+            <td class="tourist_list">{{i.TouristLogin}}</td>
+            <td class="tourist_list">{{i.TouristPass}}</td>
+            <td class="tourist_list">{{i.TouristLastLogin}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+    <p>Количество туристов:  <span>{{Len}}</span></p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/all_tourist_list.js' %}"></script>
+
+
+</body>
+</html>

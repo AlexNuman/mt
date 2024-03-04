@@ -103,7 +103,7 @@ class Clients(models.Model):
     StatusPay = models.CharField(max_length=50)              # Статус
     TouristLogin = models.CharField(max_length=100)          # Логин
     TouristPass = models.CharField(max_length=100)           # Пароль
-    TouristLastLogin= models.DateTimeField(auto_now=True)    # Активность
+    TouristLastLogin = models.DateTimeField(auto_now=True)    # Активность
     Comments = models.CharField(max_length=200)              # Комментарий
     TourID = models.CharField(max_length=50)                 # Тур ID
 #----------------------------------------------------------------------------
