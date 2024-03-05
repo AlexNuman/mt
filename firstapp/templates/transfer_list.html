@@ -17,6 +17,7 @@
          </caption>
         <thead>
         <tr>
+            <th style="width: 100px;" class="transfer_list">Действие</th>
             <th style="width: 300px;" class="transfer_list"> Тип транспорта </th>
             <th style="width: 200px;" class="transfer_list"> Качество  транспорта</th>
             <th style="width: 200px;" class="transfer_list"> Количество мест</th>
@@ -27,6 +28,7 @@
         <tbody id="transfer_list">
         {% for i in TransferData %}
         <tr>
+            <td class="transfer_list"></td>
             <td class="transfer_list"> {{i.TransportType}}</td>
             <td class="transfer_list"> {{i.TransportQuality}}</td>
             <td class="transfer_list"> {{i.TransferSeats}}</td>

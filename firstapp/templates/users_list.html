@@ -17,6 +17,7 @@
          </caption>
         <thead>
         <tr>
+            <th style="width: 100px;" class="users_table">Действие</th>
             <th style="width: 400px;" class="users_table"> ФИО пользователя</th>
             <th style="width: 150px;" class="users_table">Дата рождения</th>
             <th style="width: 150px;" class="users_table">Адрес</th>
@@ -33,6 +34,7 @@
         <tbody id="users_table">
         {% for i in db_data %}
         <tr>
+            <td class="users_table"></td>
             <td class="users_table"> {{i.user_name}}</td>
             <td class="users_table">{{i.user_birth}}</td>
             <td class="users_table">{{i.user_adress}}</td>

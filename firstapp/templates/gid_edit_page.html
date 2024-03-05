@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gid_edit_page.css' %}">
+    <title>Изменение данных транспорта</title>
+</head>
+<body>
+<div class="transfer_form">
+      <form method="post" id="gid_form" action="">
+          {% csrf_token %}
+          <div class="gid_form">
+              <div class="transfer_label">Измените данные гида</div>
+              <p></p>
+              <input type="text" name="GidName" value="{{GidData.GidName}}" id="GidName" class="TransportType" required>
+              <span>Дата рождения: {{GidData.GidBirth}}</span>
+              <input type="date" name="GidBirth" value="" id="GidBirth" class="TransportQuality" required>
+              <input type="text" name="GidAdress" value="{{GidData.GidAdress}}" id="GidAdress" class="TransferSeats" required>
+              <input type="text" name="GidEmail" value="{{GidData.GidEmail}}" id="GidEmail" class="TransportInfo" required>
+              <input type="text" name="GidTel" value="{{GidData.GidTel}}" id="GidTel" class="TransportInfo" required>
+              <input type="submit" name="gid_regist" id="gid_regist" value="Сохранить" class="transfer_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/gid_edit_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

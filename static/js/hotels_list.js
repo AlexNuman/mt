@@ -21,6 +21,64 @@ AddNewHotel.onclick = function() {
   });
 };
 
+// ------ появление элементов управления при наведении мыщи----
+$('#hotels_list tr').mouseenter(function(){
+  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать'>");
+  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить'>");
+  var HotelID = this.cells[5].textContent;
+  $(this.cells[0]).append(DelBtn, EditBtn);
+//-----При нажатии кнопки удалить---------------//
+  $('#DeleteBtn').click(function(){
+    var DeleteHotel = confirm('Точно удалить гостиницу?');
+    if (DeleteHotel == true) {
+      $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'json',
+        data: {switсh: 'HotelEdit', Hotel: HotelID},
+        success: function(data){
+          InfoData = data[1];
+          alert(InfoData);
+          modal.style.display = "none";
+          $.ajax({
+            url: '/ajax-server/',
+            method: 'get',
+            dataType: 'html',
+            data: {switсh: 'HotelsList'},
+            success: function(data){
+              HotelList = data;
+              $('#info_reciever').html(HotelList);
+              modal.style.display = "none";
+            }
+          });
+        }
+      });
+    } else {
+      modal.style.display = "none";
+    };
+  });
+//-----------при нажатии редактировать -------//
+  $('#EditBtn').click(function(){
+    $.ajax({
+      url: '/ajax-server/',
+      method: 'get',
+      dataType: 'html',
+      data: {switсh: 'HotelEdit', Hotel: HotelID},
+      success: function(data){
+        Hotel = data;
+        modal.style.display = "block";
+        ModalWindow.style.width = "340px";
+        ModalWindow.style.height = "420px";
+        $('#ModalInfoBlock').empty();
+        $('#ModalInfoBlock').html(Hotel);
+      }
+    });
+  });
+//---при выходе курсора мыщи из объекта//
+  }).mouseleave(function(){
+    $(this.cells[0]).empty();
+  });
+/*
 //-------------------Получаем данные таблицы по клику --------------
 var HotelList = document.querySelector('#hotels_list');
 HotelList.addEventListener('click', MouseClk => {
@@ -147,3 +205,4 @@ HotelList.addEventListener('click', MouseClk => {
 //--------------------------------------------------------------------
 });
 //--------------------------------------------------------------------
+*/

@@ -331,11 +331,15 @@ def AjaxServer(request):
         done = {1: 'Редактирование сохраненного туриста невозможно!'}
         TouristID = request.GET.get('Tourist')
         return JsonResponse(done)
-# ------> Кнопка редактировать туриста ---------------------------
+# ------> Кнопка редактировать гида ---------------------------
     elif switcher == 'GidEdit':
-        done = {1: 'Редактирование сохраненного туриста невозможно!'}
-        GidID = request.GET.get('Tourist')
-        return JsonResponse(done)
+        GidID = request.GET.get('Gid')
+        GidDB = Gids.objects.get(id=GidID)
+        request.session['CheckedGidId'] = GidID
+        request.session.save()
+        return render(request, 'gid_edit_page.html', context={'GidData': GidDB})
+
+
 # ------> Кнопка редактировать гостиницу ---------------------------
     elif switcher == 'HotelEdit':
         HotelID = request.GET.get('Hotel')
@@ -357,6 +361,27 @@ def AjaxServer(request):
                                                                 'TransferSeats': TransferDB.TransferSeats,
                                                                 'TransportInfo': TransferDB.TransportInfo})
 # ----Сохранение изменении редактирования гостиницы--------------
+    elif switcher == 'GidEditSave':
+        done = {1: 'Данные гида изменены!'}
+        error = {1: 'Ощибка изменения данных! Попробуйте еще!'}
+        try:
+            GidDB = Gids.objects.get(id=request.session['CheckedGidId'])
+            GidName = request.GET.get('GidName')
+            GidBirth = request.GET.get('GidBirth')
+            GidAdress = request.GET.get('GidAdress')
+            GidEmail = request.GET.get('GidEmail')
+            GidTel = request.GET.get('GidTel')
+            GidDB.GidName = GidName
+            GidDB.GidBirth = GidBirth
+            GidDB.GidAdress = GidAdress
+            GidDB.GidEmail = GidEmail
+            GidDB.GidTel = GidTel
+            GidDB.save()
+            request.session['CheckedGidId'] = ''
+            request.session.save()
+            return JsonResponse(done)
+        except:
+            return JsonResponse(error)
     elif switcher == 'HotelEditSave':
         done = {1: 'Данные гостиницы изменены!'}
         error = {1: 'Ощибка изменения данных! Попробуйте еще!'}

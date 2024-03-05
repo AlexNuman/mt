@@ -17,7 +17,8 @@
          </caption>
         <thead>
         <tr>
-            <th style="width: 400px;" class="tourist_list"> ФИО гида </th>
+            <th style="width: 100px;" class="tourist_list">Действие</th>
+            <th style="width: 400px;" class="tourist_list">ФИО гида</th>
             <th style="width: 150px;" class="tourist_list">Дата рождения</th>
             <th style="width: 150px;" class="tourist_list">Адрес гида</th>
             <th style="width: 150px;" class="tourist_list">Email</th>
@@ -29,6 +30,7 @@
         <tbody id="gid_list">
         {% for i in GidData %}
         <tr>
+            <td class="tourist_list"></td>
             <td class="tourist_list"> {{i.GidName}}</td>
             <td class="tourist_list"> {{i.GidBirth}}</td>
             <td class="tourist_list"> {{i.GidAdress}}</td>

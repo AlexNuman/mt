@@ -1,3 +1,124 @@
+// ------ появление элементов управления при наведении мыщи----
+$('#users_table tr').mouseenter(function(){
+  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать'>");
+  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить'>");
+  var cursor_login = this.cells[6].textContent;
+  $(this.cells[0]).append(DelBtn, EditBtn);
+  $('#DeleteBtn').click(function(){
+    var DeleteUser = confirm('Точно удалить пользователя?');
+    if (DeleteUser == true) {
+      $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'json',
+        data: {switсh: 'del_user', send_login: cursor_login},
+        success: function(data){
+          UserInfo = data[1];
+          alert(UserInfo);
+          $.ajax({
+            url: '/ajax-server/',
+            method: 'get',
+            dataType: 'html',
+            data: {switсh: 'UsersList'},
+            success: function(data){
+              UsersList = data;
+              $('#info_reciever').html(UsersList);
+            }
+          });
+        }
+      });
+    } else {
+      modal.style.display = "none";
+      };
+  });
+  $('#EditBtn').click(function(){
+    $.ajax({
+      url: '/ajax-server/',
+      method: 'get',
+      dataType: 'html',
+      data: {switсh: 'list_userinfo', send_login: cursor_login},
+      success: function(data){
+        UserInfo = data;
+        modal.style.display = "block";
+        ModalWindow.style.width = "340px";
+        ModalWindow.style.height = "440px";
+        $('#ModalInfoBlock').empty();
+        $('#ModalInfoBlock').html(UserInfo);
+      }
+    });
+  });
+  }).mouseleave(function(){
+    $(this.cells[0]).empty();
+  });
+
+/*
+$('#users_table tr').
+  mouseenter(function(){
+    // при вхождении в элемент
+    var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать'>");
+    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить'>");
+    var cursor_login = this.cells[6].textContent;
+    if (this.cells[0].textContent!='Действие') {
+      $(this.cells[0]).css({
+         'cursor': 'pointer'
+      }).append(DelBtn, EditBtnBtn)
+//----Нажатие кнопки удалить тур--------------------------------------------------
+      $('#DeleteBtn').click(function(){
+        var DeleteUser = confirm('Точно удалить пользователя?');
+        if (DeleteUser == true) {
+          $.ajax({
+            url: '/ajax-server/',
+            method: 'get',
+            dataType: 'json',
+            data: {switсh: 'del_user', send_login: cursor_login},
+            success: function(data){
+              UserInfo = data[1];
+              alert(UserInfo);
+              $.ajax({
+                url: '/ajax-server/',
+                method: 'get',
+                dataType: 'html',
+                data: {switсh: 'UsersList'},
+                success: function(data){
+                  UsersList = data;
+                  $('#info_reciever').html(UsersList);
+                }
+              });
+            }
+          });
+        } else {
+          modal.style.display = "none";
+        };
+      });
+//----Нажатие кнопки редактировать------------------------------------------------------------
+      $('#EditBtn').click(function(){
+        $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'html',
+        data: {switсh: 'list_userinfo', send_login: cursor_login},
+        success: function(data){
+          UserInfo = data;
+          ModalWindow.style.width = "340px";
+          ModalWindow.style.height = "440px";
+          $('#ModalInfoBlock').empty();
+          $('#ModalInfoBlock').html(UserInfo);
+          }
+        });
+      });
+    };
+  }).
+  mouseleave(function(){
+    // при покидании элемента
+    if (this.cells[0].textContent!='Действие') {
+      $(this.cells[0]).empty();
+    };
+  });
+
+
+
+
+/*
 var AddNewUserBtn = document.getElementById('add_new_user');
 var AddNewUserData;
 AddNewUserBtn.onclick = function() {
@@ -16,14 +137,14 @@ AddNewUserBtn.onclick = function() {
     }
   });
 };
-/*--------------------------------------------------------------------------------------*/
+//--------------------------------------------------------------------------------------//
 users_table = document.querySelector('#users_table'); //выбераем таблицу пользователей
 users_table.addEventListener('click', e => {         // действие при нажатии на таблицу
   const or = e.target.closest('tr');
   if (!or) return;
   const o = or.cells;
   const cursor_login = `${o[5].textContent}`; // присуждаем данные таблицы к переменной
-/*---------------------------------------------------------------------------------------------------------*/
+//---------------------------------------------------------------------------------------------------------//
   $('#ModalInfoBlock').css({
     'color': 'black',
     'display': 'flex',
@@ -61,7 +182,7 @@ users_table.addEventListener('click', e => {         // действие при 
 	    'background-color': ''
 	  }) // задаем цвет заднего фона
 	});
-/*------------------------------------------------------------------------------------------*/
+//------------------------------------------------------------------------------------------//
   $('#delBtn').css('border', '1px solid transparent');
   $("#delBtn").hover(function(){ // задаем функцию при наведении курсора на элемент
     $( "#delBtn" ).css({
@@ -135,3 +256,4 @@ users_table.addEventListener('click', e => {         // действие при 
   };
 });
 
+*/

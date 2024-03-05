@@ -21,7 +21,65 @@ AddNewGid.onclick = function() {
   });
 };
 //------------------------------------------------------------------
+// ------ появление элементов управления при наведении мыщи----
+$('#gid_list tr').mouseenter(function(){
+  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать'>");
+  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить'>");
+  var GidID = this.cells[7].textContent;
+  $(this.cells[0]).append(DelBtn, EditBtn);
+//-----При нажатии кнопки удалить---------------//
+  $('#DeleteBtn').click(function(){
+    var DeleteGid = confirm('Точно удалить гида?');
+    if (DeleteGid == true) {
+      $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'json',
+        data: {switсh: 'GidDelete', Gid: GidID},
+        success: function(data){
+          InfoData = data[1];
+          alert(InfoData);
+          modal.style.display = "none";
+          $.ajax({
+            url: '/ajax-server/',
+            method: 'get',
+            dataType: 'html',
+            data: {switсh: 'GidList'},
+            success: function(data){
+              TouristList = data;
+              $('#info_reciever').html(TouristList);
+              modal.style.display = "none";
+            }
+          });
+        }
+      });
+    } else {
+      modal.style.display = "none";
+    };
+  });
+//-----------при нажатии редактировать -------//
+  $('#EditBtn').click(function(){
+    $.ajax({
+      url: '/ajax-server/',
+      method: 'get',
+      dataType: 'html',
+      data: {switсh: 'GidEdit', Gid: GidID, EditType: 'GidEdit'},
+      success: function(data){
+        Gid = data;
+        modal.style.display = "block";
+        ModalWindow.style.width = "340px";
+        ModalWindow.style.height = "420px";
+        $('#ModalInfoBlock').empty();
+        $('#ModalInfoBlock').html(Gid);
+      }
+    });
+  });
+//---при выходе курсора мыщи из объекта//
+  }).mouseleave(function(){
+    $(this.cells[0]).empty();
+  });
 
+/*
 //-------------------Получаем данные таблицы по клику --------------
 var GidList = document.querySelector('#gid_list');
 GidList.addEventListener('click', MouseClk => {
@@ -147,3 +205,4 @@ GidList.addEventListener('click', MouseClk => {
 });
 //--------------------------------------------------------------------
 
+*/

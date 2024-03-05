@@ -17,6 +17,7 @@
          </caption>
         <thead>
         <tr>
+            <th style="width: 100px;" class="hotels_list">Действие</th>
             <th style="width: 200px;" class="hotels_list"> Назввание гостиницы</th>
             <th style="width: 200px;" class="hotels_list">Город расположения</th>
             <th style="width: 200px;" class="hotels_list">Уровень</th>
@@ -27,6 +28,7 @@
         <tbody id="hotels_list">
         {% for i in HotelsData %}
         <tr>
+            <td class="hotels_list"></td>
             <td class="hotels_list"> {{i.HotelName}}</td>
             <td class="hotels_list"> {{i.HotelCity}}</td>
             <td class="hotels_list"> {{i.HotelStars}}</td>

@@ -21,6 +21,66 @@ AddNewTransfer.onclick = function() {
   });
 };
 
+// ------ появление элементов управления при наведении мыщи----
+$('#transfer_list tr').mouseenter(function(){
+  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать'>");
+  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить'>");
+  var TransferID = this.cells[5].textContent;
+  $(this.cells[0]).append(DelBtn, EditBtn);
+//-----При нажатии кнопки удалить---------------//
+  $('#DeleteBtn').click(function(){
+    var DeleteTransfer = confirm('Точно удалить транспорт?');
+    if (DeleteTransfer == true) {
+      $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'json',
+        data: {switсh: 'TransferDelete', Transfer: TransferID},
+        success: function(data){
+          InfoData = data[1];
+          alert(InfoData);
+          modal.style.display = "none";
+          $.ajax({
+            url: '/ajax-server/',
+            method: 'get',
+            dataType: 'html',
+            data: {switсh: 'TransferList'},
+            success: function(data){
+              HotelList = data;
+              $('#info_reciever').html(HotelList);
+              modal.style.display = "none";
+            }
+          });
+        }
+      });
+    } else {
+      modal.style.display = "none";
+    };
+  });
+//-----------при нажатии редактировать -------//
+  $('#EditBtn').click(function(){
+    $.ajax({
+      url: '/ajax-server/',
+      method: 'get',
+      dataType: 'html',
+      data: {switсh: 'TransferEdit', Transfer: TransferID},
+      success: function(data){
+        Hotel = data;
+        modal.style.display = "block";
+        ModalWindow.style.width = "340px";
+        ModalWindow.style.height = "420px";
+        $('#ModalInfoBlock').empty();
+        $('#ModalInfoBlock').html(Hotel);
+      }
+    });
+  });
+//---при выходе курсора мыщи из объекта//
+  }).mouseleave(function(){
+    $(this.cells[0]).empty();
+  });
+
+
+/*
 //-------------------Получаем данные таблицы по клику --------------
 var TransferList = document.querySelector('#transfer_list');
 TransferList.addEventListener('click', MouseClk => {
@@ -147,3 +207,4 @@ TransferList.addEventListener('click', MouseClk => {
 //--------------------------------------------------------------------
 });
 //--------------------------------------------------------------------
+*/

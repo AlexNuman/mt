@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
+/* Образцы шрифтов
+font-family: 'Alegreya', serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Poiret One', sans-serif;
+font-family: 'Prata', serif;
+font-family: 'Tektur', sans-serif;
+font-family: 'Unbounded', sans-serif;
+*/
+
+.hotel_input {
+  font-family: 'Unbounded', sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto;
+  font-size: 12pt;
+}
+.transfer_label {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14pt;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.TransportType, .TransportQuality, .TransferSeats, .TransportInfo {
+  font-family: 'Unbounded', sans-serif;
+  width: 300px;
+  height: 30px;
+  font-size: 12pt;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.transfer_regist {
+  font-family: 'Unbounded', sans-serif;
+  margin-top: 10px;
+  height: 30px;
+  width: 100px;
+  border-radius: 3px;
+}
