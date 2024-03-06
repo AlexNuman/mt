@@ -28,6 +28,9 @@ tr:hover {
   cursor: pointer;
   display: absolute;
   text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
 }
 
 
