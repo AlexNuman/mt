@@ -116,6 +116,7 @@ TransferBtn.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+/*-------------------------------------------------------------------*/
 /*--------------скрипт настройка пользователя----------------------*/
 var UserWindowBtn = document.getElementById('UserWindowBtn');
 var UsersInfo;
@@ -167,3 +168,23 @@ document.onclick = function() {
 };
 */
 
+/*----------кнопка настройки----------------------------
+var Settings = document.getElementById('Settings');
+Settings.onclick = function() {
+  modal.style.display = "block";
+  ModalWindow.style.width = "340px";
+  ModalWindow.style.height = "300px";
+  $("#InfoHead h2").text('Настройки');
+  $("#InfoHead h2").css('font-size', '14pt');
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'SettingsPage', Request: 'Get'},
+    success: function(data){
+      SettingsPage = data;
+      $('#ModalInfoBlock').html(SettingsPage);
+    }
+  });
+};
+-----------------*/

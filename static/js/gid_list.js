@@ -23,8 +23,8 @@ AddNewGid.onclick = function() {
 //------------------------------------------------------------------
 // ------ появление элементов управления при наведении мыщи----
 $('#gid_list tr').mouseenter(function(){
-  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать'>");
-  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить'>");
+  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='edit_btn'>");
+  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
   var GidID = this.cells[7].textContent;
   $(this.cells[0]).append(DelBtn, EditBtn);
 //-----При нажатии кнопки удалить---------------//

@@ -79,7 +79,7 @@ $(document).ready(function(){
     } else {
       transfer = Number($('#TransferPay').html());
     };
-// выбор галочки дискоунт-------------------------------------
+// выбор галочки дисконт-------------------------------------
     if ($('#discount_choose').prop('checked')) {
       discount = Number($('#Discount').html());
     } else {

@@ -1,0 +1,23 @@
+.tourist_info {
+    border: 1px solid #eee;
+	table-layout: fixed;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.tourist_info th {
+	font-weight: bold;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+.tourist_info td {
+	border: 1px solid #dddddd;
+}
+.tourist_info tr {
+	width: 50px;
+	grid-template-rows: 100px;
+	grid-template-columns: 100px;
+}
+tr:hover {
+    background-color: aliceblue;
+}

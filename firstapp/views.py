@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours
+from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, Settings
 from django.http import JsonResponse
 from datetime import datetime
 
@@ -157,7 +157,12 @@ def AjaxServer(request):
 # -----------> Окно информация о пользователе----------------
     elif switcher == 'userinfo':
         login = Users.objects.get(user_login=request.session['SessionLogin'])
-        return render(request, 'user_info.html',
+        user_info = request.GET.get('send_login')
+        switcher = request.GET.get('switcher')
+        if switcher == 'info':
+            return render(request, 'user_info_block.html', context={'user_data': Users.objects.get(user_login=user_info)})
+        else:
+            return render(request, 'user_info.html',
                       context={'get_user_name': login.user_name, 'get_birth': login.user_birth,
                                'get_adress': login.user_adress, 'get_email': login.user_email,
                                'get_tel': login.user_tel, 'get_login': login.user_login})
@@ -263,10 +268,13 @@ def AjaxServer(request):
     elif switcher == 'del_user':
         done = {1: 'Пользователь удален!'}
         error = {1: 'Самоудаление не возможно!'}
+        denied = {1: 'У вас нет прав!'}
         online_login = Users.objects.get(user_login=request.session['SessionLogin'])
         send_login = request.GET.get('send_login')
         if send_login == online_login.user_login:
             return JsonResponse(error)
+        elif online_login.user_type == 'СУПЕРАДМИН':
+            return JsonResponse(denied)
         else:
             login = Users.objects.get(user_login=send_login)
             login.delete()
@@ -338,8 +346,6 @@ def AjaxServer(request):
         request.session['CheckedGidId'] = GidID
         request.session.save()
         return render(request, 'gid_edit_page.html', context={'GidData': GidDB})
-
-
 # ------> Кнопка редактировать гостиницу ---------------------------
     elif switcher == 'HotelEdit':
         HotelID = request.GET.get('Hotel')
@@ -630,6 +636,45 @@ def AjaxServer(request):
                     return JsonResponse(error)
         except:
             return JsonResponse(error)
+# ------->   раздел блокировки пользователя -----------------
+    elif switcher == 'UserBlock':
+        Block = {1: 'Пользователь заблокирован!'}
+        Unblock = {1: 'Пользователь разблокирован!'}
+        error = {1: 'Нельзя блокировать себя!'}
+        denied = {1: 'У вас нет прав!'}
+        online_login = Users.objects.get(user_login=request.session['SessionLogin'])
+        send_login = request.GET.get('send_login')
+        choosen_login =Users.objects.get(user_login=send_login)
+        if send_login == online_login.user_login:
+            return JsonResponse(error)
+        elif choosen_login.user_type == 'СУПЕРАДМИН':
+            return JsonResponse(denied)
+        elif choosen_login.user_status == 'on-line' or choosen_login.user_status == 'off-line':
+            choosen_login.user_status = 'blocked'
+            choosen_login.save()
+            return JsonResponse(Block)
+        elif choosen_login.user_status == 'blocked':
+            choosen_login.user_status = 'off-line'
+            choosen_login.save()
+            return JsonResponse(Unblock)
+# ---->Настройки-----------------------------
+    elif switcher == 'SettingsPage':
+        Request = request.GET.get('Request')
+        Site_Blocked = request.GET.get('Site_Blocked')
+        if Site_Blocked == '':
+            Site_Blocked = '---'
+        currency_choose = request.GET.get('currency_choose')
+        time_choose = request.GET.get('time_choose')
+        SettingsType = 'Site Settings'
+        done = {1: 'Настройки сохранены'}
+        error = {1: 'Ощибка сохранения!'}
+        if Request == 'Get':
+            return render(request, 'settings_page.html')
+        elif Request == 'Save':
+            new_settings = Settings.objects.create(SettingsType=SettingsType, Block='---', NoticeInfo='---',
+                                                   CurrencyInfo=currency_choose, TimeInfo=time_choose)
+            return JsonResponse(done)
+#------->   раздел тестирования функии -----------------
     elif switcher == 'Test':
         tourID = 5
         already_regist = {1: 'Такой турист уже добавлен в тур!'}

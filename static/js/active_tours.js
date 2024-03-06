@@ -122,9 +122,9 @@ $('#active_tours tr').
   mouseenter(function(){
     // при вхождении в элемент
     var TourId = this.cells[12].textContent;
-    var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо'>");
-    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Инфо'>");
-    var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Инфо'>");
+    var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
+    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
+    var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='group_btn'>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'

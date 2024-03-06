@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Список всех туристов</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/all_tourist_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
 </head>
 <body>
 
@@ -27,9 +28,10 @@
             <th style="width: 150px;" class="tourist_list">Логин</th>
             <th style="width: 150px;" class="tourist_list">Пароль</th>
             <th style="width: 150px;" class="tourist_list">Активность</th>
+            <th style="width: 50px;" class="tourist_list">ID</th>
         </tr>
         </thead>
-        <tbody id="tourist_list">
+        <tbody id="all_tourist_list">
         {% for i in TouristData %}
         <tr>
             <td class="tourist_list"> <div></div></td>
@@ -42,6 +44,7 @@
             <td class="tourist_list">{{i.TouristLogin}}</td>
             <td class="tourist_list">{{i.TouristPass}}</td>
             <td class="tourist_list">{{i.TouristLastLogin}}</td>
+            <td class="tourist_list">{{i.id}}</td>
             {% endfor %}
         </tbody>
         <tfoot>

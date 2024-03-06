@@ -1,0 +1,6 @@
+.del_btn:hover, .edit_btn:hover, .block_btn:hover, .info_btn:hover, .group_btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
+  transition: all 0.5s ease 0s;
+}

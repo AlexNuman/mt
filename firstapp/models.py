@@ -3,17 +3,17 @@ from django.db import models
 # Create your models here.
 #-------Класс БД списка пользоввателей -------------------------------
 class Users(models.Model):  #Класс для создания нового пользователья
-    user_name = models.CharField(max_length=50) # ФИО нового пользователья
-    user_birth = models.DateField(auto_now=False) # Дата рождения
-    user_adress = models.CharField(max_length=50) # Адрес
-    user_email = models.EmailField() # Эл.почта
-    user_tel = models.CharField(max_length=10) # Сотовый телефон
-    user_login = models.CharField(max_length=50) # Логин
-    user_pass = models.CharField(max_length=50) # Пароль
-    user_type = models.CharField(max_length=50) # Тип пользователя
-    user_regist_date = models.DateField(auto_now=True) # Дата регистрации
-    user_login_date = models.DateTimeField(auto_now=True) # Дата последнего входа
-    user_status = models.CharField(max_length=1) # Статус пользователя
+    user_name = models.CharField(max_length=50)                            # ФИО нового пользователья
+    user_birth = models.DateField(auto_now=False)                          # Дата рождения
+    user_adress = models.CharField(max_length=50)                          # Адрес
+    user_email = models.EmailField()                                       # Эл.почта
+    user_tel = models.CharField(max_length=10)                             # Сотовый телефон
+    user_login = models.CharField(max_length=50)                           # Логин
+    user_pass = models.CharField(max_length=50)                            # Пароль
+    user_type = models.CharField(max_length=50)                            # Тип пользователя
+    user_regist_date = models.DateField(auto_now=True)                     # Дата регистрации
+    user_login_date = models.DateTimeField(auto_now=True)                  # Дата последнего входа
+    user_status = models.CharField(max_length=10, default='off-line')      # Статус пользователя
 #----------------------------------------------------------------------------
 #-------Класс БД нового тура ------------------------------------------------
 
@@ -107,7 +107,13 @@ class Clients(models.Model):
     Comments = models.CharField(max_length=200)              # Комментарий
     TourID = models.CharField(max_length=50)                 # Тур ID
 #----------------------------------------------------------------------------
-
+#-------Класс БД настройки --------------------------------------------------
+class Settings(models.Model):
+    SettingsType = models.CharField(max_length=50)                         # типа настройки
+    Block = models.CharField(max_length=50, default='---')                 # Переключатель блок или нет
+    NoticeInfo = models.CharField(max_length=500, default='---')           # Уведомление инфо
+    CurrencyInfo = models.CharField(max_length=10)                         # Информация валюта
+    TimeInfo = models.CharField(max_length=10)                             # Информация время
 #-------Класс проверка БД --------------------------------------------------
 class test_db(models.Model):
     name = models.CharField(max_length=20)

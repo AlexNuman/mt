@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings_page.css' %}">
+</head>
+<body>
+<div class="settings_container">
+    <div class="settings_info">
+        <p><input type="checkbox" name="block" value="Site_Blocked" class="Site_Blocked">Заблокировать доступ к сайту</p>
+        <label for="currency_choose"> Валюта: </label>
+        <select id="currency_choose" name="currency_choose" class="currency_choose" required>
+            <option value="USD">Доллар(USD)</option>
+            <option value="KZT">Тенга(KZT) </option>
+        </select>
+        <label for="time_choose"> Время: </label>
+        <select id="time_choose" name="time_choose" class="time_choose" required>
+            <option value="Hour">Часы</option>
+            <option value="Min">Минуты</option>
+        </select>
+    </div>
+    <div id="change_container" class="change_container" name="change_container">
+        <input type="button" id="settings_change" class="settings_change" value="Сохранить" name="settings_change">
+        <input type="button" id="settings_cancel" class="settings_cancel" name="settings_cancel" value="Отмена">
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'js/settings_page.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

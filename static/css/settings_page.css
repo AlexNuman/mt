@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
+/* Образцы шрифтов
+font-family: 'Alegreya', serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Poiret One', sans-serif;
+font-family: 'Prata', serif;
+font-family: 'Tektur', sans-serif;
+font-family: 'Unbounded', sans-serif;
+*/
+.settings_info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto;
+  font-size: 12pt;
+}
+.settings_info {
+  font-size: 14pt;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.currency_choose, .time_choose {
+  width: 300px;
+  height: 30px;
+  font-size: 12pt;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.button_regist {
+  margin-top: 10px;
+  height: 30px;
+  width: 100px;
+  border-radius: 3px;
+}
+.pass_len, .pass_Az_09, .pass_upper_lower, .pass_symbol {
+  font-family: 'Alegreya', serif;
+  font-size: 12pt;
+}
+.change_container {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+.settings_change, .settings_cancel {
+   border: 1px solid transparent;
+   width: 180px;
+   text-align: center;
+   cursor: default;
+   margin-right: 10px;
+}
+.settings_change:hover, .settings_cancel:hover {
+   border: 1px solid;
+   border-radius: 5px;
+   background-color: rgb(202, 193, 235);
+   color: rgb(88, 68, 68);
+   -webkit-transition: .5s ease-in-out;
+   -moz-transition: .5s ease-in-out;
+   -o-transition: .5s ease-in-out;
+   cursor: pointer;
+   display: absolute;
+   text-decoration: none;
+   transform: translateY(-3px);
+   box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+   stroke: #337AB7;
+   transition: all 0.5s ease 0s;
+}

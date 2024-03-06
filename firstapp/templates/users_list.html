@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Список пользователей</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/users_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
 </head>
 <body>
 
@@ -19,12 +20,7 @@
         <tr>
             <th style="width: 100px;" class="users_table">Действие</th>
             <th style="width: 400px;" class="users_table"> ФИО пользователя</th>
-            <th style="width: 150px;" class="users_table">Дата рождения</th>
-            <th style="width: 150px;" class="users_table">Адрес</th>
-            <th style="width: 150px;" class="users_table">email</th>
-            <th style="width: 150px;" class="users_table">Телефон</th>
             <th style="width: 150px;" class="users_table">Логин</th>
-            <th style="width: 150px;" class="users_table">Пароль</th>
             <th style="width: 150px;" class="users_table">Тип пользователя</th>
             <th style="width: 150px;" class="users_table">Дата регистрации</th>
             <th style="width: 300px;" class="users_table">Дата последнего входа</th>
@@ -36,12 +32,7 @@
         <tr>
             <td class="users_table"></td>
             <td class="users_table"> {{i.user_name}}</td>
-            <td class="users_table">{{i.user_birth}}</td>
-            <td class="users_table">{{i.user_adress}}</td>
-            <td class="users_table">{{i.user_email}}</td>
-            <td class="users_table">{{i.user_tel}}</td>
             <td class="users_table">{{i.user_login}}</td>
-            <td class="users_table">{{i.user_pass}}</td>
             <td class="users_table">{{i.user_type}}</td>
             <td class="users_table">{{i.user_regist_date}}</td>
             <td class="users_table">{{i.user_login_date}}</td>
@@ -56,8 +47,7 @@
   </tfoot>
     </table>
     <p></p>
-    <div id="add_new_user" class="add_new_user" name="add_new_user">Добавить нового пользователя</div>
-
+    <img style="width: 2%; height: 2%;" src="{% static 'img/person_add.png' %}" class="add_person" id="add_new_user">
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/users_list.js' %}"></script>
