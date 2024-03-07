@@ -2,11 +2,12 @@ var modal = document.getElementById('ModalWindow');
 var span = document.getElementsByClassName("close")[0];
 var ModalWindow = document.getElementsByClassName("ModalWindow")[0];
 
-/*кнопка х---------*/
+//кнопка х--------------
 span.onclick = function() {
   modal.style.display = "none";
 };
-/*------------------------------------------------------------------*/
+//------------------------------------------------------------------
+
 /*--------------скрипт вызова списка клиентов----------------------*/
 var ClientsBtn = document.getElementById("ClientsBtn");
 var UsersList;
@@ -21,28 +22,6 @@ ClientsBtn.onclick = function() {
       $('#info_reciever').html(UsersList);
     }
   });
-};
-/*------------------------------------------------------------------*/
-/*----------кнопка Информация---------------------------------------------*/
-var InfoBtn = document.getElementById('InfoBtn');
-InfoBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Информация');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет информации');
-};
-/*-------------------------------------------------------------------*/
-/*--------------скрипт настройки----------------------*/
-var StngsBtn = document.getElementById("StngsBtn");
-StngsBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Настройки');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет доступа');
 };
 /*------------------------------------------------------------------*/
 /*--------------скрипт настройка пользователя----------------------*/
@@ -82,4 +61,27 @@ LogOut.onclick = function() {
 };
 /*-------------------------------------------------------------------*/
 
-
+/*
+//----------кнопка Информация---------------------------------------------
+var InfoBtn = document.getElementById('InfoBtn');
+InfoBtn.onclick = function() {
+  modal.style.display = "block";
+  ModalWindow.style.width = "340px";
+  ModalWindow.style.height = "420px";
+  $("#InfoHead h2").text('Информация');
+  $("#InfoHead h2").css('font-size', '14pt');
+  $('#ModalInfoBlock').html('Нет информации');
+};
+//-------------------------------------------------------------------
+//--------------скрипт настройки----------------------
+var StngsBtn = document.getElementById("StngsBtn");
+StngsBtn.onclick = function() {
+  modal.style.display = "block";
+  ModalWindow.style.width = "340px";
+  ModalWindow.style.height = "420px";
+  $("#InfoHead h2").text('Настройки');
+  $("#InfoHead h2").css('font-size', '14pt');
+  $('#ModalInfoBlock').html('Нет доступа');
+};
+//------------------------------------------------------------------
+*/

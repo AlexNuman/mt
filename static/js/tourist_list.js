@@ -100,9 +100,9 @@ $('#tourist_list tr').
   mouseenter(function(){
     // при вхождении в элемент
     var ClientId = this.cells[9].textContent;
-    var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо'>");
-    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Инфо'>");
-    var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Инфо'>");
+    var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
+    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
+    var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='info_btn'>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'
@@ -174,7 +174,13 @@ $('#tourist_list tr').
       $(this.cells[0]).empty();
     };
   });
-
+/*----Окрашивание таблицы-----------------------------*/
+$('#tourist_list td').each(function(){
+  var x = $(this).text();
+  if (x == 'Оплачено') $(this).css({color: 'green'});
+  if (x == 'Не оплачен') $(this).css({color: 'red'});
+});
+/*----------------------------------------------------*/
 /*
 //------------------------------------------------------------------
 //-------------------Получаем данные таблицы по клику --------------

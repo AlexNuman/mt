@@ -25,6 +25,7 @@ $('#users_table tr').mouseenter(function(){
   var BlockBtn = $("<img id='BlockBtn' src='/static/img/block_btn.png' alt='Блок' class='block_btn'>");
   var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
   var cursor_login = this.cells[2].textContent;
+  var user_type = this.cells[3].textContent;
   $(this.cells[0]).append(DelBtn, EditBtn, BlockBtn, InfoBtn);
 //------кнопка удалить -----------------------
   $('#DeleteBtn').click(function(){
@@ -56,20 +57,24 @@ $('#users_table tr').mouseenter(function(){
   });
 //------кнопка редактировать --------------
   $('#EditBtn').click(function(){
-    $.ajax({
-      url: '/ajax-server/',
-      method: 'get',
-      dataType: 'html',
-      data: {switсh: 'list_userinfo', send_login: cursor_login},
-      success: function(data){
-        UserInfo = data;
-        modal.style.display = "block";
-        ModalWindow.style.width = "340px";
-        ModalWindow.style.height = "440px";
-        $('#ModalInfoBlock').empty();
-        $('#ModalInfoBlock').html(UserInfo);
-      }
-    });
+    if (user_type=='СУПЕРАДМИН') {
+      alert('У вас нет прав!');
+    } else {
+      $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'html',
+        data: {switсh: 'list_userinfo', send_login: cursor_login},
+        success: function(data){
+          UserInfo = data;
+          modal.style.display = "block";
+          ModalWindow.style.width = "340px";
+          ModalWindow.style.height = "440px";
+          $('#ModalInfoBlock').empty();
+          $('#ModalInfoBlock').html(UserInfo);
+        }
+      });
+    };
   });
 //-----кнопка заблокировать --------
   $('#BlockBtn').click(function(){
@@ -127,6 +132,14 @@ $('#users_table tr').mouseenter(function(){
   }).mouseleave(function(){
     $(this.cells[0]).empty();
   });
+/*----Окрашивание таблицы---------*/
+$('#users_table td').each(function(){
+  var x = $(this).text();
+  if (x == 'on-line') $(this).css({color: 'green'});
+  if (x == 'off-line') $(this).css({color: 'grey'});
+  if (x == 'blocked') $(this).css({color: 'red'});
+});
+/*--------------------------------------------*/
 
 /*
 $('#users_table tr').

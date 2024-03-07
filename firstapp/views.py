@@ -36,11 +36,11 @@ def cabinet_manager(request):
     else:
         return render(request, 'cabinet_manager.html', context={'session_login': session_login})
 # ------------------------------------------------------------------------------------------
-# ---------Кабинет бухгальтера---------------------
+# ---------Кабинет бухгалтера---------------------
 def cabinet_buhgalter(request):
     session_login = request.session['SessionLogin']
     session_login_type = request.session['SessionLoginType']
-    if session_login == 'none' or session_login_type != 'Бухгальтер':
+    if session_login == 'none' or session_login_type != 'Бухгалтер':
         return redirect('/')
     else:
         return render(request, 'cabinet_buhgalter.html',
@@ -57,7 +57,7 @@ def main_page(request, error_logo='none'):
             return redirect('/cabinet_admin')
         elif session_user_type_check == 'Менеджер':
             return redirect('/cabinet_manager')
-        elif session_user_type_check == 'Бухгальтер':
+        elif session_user_type_check == 'Бухгалтер':
             return redirect('/cabinet_buhgalter')
         elif session_user_type_check == 'Турист':
             return redirect('/vaucher')
@@ -101,7 +101,7 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.save()
                 return redirect('/cabinet_manager')
-            elif (login.user_pass == pass_in) and login.user_type == 'Бухгальтер':
+            elif (login.user_pass == pass_in) and login.user_type == 'Бухгалтер':
                 request.session['SessionLogin'] = login.user_login
                 request.session.save()
                 request.session['SessionLoginType'] = login.user_type
@@ -159,8 +159,11 @@ def AjaxServer(request):
         login = Users.objects.get(user_login=request.session['SessionLogin'])
         user_info = request.GET.get('send_login')
         switcher = request.GET.get('switcher')
+        send_data = Users.objects.get(user_login=user_info)
         if switcher == 'info':
-            return render(request, 'user_info_block.html', context={'user_data': Users.objects.get(user_login=user_info)})
+            if send_data.user_type == 'СУПЕРАДМИН':
+                send_data.user_pass = '********'
+            return render(request, 'user_info_block.html', context={'user_data': send_data})
         else:
             return render(request, 'user_info.html',
                       context={'get_user_name': login.user_name, 'get_birth': login.user_birth,
@@ -168,7 +171,10 @@ def AjaxServer(request):
                                'get_tel': login.user_tel, 'get_login': login.user_login})
 # -----------> Информация о пользователе из списка--------------
     elif switcher == 'list_userinfo':
-        login = Users.objects.get(user_login=request.GET.get('send_login'))
+        try:
+            login = Users.objects.get(user_login=request.GET.get('send_login'))
+        except:
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
         return render(request, 'user_info.html',
                       context={'get_user_name': login.user_name, 'get_birth': login.user_birth,
                                'get_adress': login.user_adress, 'get_email': login.user_email,
@@ -273,7 +279,7 @@ def AjaxServer(request):
         send_login = request.GET.get('send_login')
         if send_login == online_login.user_login:
             return JsonResponse(error)
-        elif online_login.user_type == 'СУПЕРАДМИН':
+        elif Users.objects.get(user_login=send_login).user_type == 'СУПЕРАДМИН':
             return JsonResponse(denied)
         else:
             login = Users.objects.get(user_login=send_login)
@@ -366,7 +372,7 @@ def AjaxServer(request):
                                                                 'TransportQuality': TransferDB.TransportQuality,
                                                                 'TransferSeats': TransferDB.TransferSeats,
                                                                 'TransportInfo': TransferDB.TransportInfo})
-# ----Сохранение изменении редактирования гостиницы--------------
+# ----Сохранение изменении редактирования гида--------------
     elif switcher == 'GidEditSave':
         done = {1: 'Данные гида изменены!'}
         error = {1: 'Ощибка изменения данных! Попробуйте еще!'}
@@ -388,6 +394,7 @@ def AjaxServer(request):
             return JsonResponse(done)
         except:
             return JsonResponse(error)
+# ----Сохранение изменении редактирования гостиницы--------------
     elif switcher == 'HotelEditSave':
         done = {1: 'Данные гостиницы изменены!'}
         error = {1: 'Ощибка изменения данных! Попробуйте еще!'}

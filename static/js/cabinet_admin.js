@@ -121,18 +121,17 @@ TransferBtn.onclick = function() {
 var UserWindowBtn = document.getElementById('UserWindowBtn');
 var UsersInfo;
 UserWindowBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Информация о пользователе');
-  $("#InfoHead h2").css('font-size', '14pt');
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'userinfo'},
+    data: {switсh: 'list_userinfo', send_login: 'user'},
     success: function(data){
       UserInfo = data;
+      modal.style.display = "block";
+      ModalWindow.style.width = "340px";
+      ModalWindow.style.height = "440px";
+      $('#ModalInfoBlock').empty();
       $('#ModalInfoBlock').html(UserInfo);
     }
   });
