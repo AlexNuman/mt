@@ -100,18 +100,19 @@ $('#tourist_list tr').
   mouseenter(function(){
     // при вхождении в элемент
     var ClientId = this.cells[9].textContent;
+    var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
     var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
     var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
     var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='info_btn'>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'
-      }).append(InfoBtn, DelBtn, GroupBtn);
+      }).append(InfoBtn, DelBtn, GroupBtn, CommentBtn);
 //----Нажатие кнопки инфо -------------------------------------------------------------
       $('#InfoBtn').click(function(){
         modal.style.display = "block";
         ModalWindow.style.width = "550px";
-        ModalWindow.style.height = "550px";
+        ModalWindow.style.height = "600px";
         $('#ModalInfoBlock').empty();
         $("#InfoHead h2").text('Информация туристе');
         $("#InfoHead h2").css('font-size', '14pt');
@@ -161,6 +162,39 @@ $('#tourist_list tr').
         } else {
           modal.style.display = "none";
         };
+      });
+      //-----------при нажатии комментарии -------//
+      $('#CommentBtn').click(function(){
+        modal.style.display = "block";
+        ModalWindow.style.width = "340px";
+        ModalWindow.style.height = "200px";
+        $("#InfoHead h2").text('Комментарии');
+        $("#InfoHead h2").css('font-size', '14pt');
+        $('#ModalInfoBlock').css({
+          'color': 'black',
+          'display': 'block',
+          'flex-direction': 'row',
+          'justify-content': 'space-around'
+        });
+        var CommentField= $("<textarea id='CommentField' disabled></textarea>");
+        $('#ModalInfoBlock').empty();
+        $('#ModalInfoBlock').append(CommentField);
+        $('#CommentField').css({
+          'width': '300px',
+          'height': '100px',
+          'resize': 'none'
+        });
+       //---получение комментария из базы данных----
+        $.ajax({
+          url: '/ajax-server/',
+          method: 'get',
+          dataType: 'json',
+          data: {switсh: 'ClientsList', TouristID: ClientId, Type: 'comment'},
+          success: function(data){
+            InfoData = data[1];
+            $('#CommentField').text(InfoData);
+          }
+        });
       });
 //----Нажатие кнопки группа -------------
       $('#GroupBtn').click(function(){

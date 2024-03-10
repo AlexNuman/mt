@@ -94,6 +94,8 @@ class Clients(models.Model):
     TouristTel = models.CharField(max_length=20)             # Телефон
     TouristRoomType = models.CharField(max_length=20)        # Размешение туриста
     TouristFoodType = models.CharField(max_length=20)        # Питание туриста
+    TourSummary = models.CharField(max_length=50)            # Стоимость тура
+    TourDiscount = models.CharField(max_length=50)           # Скидка тура
     TouristPay = models.CharField(max_length=50)             # Оплаченная сумма
     TouristDebt = models.CharField(max_length=50)            # Долг
     TouristGroup = models.CharField(max_length=50)           # Группа
@@ -103,7 +105,7 @@ class Clients(models.Model):
     StatusPay = models.CharField(max_length=50)              # Статус
     TouristLogin = models.CharField(max_length=100)          # Логин
     TouristPass = models.CharField(max_length=100)           # Пароль
-    TouristLastLogin = models.DateTimeField(auto_now=True)    # Активность
+    TouristLastLogin = models.DateTimeField(auto_now=True)   # Активность
     Comments = models.CharField(max_length=200)              # Комментарий
     TourID = models.CharField(max_length=50)                 # Тур ID
 #----------------------------------------------------------------------------

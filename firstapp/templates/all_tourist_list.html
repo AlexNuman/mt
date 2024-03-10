@@ -21,7 +21,7 @@
             <th style="width: 100px; margin: auto;" class="tourist_list">Действие</th>
             <th style="width: 400px;" class="tourist_list">ФИО туриста</th>
             <th style="width: 150px;" class="tourist_list">Дата рождения</th>
-            <th style="width: 150px;" class="tourist_list">Адрес туриста</th>
+            <th style="width: 150px;" class="tourist_list">Статус</th>
             <th style="width: 150px;" class="tourist_list">ИИН</th>
             <th style="width: 150px;" class="tourist_list">Паспорт</th>
             <th style="width: 150px;" class="tourist_list">Телефон</th>
@@ -35,11 +35,11 @@
         {% for i in TouristData %}
         <tr>
             <td class="tourist_list"> <div></div></td>
-            <td class="tourist_list"> {{i.TouristName}}</td>
-            <td class="tourist_list"> {{i.TouristBirth}}</td>
-            <td class="tourist_list"> {{i.TouristAdress}}</td>
-            <td class="tourist_list"> {{i.TouristIIN}}</td>
-            <td class="tourist_list"> {{i.TouristPassNumber}}</td>
+            <td class="tourist_list">{{i.TouristName}}</td>
+            <td class="tourist_list">{{i.TouristBirth}}</td>
+            <td class="tourist_list">{{i.StatusPay}}</td>
+            <td class="tourist_list">{{i.TouristIIN}}</td>
+            <td class="tourist_list">{{i.TouristPassNumber}}</td>
             <td class="tourist_list">{{i.TouristTel}}</td>
             <td class="tourist_list">{{i.TouristLogin}}</td>
             <td class="tourist_list">{{i.TouristPass}}</td>

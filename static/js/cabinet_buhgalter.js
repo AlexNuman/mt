@@ -7,8 +7,7 @@ span.onclick = function() {
   modal.style.display = "none";
 };
 //------------------------------------------------------------------
-
-/*--------------скрипт вызова списка клиентов----------------------*/
+//--------------скрипт вызова списка клиентов----------------------
 var ClientsBtn = document.getElementById("ClientsBtn");
 var UsersList;
 ClientsBtn.onclick = function() {
@@ -16,36 +15,36 @@ ClientsBtn.onclick = function() {
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'ClientsList'},
+    data: {switсh: 'ClientsList', Type: 'buh'},
     success: function(data){
       UsersList = data;
       $('#info_reciever').html(UsersList);
     }
   });
 };
-/*------------------------------------------------------------------*/
-/*--------------скрипт настройка пользователя----------------------*/
+//------------------------------------------------------------------
+//--------------скрипт настройка пользователя----------------------
 var UserWindowBtn = document.getElementById('UserWindowBtn');
 var UsersInfo;
 UserWindowBtn.onclick = function() {
   modal.style.display = "block";
   ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
+  ModalWindow.style.height = "440px";
   $("#InfoHead h2").text('Информация о пользователе');
   $("#InfoHead h2").css('font-size', '14pt');
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'userinfo'},
+    data: {switсh: 'list_userinfo', send_login: 'user'},
     success: function(data){
       UserInfo = data;
       $('#ModalInfoBlock').html(UserInfo);
     }
   });
 };
-/*------------------------------------------------------------------*/
-/*------кнопка выйти--------*/
+//------------------------------------------------------------------
+//------кнопка выйти--------
 var LogOut = document.getElementById("LogOut");
 LogOut.onclick = function() {
   $.ajax({
@@ -59,7 +58,7 @@ LogOut.onclick = function() {
     }
   });
 };
-/*-------------------------------------------------------------------*/
+//-------------------------------------------------------------------
 
 /*
 //----------кнопка Информация---------------------------------------------

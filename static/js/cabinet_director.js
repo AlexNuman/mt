@@ -40,22 +40,6 @@ ActiveTourBtn.onclick = function() {
   });
 };
 /*------------------------------------------------------------------*/
-/*--------------скрипт вызова списка пользователей----------------------*/
-var UsersBtn = document.getElementById("UsersBtn");
-var UsersList;
-UsersBtn.onclick = function() {
-  $.ajax({
-    url: '/ajax-server/',
-    method: 'get',
-    dataType: 'html',
-    data: {switсh: 'UsersList'},
-    success: function(data){
-      UsersList = data;
-      $('#info_reciever').html(UsersList);
-    }
-  });
-};
-/*------------------------------------------------------------------*/
 /*----------кнопка гиды---------------------------------------------*/
 var GidBtn = document.getElementById('GidBtn');
 GidBtn.onclick = function() {

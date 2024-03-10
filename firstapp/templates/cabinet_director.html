@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Кабинет менеджера по продажам</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_manager.css' %}">
+    <title>Кабинет директора</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_director.css' %}">
 
 </head>
 
@@ -27,7 +27,11 @@
     </div>
 <!------------Меню сайта ----------------------------------->
     <div class="menu_container">
+        <div id="NewTourBtn" class="menu_1">Новый тур</div>
         <div id="ActiveTourBtn" class="menu_2"> Активные туры </div>
+        <div id="GidBtn" class="menu_4">Гиды</div>
+        <div id="Hotels" class="menu_5">Гостиницы</div>
+        <div id="Transfer" class="menu_6">Трансфер</div>
         <div id="ClientsList" class="menu_7">Список туристов</div>
         <!--
         <div id="Settings" class="menu_8">Настройки</div>
@@ -36,7 +40,7 @@
 <!-------------------------------------------------------------->
 <!------------Инфо о странице ----------------------------------->
     <div class="user_type_container">
-        <div class="user_type"> Менеджер по продажам </div>
+        <div class="user_type"> Кабинет директора </div>
     </div>
 <!-------------------------------------------------------------->
 <!------------Основной блок ----------------------------------->
@@ -62,7 +66,7 @@
 
     <!------ Добавляем JQuery и JS файл страницы----->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/cabinet_manager.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/cabinet_director.js' %}"></script>
 <!-------------------------------------------------------------->
 
 </body>

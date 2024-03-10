@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список туристов</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/clients_list_buh.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <p></p>
+    <table class="tourist_table">
+         <caption>
+             Список туристов
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 70px;" class="tourist_list">Действие</th>
+            <th style="width: 400px;" class="tourist_list">ФИО туриста</th>
+            <th style="width: 150px;" class="tourist_list">Дата рождения</th>
+            <th style="width: 100px;" class="tourist_list">Цена тура</th>
+            <th style="width: 100px;" class="tourist_list">Скидка</th>
+            <th style="width: 100px;" class="tourist_list">Оплата</th>
+            <th style="width: 100px;" class="tourist_list">Долг</th>
+            <th style="width: 150px;" class="tourist_list">Менеджер</th>
+            <th style="width: 150px;" class="tourist_list">Бухгальтер</th>
+            <th style="width: 150px;" class="tourist_list">Статус</th>
+            <th style="width: 70px;" class="tourist_list"> Тур </th>
+            <th style="width: 70px;" class="tourist_list"> ID </th>
+        </tr>
+        </thead>
+        <tbody id="clients_list_buh">
+        {% for i in TouristData %}
+        <tr>
+            <td class="tourist_list"></td>
+            <td class="tourist_list"> {{i.TouristName}}</td>
+            <td class="tourist_list"> {{i.TouristBirth}}</td>
+            <td class="tourist_list">{{i.TourSummary}}</td>
+            <td class="tourist_list">{{i.TourDiscount}}</td>
+            <td class="tourist_list">{{i.TouristPay}}</td>
+            <td class="tourist_list">{{i.TouristDebt}}</td>
+            <td class="tourist_list">{{i.RegistManager}}</td>
+            <td class="tourist_list">{{i.ConfirmBuh}}</td>
+            <td class="tourist_list">{{i.StatusPay}}</td>
+            <td class="tourist_list"> {{i.TourID}}</td>
+            <td class="tourist_list"> {{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество туристов</th>
+      <td colspan="2"> {{Len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+<p></p>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/clients_list_buh.js' %}"></script>
+
+
+</body>
+</html>

@@ -27,6 +27,15 @@ def cabinet_admin(request):
     except:
         return redirect('/')
 # ------------------------------------------------------------------------------------------
+# ---------Кабинет директора------------------
+def cabinet_director(request):
+    session_login = request.session['SessionLogin']
+    session_login_type = request.session['SessionLoginType']
+    if session_login == 'none' or session_login_type != 'Директор':
+        return redirect('/')
+    else:
+        return render(request, 'cabinet_director.html', context={'session_login': session_login})
+# ------------------------------------------------------------------------------------------
 # ---------Кабинет менеджера------------------
 def cabinet_manager(request):
     session_login = request.session['SessionLogin']
@@ -38,13 +47,16 @@ def cabinet_manager(request):
 # ------------------------------------------------------------------------------------------
 # ---------Кабинет бухгалтера---------------------
 def cabinet_buhgalter(request):
-    session_login = request.session['SessionLogin']
-    session_login_type = request.session['SessionLoginType']
-    if session_login == 'none' or session_login_type != 'Бухгалтер':
+    try:
+        session_login = request.session['SessionLogin']
+        session_login_type = request.session['SessionLoginType']
+        if session_login == 'none' or session_login_type != 'Бухгалтер':
+            return redirect('/')
+        else:
+            return render(request, 'cabinet_buhgalter.html',
+                          context={'session_login': request.session['SessionLogin']})
+    except:
         return redirect('/')
-    else:
-        return render(request, 'cabinet_buhgalter.html',
-                      context={'session_login': request.session['SessionLogin']})
 # ------------------------------------------------------------------------------------------
 # ---------главная страница Логин/пароль---------------------
 def main_page(request, error_logo='none'):
@@ -109,6 +121,14 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.save()
                 return redirect('/cabinet_buhgalter')
+            elif (login.user_pass == pass_in) and login.user_type == 'Директор':
+                request.session['SessionLogin'] = login.user_login
+                request.session.save()
+                request.session['SessionLoginType'] = login.user_type
+                request.session.save()
+                login.user_status = 'on-line'
+                login.save()
+                return redirect('/cabinet_director')
             else:
                 return redirect('/')
         except:
@@ -493,25 +513,26 @@ def AjaxServer(request):
         already_exist = {1: 'Такой турист уже добавлен в тур!'}
         TouristData = Clients.objects.filter(TourID__exact=tourID)
         try:
-            touristName = request.GET.get('TouristFIO')  # ФИО туриста
-            touristBirth = request.GET.get('TouristBirth')  # Дата рождения
-            touristAdress = request.GET.get('TouristAdress')  # Адрес
-            touristIIN = request.GET.get('TouristIIN')  # ИИН
+            touristName = request.GET.get('TouristFIO')            # ФИО туриста
+            touristBirth = request.GET.get('TouristBirth')         # Дата рождения
+            touristAdress = request.GET.get('TouristAdress')       # Адрес
+            touristIIN = request.GET.get('TouristIIN')             # ИИН
             touristPassNumber = request.GET.get('TouristPassNum')  # № паспорта
-            touristPassEx = request.GET.get('TouristPassEx')  # Срок паспорта
-            touristTel = request.GET.get('TouristTel')  # Телефон
-            touristRoomType = request.GET.get('TouristRoom')  # Размешение туриста
-            touristFoodType = request.GET.get('TouristFood')  # Питание туриста
-            touristPay = request.GET.get('TouristPay')  # Оплаченная сумма
-            touristDebt = request.GET.get('TouristDebt')  # Долг
-            touristGroup = 'none'  # Группа
-            registManager = request.session['SessionLogin']  # Менеджер
-            dateRegist = datetime.now()  # Дата регистрации
-            confirmBuh = 'Не оплачен'  # Подтвердивщий бухгательтер
-            statusPay = 'Не оплачен'  # Статус оплаты
-            touristLogin = request.GET.get('TouristIIN')  # Пароль туриста (ИИН)
-            touristPass = request.GET.get('TouristIIN')  # Пароль туриста (ИИН)
-            touristLastLogin = datetime.now()  # Дата последнего входа туриста
+            touristPassEx = request.GET.get('TouristPassEx')       # Срок паспорта
+            touristTel = request.GET.get('TouristTel')             # Телефон
+            touristRoomType = request.GET.get('TouristRoom')       # Размешение туриста
+            touristFoodType = request.GET.get('TouristFood')       # Питание туриста
+            tourSummary = Tours.objects.get(id=tourID)             # Стоимость тура
+            touristPay = request.GET.get('TouristPay')             # Оплаченная сумма
+            touristDebt = request.GET.get('TouristDebt')           # Долг
+            touristGroup = 'none'                                  # Группа
+            registManager = request.session['SessionLogin']        # Менеджер
+            dateRegist = datetime.now()                            # Дата регистрации
+            confirmBuh = 'Не оплачен'                              # Подтвердивщий бухгательтер
+            statusPay = 'Не оплачен'                               # Статус оплаты
+            touristLogin = request.GET.get('TouristIIN')           # Логин туриста (ИИН)
+            touristPass = request.GET.get('TouristIIN')            # Пароль туриста (ИИН)
+            touristLastLogin = datetime.now()                      # Дата последнего входа туриста
             for i in TouristData:
                 if i.TouristIIN == touristIIN:
                     return JsonResponse(already_exist)
@@ -521,7 +542,8 @@ def AjaxServer(request):
                                                 TouristAdress=touristAdress, TouristIIN=touristIIN,
                                                 TouristPassNumber=touristPassNumber, TouristPassEx=touristPassEx,
                                                 TouristTel=touristTel, TouristRoomType=touristRoomType,
-                                                TouristFoodType=touristFoodType, TouristPay=touristPay,
+                                                TouristFoodType=touristFoodType, TourSummary=tourSummary.TourSummary,
+                                                TouristPay=touristPay, TourDiscount=tourSummary.TourDiscount,
                                                 TouristDebt=touristDebt, TouristGroup=touristGroup,
                                                 RegistManager=registManager, DateRegist=dateRegist,
                                                 ConfirmBuh=confirmBuh, StatusPay=statusPay, TouristLogin=touristLogin,
@@ -581,9 +603,30 @@ def AjaxServer(request):
         return render(request, 'users_list.html', context={'db_data': people})
 # ---->Список клиентов-----------------------------
     elif switcher == 'ClientsList':
+        TouristID = request.GET.get('TouristID')
         ClientsData = Clients.objects.values()
-        return render(request, 'clients_list.html',
-                      context={'TouristData': ClientsData, 'Len': len(ClientsData)})
+        Type = request.GET.get('Type')
+        if Type == 'buh':
+            return render(request, 'clients_list_buh.html',
+                          context={'TouristData': ClientsData, 'Len': len(ClientsData)})
+        elif Type == 'comment':
+            TouristData = Clients.objects.get(id=TouristID)
+            done = {1: TouristData.Comments}
+            return JsonResponse(done)
+        elif Type == 'Save':
+            comments = request.GET.get('comment')
+            error = {1: 'Ошибка сохранения!'}
+            done = {1: 'Комментарии сохранены!'}
+            try:
+                TouristData = Clients.objects.get(id=TouristID)
+                TouristData.Comments = comments
+                TouristData.save()
+                return JsonResponse(done)
+            except:
+                return JsonResponse(error)
+        else:
+            return render(request, 'clients_list.html',
+                          context={'TouristData': ClientsData, 'Len': len(ClientsData)})
 # ---->Информация о клиенте-----------------------------
     elif switcher == 'ClientInfo':
         ClientId = request.GET.get('Tourist')

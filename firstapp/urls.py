@@ -9,6 +9,7 @@ urlpatterns = [
     path('cabinet_admin/', views.cabinet_admin),
     path('cabinet_manager/', views.cabinet_manager),
     path('cabinet_buhgalter/', views.cabinet_buhgalter),
+    path('cabinet_director/', views.cabinet_director),
     path('jinja_test/', views.jinja_test),
     path('error_login', views.main_page, kwargs={'error_logo':'grid'}),
     path('users_list/', views.users_list),
