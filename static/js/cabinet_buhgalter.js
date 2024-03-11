@@ -10,12 +10,21 @@ span.onclick = function() {
 //--------------скрипт вызова списка клиентов----------------------
 var ClientsBtn = document.getElementById("ClientsBtn");
 var UsersList;
+var sorting = 'All'
+
+if ($('#ListChoose').val()=='Оплаченные') {
+  sorting='Paid';
+} else if ($('#ListChoose').val()=='Не оплаченные') {
+  sorting='NotPaid';
+} else {
+  sorting='All';
+};
 ClientsBtn.onclick = function() {
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'ClientsList', Type: 'buh'},
+    data: {switсh: 'ClientsList', Type: 'buh', sort: sorting},
     success: function(data){
       UsersList = data;
       $('#info_reciever').html(UsersList);

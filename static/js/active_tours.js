@@ -124,11 +124,11 @@ $('#active_tours tr').
     var TourId = this.cells[12].textContent;
     var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
     var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
-    var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='group_btn'>");
+    var ClientsBtn = $("<img id='ClientsBtn' src='/static/img/person_add.png' alt='Добавить' class='group_btn'>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'
-      }).append(InfoBtn, DelBtn, GroupBtn);
+      }).append(InfoBtn, DelBtn, ClientsBtn);
 //----Нажатие кнопки инфо -------------------------------------------------------------
       $('#InfoBtn').click(function(){
         modal.style.display = "block";
@@ -184,7 +184,7 @@ $('#active_tours tr').
         };
       });
 //----Нажатие кнопки клиенты -------------
-      $('#GroupBtn').click(function(){
+      $('#ClientsBtn').click(function(){
         $.ajax({
           url: '/ajax-server/',
           method: 'get',

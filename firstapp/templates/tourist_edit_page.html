@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tourist_reg_page.css' %}">
+    <title>Регистрация туриста</title>
+</head>
+<body>
+<div class="tourist_form">
+      <form method="post" id="TouristEditForm" action="">
+          {% csrf_token %}
+          <div class="tourist_input">
+              <div class="tourist_label">Измените данные туриста</div><br>
+              <input type="text" value="{{TouristData.TouristName}}" placeholder="ФИО" id="fio_tourist" class="fio_tourist" required>
+              <label for="birth_tourist"> Дата рождения ({{TouristData.TouristBirth}}): </label>
+              <input type="date" value="" id="birth_tourist" class="birth_tourist" required>
+              <input type="text" value="{{TouristData.TouristAdress}}" placeholder="Адрес" id="adress_tourist" class="adress_tourist" required>
+              <input type="text" value="{{TouristData.TouristIIN}}" placeholder="ИИН" id="tourist_IIN" class="tourist_IIN" required>
+              <input type="text" value="{{TouristData.TouristPassNumber}}" placeholder="№ паспорта" id="passport_n" class="passport_n" required>
+              <label for="passport_ex"> Срок паспорта({{TouristData.TouristPassEx}}): </label>
+              <input type="date" name="passport_ex" id="passport_ex" class="passport_ex" required>
+              <input type="text" value="{{TouristData.TouristTel}}" placeholder="Телефон" id="tourist_tel" class="tourist_tel" required>
+              <label for="room_choose"> Размещение ({{TouristData.TouristRoomType}}): </label>
+              <select id="room_choose" name="room_choose" class="room_choose" required>
+                  <option value="QDR">QDR</option>
+                  <option value="TRP">TRP</option>
+                  <option value="DBL">DBL</option>
+              </select>
+              <label for="FoodChoose"> Выберите питание ({{TouristData.TouristFoodType}}): </label>
+              <select id="FoodChoose" name="FoodChoose" class="FoodChoose" required>
+                  <option value="RO">RO - Room Only</option>
+                  <option value="BB">BB - Bed&Breakfast</option>
+                  <option value="HB">HB - Half board</option>
+                  <option value="FB">FB - Full board</option>
+                  <option value="AI">AI - All inclusive</option>
+              </select>
+              <br>
+              <div id="summary_container" class="summary_container">
+                  <input type="text" value="{{TouristData.TouristPay}}" placeholder="Сумма/задаток" id="tourist_pay" class="tourist_pay" required>
+              </div>
+              <br>
+              <input type="submit" name="tourist_regist" id="tourist_regist" value="Сохранить" class="tourist_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/tourist_edit_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

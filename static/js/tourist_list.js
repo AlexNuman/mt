@@ -102,12 +102,13 @@ $('#tourist_list tr').
     var ClientId = this.cells[9].textContent;
     var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
     var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
-    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
+    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'>");
     var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='info_btn'>");
+    var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='info_btn'>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'
-      }).append(InfoBtn, DelBtn, GroupBtn, CommentBtn);
+      }).append(InfoBtn, CommentBtn, DelBtn, GroupBtn, EditBtn);
 //----Нажатие кнопки инфо -------------------------------------------------------------
       $('#InfoBtn').click(function(){
         modal.style.display = "block";
@@ -130,6 +131,25 @@ $('#tourist_list tr').
           success: function(data){
             TourList = data;
             $('#ModalInfoBlock').html(TourList);
+          }
+        });
+      });
+      //----Нажатие кнопки редактировать -------------------------------------------------------------
+      $('#EditBtn').click(function(){
+        $("#InfoHead h2").text('Редактировать туриста');
+        $("#InfoHead h2").css('font-size', '14pt');
+        $.ajax({
+          url: '/ajax-server/',
+          method: 'get',
+          dataType: 'html',
+          data: {switсh: 'ClientsList', TouristID: ClientId, Type: 'TouristEdit'},
+          success: function(data){
+            Info = data;
+            modal.style.display = "block";
+            ModalWindow.style.width = "340px";
+            ModalWindow.style.height = "720px";
+            $('#ModalInfoBlock').empty();
+            $('#ModalInfoBlock').html(Info);
           }
         });
       });

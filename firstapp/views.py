@@ -607,12 +607,57 @@ def AjaxServer(request):
         ClientsData = Clients.objects.values()
         Type = request.GET.get('Type')
         if Type == 'buh':
+            sort = request.GET.get('sort')
+            if sort == 'All':
+                ClientsData = Clients.objects.values()
+            elif sort == 'Paid':
+                ClientsData = Clients.objects.filter(StatusPay__exact='Оплачено')
+            else:
+                ClientsData = Clients.objects.filter(StatusPay__exact='Не оплачен')
             return render(request, 'clients_list_buh.html',
                           context={'TouristData': ClientsData, 'Len': len(ClientsData)})
         elif Type == 'comment':
             TouristData = Clients.objects.get(id=TouristID)
             done = {1: TouristData.Comments}
             return JsonResponse(done)
+        elif Type == 'TouristEdit':
+            request.session['TouristSendId'] = TouristID
+            request.session.save()
+            TouristData = Clients.objects.get(id=TouristID)
+            return render(request, 'tourist_edit_page.html',
+                          context={'TouristData': TouristData})
+        elif Type == 'TouristEditSave':
+            TouristID = request.session['TouristSendId']
+            done = {1: 'Изменения сохранены!', 2: TouristID}
+            error = {1: 'Ошибка сохранения!'}
+            try:
+                TouristDB = Clients.objects.get(id=TouristID)
+                touristName = request.GET.get('TouristFIO')           # ФИО туриста
+                touristBirth = request.GET.get('TouristBirth')        # Дата рождения
+                touristAdress = request.GET.get('TouristAdress')      # Адрес
+                touristIIN = request.GET.get('TouristIIN')            # ИИН
+                touristPassNumber = request.GET.get('TouristPassNum') # № паспорта
+                touristPassEx = request.GET.get('TouristPassEx')      # Срок паспорта
+                touristTel = request.GET.get('TouristTel')            # Телефон
+                touristRoomType = request.GET.get('TouristRoom')      # Размешение туриста
+                touristFoodType = request.GET.get('TouristFood')      # Питание туриста
+                touristPay = request.GET.get('TouristPay')            # Оплаченная сумма
+                TouristDB.TouristName = touristName
+                TouristDB.TouristBirth = touristBirth
+                TouristDB.TouristAdress = touristAdress
+                TouristDB.TouristIIN = touristIIN
+                TouristDB.TouristPassNumber = touristPassNumber
+                TouristDB.TouristPassEx = touristPassEx
+                TouristDB.TouristTel = touristTel
+                TouristDB.TouristRoomType = touristRoomType
+                TouristDB.TouristFoodType = touristFoodType
+                TouristDB.TouristPay = touristPay
+                TouristDB.save()
+                request.session['TouristSendId'] = ''
+                request.session.save()
+                return JsonResponse(done)
+            except:
+                return JsonResponse(error)
         elif Type == 'Save':
             comments = request.GET.get('comment')
             error = {1: 'Ошибка сохранения!'}
