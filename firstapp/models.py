@@ -93,6 +93,10 @@ class Clients(models.Model):
     TouristPassEx = models.DateField(auto_now=False)         # Срок паспорта
     TouristTel = models.CharField(max_length=20)             # Телефон
     TouristRoomType = models.CharField(max_length=20)        # Размешение туриста
+    FirstPerson = models.CharField(max_length=200)           # 1 турист
+    SecondPerson = models.CharField(max_length=200)          # 2 турист
+    ThirdPerson = models.CharField(max_length=200)           # 3 турист
+    FourthPerson = models.CharField(max_length=200)          # 4 турист
     TouristFoodType = models.CharField(max_length=20)        # Питание туриста
     TourSummary = models.CharField(max_length=50)            # Стоимость тура
     TourDiscount = models.CharField(max_length=50)           # Скидка тура

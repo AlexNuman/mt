@@ -542,13 +542,14 @@ def AjaxServer(request):
                                                 TouristAdress=touristAdress, TouristIIN=touristIIN,
                                                 TouristPassNumber=touristPassNumber, TouristPassEx=touristPassEx,
                                                 TouristTel=touristTel, TouristRoomType=touristRoomType,
-                                                TouristFoodType=touristFoodType, TourSummary=tourSummary.TourSummary,
-                                                TouristPay=touristPay, TourDiscount=tourSummary.TourDiscount,
-                                                TouristDebt=touristDebt, TouristGroup=touristGroup,
-                                                RegistManager=registManager, DateRegist=dateRegist,
-                                                ConfirmBuh=confirmBuh, StatusPay=statusPay, TouristLogin=touristLogin,
-                                                TouristPass=touristPass, TouristLastLogin=touristLastLogin,
-                                                Comments='-----', TourID=tourID)
+                                                FirstPerson='-----', SecondPerson='-----', ThirdPerson='-----',
+                                                FourthPerson='-----', TouristFoodType=touristFoodType,
+                                                TourSummary=tourSummary.TourSummary, TouristPay=touristPay,
+                                                TourDiscount=tourSummary.TourDiscount, TouristDebt=touristDebt,
+                                                TouristGroup=touristGroup, RegistManager=registManager,
+                                                DateRegist=dateRegist, ConfirmBuh=confirmBuh, StatusPay=statusPay,
+                                                TouristLogin=touristLogin, TouristPass=touristPass,
+                                                TouristLastLogin=touristLastLogin, Comments='-----', TourID=tourID)
             return JsonResponse(done)
         except:
             return JsonResponse(error)

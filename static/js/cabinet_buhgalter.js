@@ -11,14 +11,6 @@ span.onclick = function() {
 var ClientsBtn = document.getElementById("ClientsBtn");
 var UsersList;
 var sorting = 'All'
-
-if ($('#ListChoose').val()=='Оплаченные') {
-  sorting='Paid';
-} else if ($('#ListChoose').val()=='Не оплаченные') {
-  sorting='NotPaid';
-} else {
-  sorting='All';
-};
 ClientsBtn.onclick = function() {
   $.ajax({
     url: '/ajax-server/',

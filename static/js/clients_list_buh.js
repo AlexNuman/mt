@@ -130,6 +130,31 @@ $('#clients_list_buh td').each(function(){
   if (x == 'Не оплачен') $(this).css({color: 'red'});
 });
 /*--------------------------------------------*/
+//-------------Выбор поиска пользователей------------------------------------
+var select = document.getElementById("ListChoose");
+select.addEventListener("change", function(){
+  var val = this.options[this.selectedIndex].text;
+  if (val=='Оплаченные') {
+    sorting='Paid';
+  } else if (val=='Не оплаченные') {
+    sorting='NotPaid';
+  } else if (val=='Все туристы') {
+    sorting='All';
+  } else{
+    sorting='none';
+  };
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'ClientsList', Type: 'buh', sort: sorting},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+});
+//---------------------------------------------------------------------
 /*
 //-------------------Получаем данные таблицы по клику --------------
 var active_tours = document.querySelector('#clients_list');
