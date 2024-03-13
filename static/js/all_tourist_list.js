@@ -3,7 +3,7 @@
 $('#all_tourist_list tr').mouseenter(function(){
   var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
   var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='edit_btn'>");
-  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'>");
+  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'>");
   var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
   var TouristID = this.cells[10].textContent;
   $(this.cells[0]).append(CommentBtn, DelBtn, EditBtn, InfoBtn);
@@ -126,7 +126,7 @@ select.addEventListener("change", function(){
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'ClientsList', Type: 'buh', sort: sorting},
+    data: {switсh: 'ClientsList', Type: 'Admin', sort: sorting},
     success: function(data){
       UsersList = data;
       $('#info_reciever').html(UsersList);

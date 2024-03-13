@@ -687,7 +687,7 @@ def AjaxServer(request):
             return render(request, 'all_tourist_list.html',
                           context={'TouristData': ClientsData, 'Len': len(ClientsData)})
         else:
-            return render(request, 'clients_list.html',
+            return render(request, 'all_tourist_list.html',
                           context={'TouristData': ClientsData, 'Len': len(ClientsData)})
 # ---->Информация о клиенте-----------------------------
     elif switcher == 'ClientInfo':
