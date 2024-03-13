@@ -218,7 +218,22 @@ $('#tourist_list tr').
       });
 //----Нажатие кнопки группа -------------
       $('#GroupBtn').click(function(){
-        alert('Group');
+        modal.style.display = "block";
+        $("#InfoHead h2").text('Создание группы');
+        $("#InfoHead h2").css('font-size', '14pt');
+        ModalWindow.style.width = "340px";
+        ModalWindow.style.height = "400px";
+        $.ajax({
+          url: '/ajax-server/',
+          method: 'get',
+          dataType: 'html',
+          data: {switсh: 'TouristGroup', Type: 'Read', TouristID: ClientId, TourId: $("#tour_id").text()},
+          success: function(data){
+            GroupList = data;
+            $('#ModalInfoBlock').empty();
+            $('#ModalInfoBlock').html(GroupList);
+          }
+        });
       });
     };
   }).

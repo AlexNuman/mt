@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tourist_group_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+    <title>Группа</title>
+</head>
+<body>
+<div class="tourist_form">
+      <form method="post" id="TouristGroupForm" action="">
+          {% csrf_token %}
+          <div class="tourist_input">
+              <label for="FirstPerson">Первый турист</label>
+              <input type="text" id="FirstPerson" value="{{TouristData.FirstPerson}}" class="FirstPerson">
+              <label for="SecondPerson">Второй турист</label>
+              <input type="text" id="SecondPerson" value="{{TouristData.SecondPerson}}" class="SecondPerson" >
+              <label for="ThirdPerson">Третий турист</label>
+              <input type="text" id="ThirdPerson" value="{{TouristData.ThirdPerson}}" class="ThirdPerson" >
+              <label for="FourthPerson">Четвертый турист</label>
+              <input type="text" id="FourthPerson" value="{{TouristData.FourthPerson}}" class="FourthPerson" >
+              <input type="submit" name="tourist_regist" id="tourist_regist" value="Сохранить" class="tourist_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/tourist_group_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

@@ -80,7 +80,7 @@ $('#clients_list_buh tr').mouseenter(function(){
         url: '/ajax-server/',
         method: 'get',
         dataType: 'json',
-        data: {switсh: 'ClientsList', TouristID: TouristID, Type: 'Save', comment: Comment},
+        data: {switсh: 'ClientsList', TouristID: TouristID, Type: 'CommentSave', comment: Comment},
         success: function(data){
           InfoData = data[1];
           alert(InfoData);
@@ -130,7 +130,7 @@ $('#clients_list_buh td').each(function(){
   if (x == 'Не оплачен') $(this).css({color: 'red'});
 });
 /*--------------------------------------------*/
-//-------------Выбор поиска пользователей------------------------------------
+//-------------Фильтр списка клиентов------------------------------------
 var select = document.getElementById("ListChoose");
 select.addEventListener("change", function(){
   var val = this.options[this.selectedIndex].text;

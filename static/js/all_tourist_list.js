@@ -109,3 +109,28 @@ $('#all_tourist_list td').each(function(){
   if (x == 'Оплачено') $(this).css({color: 'green'});
   if (x == 'Не оплачен') $(this).css({color: 'red'});
 });
+//-------------Фильтр списка клиентов------------------------------------
+var select = document.getElementById("ListChoose");
+select.addEventListener("change", function(){
+  var val = this.options[this.selectedIndex].text;
+  if (val=='Оплаченные') {
+    sorting='Paid';
+  } else if (val=='Не оплаченные') {
+    sorting='NotPaid';
+  } else if (val=='Все туристы') {
+    sorting='All';
+  } else{
+    sorting='none';
+  };
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'ClientsList', Type: 'buh', sort: sorting},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+});
+//---------------------------------------------------------------------

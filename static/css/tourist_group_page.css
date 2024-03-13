@@ -1,0 +1,25 @@
+
+.tourist_input {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto;
+  font-size: 12pt;
+}
+.tourist_label {
+  font-size: 14pt;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.FirstPerson, .SecondPerson, .ThirdPerson,.FourthPerson {
+  width: 300px;
+  height: 30px;
+  font-size: 12pt;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.tourist_regist {
+  margin-top: 10px;
+  height: 30px;
+  width: 100px;
+  border-radius: 3px;
+}

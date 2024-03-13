@@ -103,12 +103,13 @@ TransferBtn.onclick = function() {
 /*-------------------------------------------------------------------*/
 /*----------кнопка Список туристов---------------------------------------------*/
 var TransferBtn = document.getElementById('ClientsList');
+var sorting='All';
 TransferBtn.onclick = function() {
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'AllTouristList'},
+    data: {switсh: 'ClientsList', Type: 'Admin', sort: sorting},
     success: function(data){
       UsersList = data;
       $('#info_reciever').html(UsersList);
