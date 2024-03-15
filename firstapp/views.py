@@ -796,8 +796,28 @@ def AjaxServer(request):
             TouristData = Clients.objects.get(id=TouristID)
             request.session['TouristSendId'] = TouristID
             request.session.save()
-            FirstPersonDB = Clients.objects.filter(TourID=TourId).get(id=TouristID)
-            return render(request, 'tourist_group_page.html', context={'TouristData': TouristData})
+            if TouristData.TouristIIN == TouristData.FirstPerson:
+                SecondPerson = Clients.objects.filter(TourID=TourId).get(TouristIIN=TouristData.SecondPerson)
+                ThirdPerson = Clients.objects.filter(TourID=TourId).get(TouristIIN=TouristData.ThirdPerson)
+                FourthPerson = Clients.objects.filter(TourID=TourId).get(TouristIIN=TouristData.FourthPerson)
+                return render(request, 'tourist_group_page.html', context={'TouristData': TouristData,
+                                                                           'SecondPerson': SecondPerson,
+                                                                           'ThirdPerson': ThirdPerson,
+                                                                           'FourthPerson': FourthPerson})
+            elif TouristData.TouristIIN != TouristData.FirstPerson:
+                TouristData = Clients.objects.get(id=TouristID)
+                return render(request, 'tourist_group_page.html', context={'TouristData': TouristData})
+            else:
+                FirstPersonIIN = TouristData.FirstPerson
+                FirstPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=FirstPersonIIN)
+                SecondPerson = Clients.objects.filter(TourID=TourId).get(TouristIIN=FirstPersonDB.SecondPerson)
+                ThirdPerson = Clients.objects.filter(TourID=TourId).get(TouristIIN=FirstPersonDB.ThirdPerson)
+                FourthPerson = Clients.objects.filter(TourID=TourId).get(TouristIIN=FirstPersonDB.FourthPerson)
+                return render(request, 'tourist_group_page.html', context={'TouristData': FirstPersonDB,
+                                                                           'SecondPerson': SecondPerson,
+                                                                           'ThirdPerson': ThirdPerson,
+                                                                           'FourthPerson': FourthPerson
+                                                                           })
         elif Type == 'Save':
             done = {1: "Сохранение прошла успешно"}
             error = {1: "Ошибка сохранения!"}
@@ -807,37 +827,61 @@ def AjaxServer(request):
                 SecondPerson = request.GET.get('SecondPerson')
                 ThirdPerson = request.GET.get('ThirdPerson')
                 FourthPerson = request.GET.get('FourthPerson')
-                FirstPersonDB = Clients.objects.get(id=TouristID)
-                SecondPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=SecondPerson)
-                ThirdPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=ThirdPerson)
-                FourthPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=FourthPerson)
+                try:
+                    FirstPersonDB = Clients.objects.get(id=TouristID)
+                except:
+                    FirstPersonDB = '-----'
+                try:
+                    SecondPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=SecondPerson)
+                    SecondPersonDB.FirstPerson = FirstPersonDB.TouristIIN
+                    SecondPersonDB.SecondPerson = FirstPersonDB.TouristIIN
+                    SecondPersonDB.ThirdPerson = FirstPersonDB.TouristIIN
+                    SecondPersonDB.FourthPerson = FirstPersonDB.TouristIIN
+                    SecondPersonDB.save()
+                except:
+                    SecondPersonDB = '-----'
+                try:
+                    ThirdPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=ThirdPerson)
+                    ThirdPersonDB.FirstPerson = FirstPersonDB.TouristIIN
+                    ThirdPersonDB.SecondPerson = FirstPersonDB.TouristIIN
+                    ThirdPersonDB.ThirdPerson = FirstPersonDB.TouristIIN
+                    ThirdPersonDB.FourthPerson = FirstPersonDB.TouristIIN
+                    ThirdPersonDB.save()
+                except:
+                    ThirdPersonDB = '-----'
+                try:
+                    FourthPersonDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=FourthPerson)
+                    FourthPersonDB.FirstPerson = FirstPersonDB.TouristIIN
+                    FourthPersonDB.SecondPerson = FirstPersonDB.TouristIIN
+                    FourthPersonDB.ThirdPerson = FirstPersonDB.TouristIIN
+                    FourthPersonDB.FourthPerson = FirstPersonDB.TouristIIN
+                    FourthPersonDB.save()
+                except:
+                    FourthPersonDB = '-----'
                 #----сохранение данных-----
                 FirstPersonDB.SecondPerson = SecondPerson
                 FirstPersonDB.ThirdPerson = ThirdPerson
                 FirstPersonDB.FourthPerson = FourthPerson
                 FirstPersonDB.save()
-                SecondPersonDB.FirstPerson = FirstPersonDB.TouristIIN
-                SecondPersonDB.SecondPerson = FirstPersonDB.TouristIIN
-                SecondPersonDB.ThirdPerson = FirstPersonDB.TouristIIN
-                SecondPersonDB.FourthPerson = FirstPersonDB.TouristIIN
-                SecondPersonDB.save()
-                ThirdPersonDB.FirstPerson = FirstPersonDB.TouristIIN
-                ThirdPersonDB.SecondPerson = FirstPersonDB.TouristIIN
-                ThirdPersonDB.ThirdPerson = FirstPersonDB.TouristIIN
-                ThirdPersonDB.FourthPerson = FirstPersonDB.TouristIIN
-                ThirdPersonDB.save()
-                FourthPersonDB.FirstPerson = FirstPersonDB.TouristIIN
-                FourthPersonDB.SecondPerson = FirstPersonDB.TouristIIN
-                FourthPersonDB.ThirdPerson = FirstPersonDB.TouristIIN
-                FourthPersonDB.FourthPerson = FirstPersonDB.TouristIIN
-                FourthPersonDB.save()
                 request.session['TouristSendId'] = ''
                 request.session.save()
                 return JsonResponse(done)
             except:
                 return JsonResponse(error)
-        else:
-            return render(request, 'tourist_group_page.html')
+        elif Type == 'Check':
+            TourId = request.GET.get('TourId')
+            PersonInfo = request.GET.get('PersonInfo')
+            #-->-поиск туриста----
+            try:
+                PersonInfoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonInfo)
+                if PersonInfoDB.SecondPerson == '-----':
+                    PersonReturn = PersonInfoDB.TouristName
+                else:
+                    PersonReturn = 'Турист уже в группе'
+            except:
+                PersonReturn = 'Туриста нет в базе'
+            done = {1: PersonReturn}
+            return JsonResponse(done)
 #------->   раздел тестирования функии -----------------
     elif switcher == 'Test':
         tourID = 5

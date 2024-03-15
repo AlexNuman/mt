@@ -13,15 +13,19 @@
       <form method="post" id="TouristGroupForm" action="">
           {% csrf_token %}
           <div class="tourist_input">
-              <label for="FirstPerson">Первый турист</label>
+              <label for="FirstPerson">Первый турист:</label>
+              <span id="FirstPersonSpan" style="font-style: italic;">{{TouristData.TouristName}}</span>
               <input type="text" id="FirstPerson" value="{{TouristData.FirstPerson}}" class="FirstPerson">
-              <label for="SecondPerson">Второй турист</label>
+              <label for="SecondPerson">Второй турист:</label>
+              <span id="SecondPersonSpan" style="font-style: italic;">{{SecondPerson.TouristName}}</span>
               <input type="text" id="SecondPerson" value="{{TouristData.SecondPerson}}" class="SecondPerson" >
-              <label for="ThirdPerson">Третий турист</label>
+              <label for="ThirdPerson">Третий турист:</label>
+              <span id="ThirdPersonSpan"style="font-style: italic;">{{ThirdPerson.TouristName}}</span>
               <input type="text" id="ThirdPerson" value="{{TouristData.ThirdPerson}}" class="ThirdPerson" >
-              <label for="FourthPerson">Четвертый турист</label>
+              <label for="FourthPerson">Четвертый турист:</label>
+              <span id="FourthPersonSpan"style="font-style: italic;">{{FourthPerson.TouristName}}</span>
               <input type="text" id="FourthPerson" value="{{TouristData.FourthPerson}}" class="FourthPerson" >
-              <input type="submit" name="tourist_regist" id="tourist_regist" value="Сохранить" class="tourist_regist">
+              <input type="submit" name="tourist_group_btn" id="tourist_group_btn" value="Сохранить" class="tourist_regist">
           </div>
       </form>
 </div>

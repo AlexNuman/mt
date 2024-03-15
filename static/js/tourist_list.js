@@ -100,6 +100,7 @@ $('#tourist_list tr').
   mouseenter(function(){
     // при вхождении в элемент
     var ClientId = this.cells[9].textContent;
+    var ClientIIN = this.cells[4].textContent;
     var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
     var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
     var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'>");
@@ -222,7 +223,12 @@ $('#tourist_list tr').
         $("#InfoHead h2").text('Создание группы');
         $("#InfoHead h2").css('font-size', '14pt');
         ModalWindow.style.width = "340px";
-        ModalWindow.style.height = "400px";
+        ModalWindow.style.height = "500px";
+        $("#FirstPerson").attr('disabled', 'false');
+        $("#SecondPerson").attr('disabled', 'false');
+        $("#ThirdPerson").attr('disabled', 'false');
+        $("#FourthPerson").attr('disabled', 'false');
+        $("#tourist_group_btn").attr('disabled', 'false');
         $.ajax({
           url: '/ajax-server/',
           method: 'get',
@@ -232,6 +238,14 @@ $('#tourist_list tr').
             GroupList = data;
             $('#ModalInfoBlock').empty();
             $('#ModalInfoBlock').html(GroupList);
+            if (ClientIIN != $("#FirstPerson").val()) {
+              $("#FirstPerson").attr('disabled', 'true');
+              $("#SecondPerson").attr('disabled', 'true');
+              $("#ThirdPerson").attr('disabled', 'true');
+              $("#FourthPerson").attr('disabled', 'true');
+              $("#tourist_group_btn").attr('disabled', 'true');
+            } else {
+            }
           }
         });
       });
@@ -252,6 +266,7 @@ $('#tourist_list td').each(function(){
 /*----------------------------------------------------*/
 /*
 //------------------------------------------------------------------
+
 //-------------------Получаем данные таблицы по клику --------------
 var active_tours = document.querySelector('#tourist_list');
 active_tours.addEventListener('click', MouseClk => {

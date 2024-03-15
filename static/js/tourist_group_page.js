@@ -30,7 +30,54 @@ $('#TouristGroupForm').submit(function() {
   return false;
 });
 //------------------------------------------------------------------------------------
+/*
+//-------проверка клиента из базы для группы-------
+//---второй турист------
+$('#SecondPerson').keyup(function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'json',
+    data: {switсh: 'TouristGroup',
+      Type: 'Check',
+      TourId: $("#tour_id").text(),
+      PersonInfo: $("#SecondPerson").val()},
+    success: function(data){
+      $('#SecondPersonSpan').text(data[1]);
+    }
+  });
+});
+///-----третий турист-------
+$('#ThirdPerson').keyup(function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'json',
+    data: {switсh: 'TouristGroup',
+      Type: 'Check',
+      TourId: $("#tour_id").text(),
+      PersonInfo: $("#ThirdPerson").val()},
+    success: function(data){
+      $('#ThirdPersonSpan').text(data[1]);
+    }
+  });
+});
+///-----четвертый турист-----
+$('#FourthPerson').keyup(function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'json',
+    data: {switсh: 'TouristGroup',
+      Type: 'Check',
+      TourId: $("#tour_id").text(),
+      PersonInfo: $("#FourthPerson").val()},
+    success: function(data){
+      $('#FourthPersonSpan').text(data[1]);
+    }
+  });
+});
 
-
+*/
 
 
