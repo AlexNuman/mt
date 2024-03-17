@@ -85,36 +85,39 @@ class TourTransfer (models.Model):
 #-------Класс БД нового туриста -----------------------------------------------
 
 class Clients(models.Model):
-    TouristName = models.CharField(max_length=200)           # ФИО туриста
-    TouristBirth = models.DateField(auto_now=False)          # Дата рождения
-    TouristAdress = models.CharField(max_length=200)         # Адрес
-    TouristIIN = models.CharField(max_length=50)             # ИИН
-    TouristPassNumber = models.CharField(max_length=50)      # № паспорта
-    TouristPassEx = models.DateField(auto_now=False)         # Срок паспорта
-    TouristTel = models.CharField(max_length=20)             # Телефон
-    TouristRoomType = models.CharField(max_length=20)        # Размешение туриста
-    FirstPerson = models.CharField(max_length=200)           # 1 турист
-    SecondPerson = models.CharField(max_length=200)          # 2 турист
-    ThirdPerson = models.CharField(max_length=200)           # 3 турист
-    FourthPerson = models.CharField(max_length=200)          # 4 турист
-    TouristFoodType = models.CharField(max_length=20)        # Питание туриста
-    TourSummary = models.CharField(max_length=50)            # Стоимость тура
-    TourDiscount = models.CharField(max_length=50)           # Скидка тура
-    TouristPay = models.CharField(max_length=50)             # Оплаченная сумма
-    TouristDebt = models.CharField(max_length=50)            # Долг
-    TouristGroup = models.CharField(max_length=50)           # Группа
-    RegistManager = models.CharField(max_length=200)         # Менеджер
-    DateRegist = models.DateTimeField(auto_now=True)         # Регистрация
-    ConfirmBuh = models.CharField(max_length=200)            # Подтверждение
-    StatusPay = models.CharField(max_length=50)              # Статус
-    TouristLogin = models.CharField(max_length=100)          # Логин
-    TouristPass = models.CharField(max_length=100)           # Пароль
-    TouristLastLogin = models.DateTimeField(auto_now=True)   # Активность
-    Comments = models.CharField(max_length=200)              # Комментарий
-    TourID = models.CharField(max_length=50)                 # Тур ID
+    TouristName = models.CharField(max_length=200)                      # ФИО туриста
+    TouristBirth = models.DateField(auto_now=False)                     # Дата рождения
+    TouristAdress = models.CharField(max_length=200)                    # Адрес
+    TouristIIN = models.CharField(max_length=50)                        # ИИН
+    TouristPassNumber = models.CharField(max_length=50)                 # № паспорта
+    TouristPassEx = models.DateField(auto_now=False)                    # Срок паспорта
+    TouristTel = models.CharField(max_length=20)                        # Телефон
+    TouristRoomType = models.CharField(max_length=20)                   # Размешение туриста
+    TouristFoodType = models.CharField(max_length=20)                   # Питание туриста
+    TourSummary = models.CharField(max_length=50)                       # Стоимость тура
+    TourDiscount = models.CharField(max_length=50)                      # Скидка тура
+    TouristPay = models.CharField(max_length=50)                        # Оплаченная сумма
+    TouristDebt = models.CharField(max_length=50)                       # Долг
+    TouristGroup = models.CharField(max_length=50)                      # Группа
+    PersonOne = models.CharField(max_length=50)                         # 1-Турист
+    PersonTwo = models.CharField(max_length=50)                         # 2-Турист
+    PersonThree = models.CharField(max_length=50)                       # 3-Турист
+    PersonFour = models.CharField(max_length=50)                        # 4-Турист
+    RegistManager = models.CharField(max_length=200)                    # Менеджер
+    DateRegist = models.DateTimeField(auto_now=True)                    # Регистрация
+    ConfirmBuh = models.CharField(max_length=200)                       # Подтверждение
+    StatusPay = models.CharField(max_length=50)                         # Статус
+    TouristLogin = models.CharField(max_length=100)                     # Логин
+    TouristPass = models.CharField(max_length=100)                      # Пароль
+    TouristLastLogin = models.DateTimeField(auto_now=True)              # Активность
+    Comments = models.CharField(max_length=200)                         # Комментарий
+    TourID = models.CharField(max_length=50)                            # Тур ID
+
 #----------------------------------------------------------------------------
+#------------------------
+#---------------------------------------------------------------------------
 #-------Класс БД настройки --------------------------------------------------
-class Settings(models.Model):
+class SiteSettings(models.Model):
     SettingsType = models.CharField(max_length=50)                         # типа настройки
     Block = models.CharField(max_length=50, default='---')                 # Переключатель блок или нет
     NoticeInfo = models.CharField(max_length=500, default='---')           # Уведомление инфо

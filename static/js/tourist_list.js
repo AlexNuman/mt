@@ -224,7 +224,6 @@ $('#tourist_list tr').
         $("#InfoHead h2").css('font-size', '14pt');
         ModalWindow.style.width = "340px";
         ModalWindow.style.height = "500px";
-        $("#FirstPerson").attr('disabled', 'false');
         $("#SecondPerson").attr('disabled', 'false');
         $("#ThirdPerson").attr('disabled', 'false');
         $("#FourthPerson").attr('disabled', 'false');
@@ -238,14 +237,16 @@ $('#tourist_list tr').
             GroupList = data;
             $('#ModalInfoBlock').empty();
             $('#ModalInfoBlock').html(GroupList);
-            if (ClientIIN != $("#FirstPerson").val()) {
+            /*
+            if (ClientIIN == $("#FirstPerson").val()) {
               $("#FirstPerson").attr('disabled', 'true');
               $("#SecondPerson").attr('disabled', 'true');
               $("#ThirdPerson").attr('disabled', 'true');
               $("#FourthPerson").attr('disabled', 'true');
               $("#tourist_group_btn").attr('disabled', 'true');
             } else {
-            }
+            };
+            */
           }
         });
       });

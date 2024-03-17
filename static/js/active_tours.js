@@ -156,31 +156,35 @@ $('#active_tours tr').
       });
 //----Нажатие кнопки удалить тур--------------------------------------------------
       $('#DeleteBtn').click(function(){
-        var DeleteTourist = confirm('Точно удалить тур?');
-        if (DeleteTourist == true) {
-          $.ajax({
-            url: '/ajax-server/',
-            method: 'get',
-            dataType: 'json',
-            data: {switсh: 'TourDelete', TourId: TourId},
-            success: function(data){
-              InfoData = data[1];
-              alert(InfoData);
-              modal.style.display = "none";
-              $.ajax({
-                url: '/ajax-server/',
-                method: 'get',
-                dataType: 'html',
-                data: {switсh: 'ActiveTours'},
-                success: function(data){
-                  TourList = data;
-                  $('#info_reciever').html(TourList);
-                }
-              });
-            }
-          });
+        if ($('#user_type_label').text()=='Менеджер по продажам') {
+          alert('У вас нет прав!');
         } else {
-          modal.style.display = "none";
+          var DeleteTourist = confirm('Точно удалить тур?');
+          if (DeleteTourist == true) {
+            $.ajax({
+              url: '/ajax-server/',
+              method: 'get',
+              dataType: 'json',
+              data: {switсh: 'TourDelete', TourId: TourId},
+              success: function(data){
+                InfoData = data[1];
+                alert(InfoData);
+                modal.style.display = "none";
+                $.ajax({
+                  url: '/ajax-server/',
+                  method: 'get',
+                  dataType: 'html',
+                  data: {switсh: 'ActiveTours'},
+                  success: function(data){
+                    TourList = data;
+                    $('#info_reciever').html(TourList);
+                  }
+                });
+              }
+            });
+          } else {
+            modal.style.display = "none";
+          };
         };
       });
 //----Нажатие кнопки клиенты -------------

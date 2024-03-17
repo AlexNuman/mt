@@ -6,6 +6,7 @@ $('#TouristGroupForm').submit(function() {
     dataType: 'json',
     data: {switсh: 'TouristGroup',
       Type: 'Save',
+      FirstPerson: $("#FirstPerson").val(),
       SecondPerson: $("#SecondPerson").val(),
       ThirdPerson: $("#ThirdPerson").val(),
       FourthPerson: $("#FourthPerson").val(),
@@ -14,24 +15,28 @@ $('#TouristGroupForm').submit(function() {
       info = data[1];
       alert(info)
       modal.style.display = "none";
-      $.ajax({
-      url: '/ajax-server/',
-      method: 'get',
-      dataType: 'html',
-      data: {switсh: 'TouristList', TourId: $("#tour_id").text()},
-      success: function(data){
-        TouristList = data;
-        $('#info_reciever').html(TouristList);
-        modal.style.display = "none";
-      }
-      });
     }
   });
   return false;
 });
 //------------------------------------------------------------------------------------
-/*
+
 //-------проверка клиента из базы для группы-------
+//---первый турист------
+$('#FirstPerson').keyup(function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'json',
+    data: {switсh: 'TouristGroup',
+      Type: 'Check',
+      TourId: $("#tour_id").text(),
+      PersonInfo: $("#FirstPerson").val()},
+    success: function(data){
+      $('#FirstPersonSpan').text(data[1]);
+    }
+  });
+});
 //---второй турист------
 $('#SecondPerson').keyup(function() {
   $.ajax({
@@ -47,6 +52,7 @@ $('#SecondPerson').keyup(function() {
     }
   });
 });
+
 ///-----третий турист-------
 $('#ThirdPerson').keyup(function() {
   $.ajax({
@@ -78,6 +84,5 @@ $('#FourthPerson').keyup(function() {
   });
 });
 
-*/
 
 

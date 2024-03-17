@@ -14,17 +14,17 @@
           {% csrf_token %}
           <div class="tourist_input">
               <label for="FirstPerson">Первый турист:</label>
-              <span id="FirstPersonSpan" style="font-style: italic;">{{TouristData.TouristName}}</span>
-              <input type="text" id="FirstPerson" value="{{TouristData.FirstPerson}}" class="FirstPerson">
+              <span id="FirstPersonSpan" style="font-style: italic;">{{PersonOneName}}</span>
+              <input type="text" id="FirstPerson" value="{{TouristData.PersonOne}}" class="FirstPerson">
               <label for="SecondPerson">Второй турист:</label>
-              <span id="SecondPersonSpan" style="font-style: italic;">{{SecondPerson.TouristName}}</span>
-              <input type="text" id="SecondPerson" value="{{TouristData.SecondPerson}}" class="SecondPerson" >
+              <span id="SecondPersonSpan" style="font-style: italic;">{{PersonTwoName}}</span>
+              <input type="text" id="SecondPerson" value="{{TouristData.PersonTwo}}" class="SecondPerson" >
               <label for="ThirdPerson">Третий турист:</label>
-              <span id="ThirdPersonSpan"style="font-style: italic;">{{ThirdPerson.TouristName}}</span>
-              <input type="text" id="ThirdPerson" value="{{TouristData.ThirdPerson}}" class="ThirdPerson" >
+              <span id="ThirdPersonSpan"style="font-style: italic;">{{PersonThreeName}}</span>
+              <input type="text" id="ThirdPerson" value="{{TouristData.PersonThree}}" class="ThirdPerson" >
               <label for="FourthPerson">Четвертый турист:</label>
-              <span id="FourthPersonSpan"style="font-style: italic;">{{FourthPerson.TouristName}}</span>
-              <input type="text" id="FourthPerson" value="{{TouristData.FourthPerson}}" class="FourthPerson" >
+              <span id="FourthPersonSpan"style="font-style: italic;">{{PersonFourName}}</span>
+              <input type="text" id="FourthPerson" value="{{TouristData.PersonFour}}" class="FourthPerson" >
               <input type="submit" name="tourist_group_btn" id="tourist_group_btn" value="Сохранить" class="tourist_regist">
           </div>
       </form>

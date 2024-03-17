@@ -95,7 +95,7 @@
                             </tr>
                             <tr>
                                 <td>Ожидание</td>
-                                <td>{{TourInfo.WaitingTimeTo}}</td>
+                                <td>{{TourInfo.WaitingTimeTo}} (час)</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -103,7 +103,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Ожидание</td>
-                                <td>{{TourInfo.WaitingTimeFrom}}</td>
+                                <td>{{TourInfo.WaitingTimeFrom}} (час)</td>
                             </tr>
                             <tr>
                                 <td>Дата прилета</td>
@@ -152,10 +152,10 @@
                     <table id="hotel_info_table" class="hotel_info_table">
                         <thead>
                             <th>
-                                <td>Медина</td>
-                                <td></td>
-                                <td></td>
                                 <td>Мекка</td>
+                                <td></td>
+                                <td></td>
+                                <td>Медина</td>
                                 <td></td>
                                 <td></td>
                             </th>
@@ -171,43 +171,35 @@
                             </tr>
                             <tr>
                                 <td>Дата заезда</td>
-                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td>{{TourInfo.HotelMekkaIn}}</td>
                                 <td></td>
                                 <td></td>
                                 <td>Дата заезда</td>
-                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td>{{TourInfo.HotelMedinaIn}}</td>
                             </tr>
                             <tr>
                                 <td>Дата выезда</td>
-                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td>{{TourInfo.HotelMekkaOut}}</td>
                                 <td></td>
                                 <td></td>
                                 <td>Дата выезда</td>
-                                <td>{{TourInfo.ArrivalDestination}}</td>
+                                <td>{{TourInfo.HotelMedinaOut}}</td>
                             </tr>
                             <tr>
                                 <td>Тип размещения</td>
-                                <td>Quadro</td>
+                                <td>{{TouristInfo.TouristRoomType}}</td>
                                 <td></td>
                                 <td></td>
-                                <td>Дата выезда</td>
-                                <td>11.01.2024</td>
-                            </tr>
-                            <tr>
-                                <td>Имя</td>
-                                <td>Abdullaeb Mansur</td>
-                                <td></td>
-                                <td></td>
-                                <td>Имя</td>
-                                <td>Abdullaeb Mansur</td>
+                                <td>Тип размещения</td>
+                                <td>{{TouristInfo.TouristRoomType}}</td>
                             </tr>
                             <tr>
                                 <td>Питание</td>
-                                <td>BB</td>
+                                <td>{{TouristInfo.TouristFoodType}}</td>
                                 <td></td>
                                 <td></td>
                                 <td>Питание</td>
-                                <td>BB</td>
+                                <td>{{TouristInfo.TouristFoodType}}</td>
                             </tr>
                         </tbody>
                         
@@ -229,7 +221,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Автобус</td>
+                                <td>{{TourInfo.TransferChoose}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -250,7 +242,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Rakhmanov Abdulla</td>
+                                <td>{{TourInfo.GidChoose}}</td>
                             </tr>
                         </tbody>
                     </table>    
@@ -285,33 +277,11 @@
                 </div>
             </div>
         </div>
-        
-        
-            <div id="flight_info" class="flight_info">
-                <div id="departure_info" class="departure_info"></div>
-                <div id="transit_info" class="transit_info"></div>
-                <div id="arrival_info" class="arrival_info"></div>
-            </div>
-            <div id="hotel_info" class="hotel_info">
-                <div id="medine_info" class="medine_info"></div>
-                <div id="mekka_info" class="mekka_info"></div>
-            </div>
-        
-        <div id="midlle_container" class="midlle_container">
-            <div id="transfer_info" class="transfer_info">
-                <div id="transfer_to" class="transfer_to"></div>
-                <div id="transfer_from" class="transfer_from"></div>
-            </div>
+        <div id="event_container" class="event_container">
+            <img id='PrintBtn' src='/static/img/print_btn.png' alt='Печать' class='PrintBtn'>
+            <img id='BookletBtn' src='/static/img/info_booklet.png' alt='Буклет' class='BookletBtn'>
         </div>
-        <div id="bottom_container" class="bottom_container">
-            <div id="service_info" class="service_info">
-                <div id="gid_info" class="gid_info"></div>
-            </div>
-        </div>
-        <div id="info_container" class="info_container">
-            <div id="flight_service_info" class="flight_service_info"></div>
-            <div id="tourist_info_advice" class="tourist_info_advice"></div>
-        </div>
+
     </div>
 
     

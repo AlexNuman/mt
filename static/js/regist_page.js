@@ -31,3 +31,8 @@ $('#regist_form').submit(function() {
   });
   return false;
 })
+
+if ($('#user_type_label').text()=='Кабинет администратора') {
+  $("#user_type option[value='СУПЕРАДМИН']").remove();
+} else {
+};
