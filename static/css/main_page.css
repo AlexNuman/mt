@@ -7,9 +7,20 @@ font-family: 'Prata', serif;
 font-family: 'Tektur', sans-serif;
 font-family: 'Unbounded', sans-serif;
 */
+body {
+  background-image: url("/static/img/mekka.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .main_container {
   height: 100%;
   width: 100%;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 .main_form {
   height: 800px;
@@ -18,24 +29,65 @@ font-family: 'Unbounded', sans-serif;
 .login_label {  
   font-size: 14pt;
   font-family: 'Tektur', sans-serif;
+  opacity: 0.8;
 }
 .login_input {
-  border: thick double #fff;
+  border: thick double #bec2c6;
   border-radius: 10px;
   height: 300px;
   width: 400px;
   margin: 0 auto;
   padding-top: 20px;
   font-size: 12pt;
-  background-color:rgb(199, 197, 221);
+  background-color: #f5f5f5;
   font-family: 'Tektur', sans-serif;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+  transition: .5s box-shadow;
 }
 .login, .pass {
-  width: 300px;
+  width: 250px;
   height: 30px;
   font-size: 12pt;
   border-radius: 3px;
   font-family: 'Tektur', sans-serif;
+  background-color: #fafafa;
+  border:0;
+  box-shadow:0 0 6px rgba(0,0,0,0.5);
+  transition: .3s box-shadow;
+  box-sizing: border-box;
+  font-family: inherit; /* 1 */
+  font-size: inherit; /* 1 */
+  line-height: inherit;
+  margin: 0;
+}
+label {
+  opacity: 0.8;
+}
+.login {
+  background-color: #fff;
+  background-image: url("/static/img/person.png");
+  background-position: 5px 5px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  opacity: 0.8;
+}
+.pass {
+  background-color: #fff;
+  background-image: url("/static/img/password.png");
+  background-position: 5px 5px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  opacity: 0.8;
+}
+.login:hover, .pass:hover {
+  box-shadow:0 0 3px rgba(0,0,0,0.7);
+}
+.login:focus, .pass:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgba(128, 128, 128, 0.8);
 }
 .but_in {
   margin-top: 10px;
@@ -43,6 +95,15 @@ font-family: 'Unbounded', sans-serif;
   width: 100px;
   border-radius: 3px;
   font-family: 'Tektur', sans-serif;
+  border:0;
+  box-shadow:0 0 6px rgba(0,0,0,0.5);
+  transition: .3s box-shadow;
+}
+.but_in:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 3px 5px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
+  transition: all 0.5s ease 0s;
 }
 .footer_container {
   position:fixed;
@@ -54,4 +115,5 @@ font-family: 'Unbounded', sans-serif;
 }
 .main_footer {
   font-family: 'Unbounded', sans-serif;
+  opacity: 0.8;
 }

@@ -10,7 +10,7 @@
 <body>
     <div class="main_container">
         <div class="main_form">
-            <img style="margin-top: 200px;" src="{% static 'img/logo.png' %}">
+            <img style="margin-top: 200px; opacity: 0.8;" src="{% static 'img/logo.png' %}">
             <form method="post" action="check_login/">
             {% csrf_token %}
                 <div class="login_input">
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="footer_container">
-        <div class="main_footer">MIHRAB TRAVEL 2024</div>
+        <div class="main_footer">MIHRAB TRAVEL - 2024</div>
     </div>
 </body>
 </html>
