@@ -835,7 +835,6 @@ def AjaxServer(request):
             try:
                 if PersonOne != '':
                     PersonOneDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonOne)
-
                 else:
                     PersonOneDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristOneSession'])
                 PersonOneDB.PersonOne = PersonOne
@@ -850,11 +849,18 @@ def AjaxServer(request):
                     PersonTwoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonTwo)
                 else:
                     PersonTwoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristTwoSession'])
-                PersonTwoDB.PersonOne = PersonOne
-                PersonTwoDB.PersonTwo = PersonTwo
-                PersonTwoDB.PersonThree = PersonThree
-                PersonTwoDB.PersonFour = PersonFour
-                PersonTwoDB.save()
+                if PersonTwo == '' and request.session['TouristTwoSession'] != '':
+                    PersonTwoDB.PersonOne = ''
+                    PersonTwoDB.PersonTwo = ''
+                    PersonTwoDB.PersonThree = ''
+                    PersonTwoDB.PersonFour = ''
+                    PersonTwoDB.save()
+                else:
+                    PersonTwoDB.PersonOne = PersonOne
+                    PersonTwoDB.PersonTwo = PersonTwo
+                    PersonTwoDB.PersonThree = PersonThree
+                    PersonTwoDB.PersonFour = PersonFour
+                    PersonTwoDB.save()
             except:
                 TouristData.save()
             try:
@@ -862,11 +868,18 @@ def AjaxServer(request):
                     PersonThreeDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonThree)
                 else:
                     PersonThreeDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristThreeSession'])
-                PersonThreeDB.PersonOne = PersonOne
-                PersonThreeDB.PersonTwo = PersonTwo
-                PersonThreeDB.PersonThree = PersonThree
-                PersonThreeDB.PersonFour = PersonFour
-                PersonThreeDB.save()
+                if PersonThree == '' and request.session['TouristThreeSession'] != '':
+                    PersonThreeDB.PersonOne = ''
+                    PersonThreeDB.PersonTwo = ''
+                    PersonThreeDB.PersonThree = ''
+                    PersonThreeDB.PersonFour = ''
+                    PersonThreeDB.save()
+                else:
+                    PersonThreeDB.PersonOne = PersonOne
+                    PersonThreeDB.PersonTwo = PersonTwo
+                    PersonThreeDB.PersonThree = PersonThree
+                    PersonThreeDB.PersonFour = PersonFour
+                    PersonThreeDB.save()
             except:
                 TouristData.save()
             try:
@@ -874,11 +887,18 @@ def AjaxServer(request):
                     PersonFourDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonFour)
                 else:
                     PersonFourDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristFourSession'])
-                PersonFourDB.PersonOne = PersonOne
-                PersonFourDB.PersonTwo = PersonTwo
-                PersonFourDB.PersonThree = PersonThree
-                PersonFourDB.PersonFour = PersonFour
-                PersonFourDB.save()
+                if PersonFour == '' and request.session['TouristFourSession'] != '':
+                    PersonFourDB.PersonOne = ''
+                    PersonFourDB.PersonTwo = ''
+                    PersonFourDB.PersonThree = ''
+                    PersonFourDB.PersonFour = ''
+                    PersonFourDB.save()
+                else:
+                    PersonFourDB.PersonOne = PersonOne
+                    PersonFourDB.PersonTwo = PersonTwo
+                    PersonFourDB.PersonThree = PersonThree
+                    PersonFourDB.PersonFour = PersonFour
+                    PersonFourDB.save()
             except:
                 TouristData.save()
             request.session['TouristOneSession'] = ''
