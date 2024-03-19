@@ -49,10 +49,18 @@ $('#SecondPerson').keyup(function() {
       PersonInfo: $("#SecondPerson").val()},
     success: function(data){
       $('#SecondPersonSpan').text(data[1]);
+      if ( (($('#SecondPersonSpan').text() == 'Нет в базе!')) || ($('#ThirdPersonSpan').text() == 'Нет в базе!') || ($('#FourthPersonSpan').text() == 'Нет в базе!') ) {
+        $('#tourist_group_btn').attr('disabled', 'true');
+      } else if ( $('#SecondPersonSpan').text() == '' && $('#ThirdPersonSpan').text() == '' && $('#FourthPersonSpan').text() == '') {
+        $('#tourist_group_btn').removeAttr('disabled');
+      } else if ($('#SecondPersonSpan').text() == 'Турист в группе!') {
+        $('#tourist_group_btn').attr('disabled', 'true');
+      } else {
+        $('#tourist_group_btn').removeAttr('disabled');
+      };
     }
   });
 });
-
 ///-----третий турист-------
 $('#ThirdPerson').keyup(function() {
   $.ajax({
@@ -65,6 +73,13 @@ $('#ThirdPerson').keyup(function() {
       PersonInfo: $("#ThirdPerson").val()},
     success: function(data){
       $('#ThirdPersonSpan').text(data[1]);
+      if ( (($('#SecondPersonSpan').text() == 'Нет в базе!')) || ($('#ThirdPersonSpan').text() == 'Нет в базе!') || ($('#FourthPersonSpan').text() == 'Нет в базе!') ) {
+        $('#tourist_group_btn').attr('disabled', 'true');
+      } else if ($('#ThirdPersonSpan').text() == 'Турист в группе!') {
+        $('#tourist_group_btn').attr('disabled', 'true');
+      } else {
+        $('#tourist_group_btn').removeAttr('disabled');
+      };
     }
   });
 });
@@ -80,9 +95,17 @@ $('#FourthPerson').keyup(function() {
       PersonInfo: $("#FourthPerson").val()},
     success: function(data){
       $('#FourthPersonSpan').text(data[1]);
+      if ( (($('#SecondPersonSpan').text() == 'Нет в базе!')) || ($('#ThirdPersonSpan').text() == 'Нет в базе!') || ($('#FourthPersonSpan').text() == 'Нет в базе!') ) {
+        $('#tourist_group_btn').attr('disabled', 'true');
+      } else if ($('#FourthPersonSpan').text() == 'Турист в группе!') {
+        $('#tourist_group_btn').attr('disabled', 'true');
+      } else {
+        $('#tourist_group_btn').removeAttr('disabled');
+      };
     }
   });
 });
+
 
 
 

@@ -805,6 +805,11 @@ def AjaxServer(request):
                 PersonFourName = Clients.objects.get(TouristIIN=TouristData.PersonFour).TouristName
             except:
                 PersonFourName = ''
+            request.session['TouristOneSession'] = TouristData.PersonOne
+            request.session['TouristTwoSession'] = TouristData.PersonTwo
+            request.session['TouristThreeSession'] = TouristData.PersonThree
+            request.session['TouristFourSession'] = TouristData.PersonFour
+            request.session.save()
             return render(request, 'tourist_group_page.html', context={'TouristData': TouristData,
                                                                        'PersonOneName': PersonOneName,
                                                                        'PersonTwoName': PersonTwoName,
@@ -828,7 +833,11 @@ def AjaxServer(request):
             TouristData.PersonFour = PersonFour
             TouristData.save()
             try:
-                PersonOneDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonOne)
+                if PersonOne != '':
+                    PersonOneDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonOne)
+
+                else:
+                    PersonOneDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristOneSession'])
                 PersonOneDB.PersonOne = PersonOne
                 PersonOneDB.PersonTwo = PersonTwo
                 PersonOneDB.PersonThree = PersonThree
@@ -837,7 +846,10 @@ def AjaxServer(request):
             except:
                 TouristData.save()
             try:
-                PersonTwoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonTwo)
+                if PersonTwo != '':
+                    PersonTwoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonTwo)
+                else:
+                    PersonTwoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristTwoSession'])
                 PersonTwoDB.PersonOne = PersonOne
                 PersonTwoDB.PersonTwo = PersonTwo
                 PersonTwoDB.PersonThree = PersonThree
@@ -846,7 +858,10 @@ def AjaxServer(request):
             except:
                 TouristData.save()
             try:
-                PersonThreeDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonThree)
+                if PersonThree != '':
+                    PersonThreeDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonThree)
+                else:
+                    PersonThreeDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristThreeSession'])
                 PersonThreeDB.PersonOne = PersonOne
                 PersonThreeDB.PersonTwo = PersonTwo
                 PersonThreeDB.PersonThree = PersonThree
@@ -855,7 +870,10 @@ def AjaxServer(request):
             except:
                 TouristData.save()
             try:
-                PersonFourDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonFour)
+                if PersonFour != '':
+                    PersonFourDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonFour)
+                else:
+                    PersonFourDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=request.session['TouristFourSession'])
                 PersonFourDB.PersonOne = PersonOne
                 PersonFourDB.PersonTwo = PersonTwo
                 PersonFourDB.PersonThree = PersonThree
@@ -863,6 +881,10 @@ def AjaxServer(request):
                 PersonFourDB.save()
             except:
                 TouristData.save()
+            request.session['TouristOneSession'] = ''
+            request.session['TouristTwoSession'] = ''
+            request.session['TouristThreeSession'] = ''
+            request.session['TouristFourSession'] = ''
             request.session['TouristSendId'] = ''
             request.session.save()
             return JsonResponse(done)
@@ -873,9 +895,15 @@ def AjaxServer(request):
             #-->-поиск туриста----
             try:
                 PersonInfoDB = Clients.objects.filter(TourID=TourId).get(TouristIIN=PersonInfo)
-                PersonReturn = PersonInfoDB.TouristName
+                if PersonInfoDB.PersonTwo == '':
+                    PersonReturn = PersonInfoDB.TouristName
+                else:
+                    PersonReturn = 'Турист в группе!'
             except:
-                PersonReturn = 'Туриста нет в базе'
+                if PersonInfo == '':
+                    PersonReturn = ''
+                else:
+                    PersonReturn = 'Нет в базе!'
             done = {1: PersonReturn}
             return JsonResponse(done)
 #------->   раздел тестирования функии -----------------

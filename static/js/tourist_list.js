@@ -101,6 +101,7 @@ $('#tourist_list tr').
     // при вхождении в элемент
     var ClientId = this.cells[9].textContent;
     var ClientIIN = this.cells[4].textContent;
+    var ClientName = this.cells[1].textContent;
     var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
     var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
     var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'>");
@@ -237,8 +238,7 @@ $('#tourist_list tr').
             GroupList = data;
             $('#ModalInfoBlock').empty();
             $('#ModalInfoBlock').html(GroupList);
-            /*
-            if (ClientIIN == $("#FirstPerson").val()) {
+            if (ClientIIN != $("#FirstPerson").val() && $("#FirstPerson").val() != '') {
               $("#FirstPerson").attr('disabled', 'true');
               $("#SecondPerson").attr('disabled', 'true');
               $("#ThirdPerson").attr('disabled', 'true');
@@ -246,7 +246,12 @@ $('#tourist_list tr').
               $("#tourist_group_btn").attr('disabled', 'true');
             } else {
             };
-            */
+            if ($("#FirstPerson").val() == '') {
+              $('#FirstPerson').val(ClientIIN);
+              $("#FirstPerson").attr('disabled', 'true');
+              $("#FirstPersonSpan").text(ClientName);
+            } else {
+            };
           }
         });
       });
@@ -265,6 +270,7 @@ $('#tourist_list td').each(function(){
   if (x == 'Не оплачен') $(this).css({color: 'red'});
 });
 /*----------------------------------------------------*/
+
 /*
 //------------------------------------------------------------------
 
