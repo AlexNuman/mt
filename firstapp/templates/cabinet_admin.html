@@ -9,7 +9,7 @@
 
 </head>
 
-<body class="body">
+<body>
     <div class="upper_container">
         <div class="img_logo">
             <img src="/static/img/logo.png" class="img_logo_inside" alt="">
@@ -27,16 +27,17 @@
     </div>
 <!------------Меню сайта ----------------------------------->
     <div class="menu_container">
-        <div id="NewTourBtn" class="menu_1">Новый тур</div>
-        <div id="ActiveTourBtn" class="menu_2"> Активные туры </div>
-        <div id="UsersBtn" class="menu_3"> Пользователи </div>
-        <div id="GidBtn" class="menu_4">Гиды</div>
-        <div id="Hotels" class="menu_5">Гостиницы</div>
-        <div id="Transfer" class="menu_6">Трансфер</div>
-        <div id="ClientsList" class="menu_7">Список туристов</div>
-        <!--
-        <div id="Settings" class="menu_8">Настройки</div>
-        -->
+        <nav class="main_menu">
+            <ul>
+                <li><a href="#" id="NewTourBtn">Новый тур</a></li>
+                <li><a href="#" id="ActiveTourBtn">Активные туры</a></li>
+                <li><a href="#" id="UsersBtn">Пользователи</a></li>
+                <li><a href="#" id="GidBtn">Гиды</a></li>
+                <li><a href="#" id="Hotels">Гостиницы</a></li>
+                <li><a href="#" id="Transfer">Трансфер</a></li>
+                <li><a href="#" id="ClientsList">Туристы</a></li>
+            </ul>
+        </nav>
     </div>
 <!-------------------------------------------------------------->
 <!------------Инфо о странице ----------------------------------->
@@ -46,12 +47,14 @@
 <!-------------------------------------------------------------->
 <!------------Основной блок ----------------------------------->
     <div class="middle_container">
-        <div id="hello_text" name="hello_text">Добро пожаловать</div>
+        <div id="hello_text" name="hello_text"></div>
         <div id="info_reciever" class="info_reciever" name="info_reciever"></div>
     </div>
 <!-------------------------------------------------------------->
 <!------------Подвал сайта ----------------------------------->
-    <div class="bottom_container">Mihrab Travel 2024</div>
+    <div class="footer_container">
+        <div class="main_footer">MIHRAB TRAVEL - 2024</div>
+    </div>
 <!-------------------------------------------------------------->
 <!------------Модальное окно информации ----------------------------------->
     <div id="ModalWindow" class="modal">

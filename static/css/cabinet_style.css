@@ -15,108 +15,125 @@ font-family: "Orelega One", serif;
 ----------------------------*/
 
 /*------------ Основной стиль---------------- */
-.body {
-    background-color: white;
-    font-family: Arial, Helvetica, sans-serif;
+body {
+  background-color: red;
 }
 .upper_container {
-    display: flex;
-    height: 100px;
-    width: 100%;
-    padding-bottom: 2px;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 10px;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  padding-bottom: 2px;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 .img_logo {
-    margin-right: auto;
-    margin-left: 0em;
-    margin-left: 0;
-    height: 100px;
-    width: 230px;
+  margin-right: auto;
+  margin-left: 0em;
+  margin-left: 0;
+  height: 100px;
+  width: 230px;
 }
 .img_logo_inside {
-    height: 100px;
-    width: 230px;
+  height: 100px;
+  width: 230px;
 }
 .info_block_container {
-    position: relative;
-    justify-content: center;
-    border: groove 2px;
-    height: 100px;
-    width: 75%;
-    right: 0;
-    text-align: center;
+  position: relative;
+  justify-content: center;
+  border: groove 2px;
+  height: 100px;
+  width: 75%;
+  right: 0;
+  text-align: center;
 }
 .info_block{
-    font-size: 30pt;
-    margin-top: 20px;
-    font-family: "Orelega One", serif;
-    letter-spacing: 1px;
-    font-weight: 300;
-    color: rgb(74, 129, 117);
-
+  font-size: 30pt;
+  margin-top: 20px;
+  font-family: "Orelega One", serif;
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: rgb(74, 129, 117);
 }
 .user_block {
-    border: groove 2px;
-    margin-left: auto;
-    margin-right: 0em;
-    height: 100px;
-    width: 10%;
-    text-align: center;
-    margin-top: 0;
+  border: groove 2px;
+  margin-left: auto;
+  margin-right: 0em;
+  height: 100px;
+  width: 10%;
+  text-align: center;
+  margin-top: 0;
 }
+.info_reciever {
+  transition: all 0.5s ease 0s;
+}
+/*-------меню---------------*/
 .menu_container {
-    border: thick double #fff;
     border-left: 0;
     border-right: 0;
-    height: 40px;
-    width: 100%;
-    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    text-decoration: none;
-    box-shadow: var(--menuBoxShadow, 0 1px 5px 0 rgba(0, 0, 0, .22), 0 1px 2px 0 rgba(0, 0, 0, .34));
 }
-.menu_1, .menu_2, .menu_3, .menu_4, .menu_5, .menu_6, .menu_7, .menu_8 {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    padding-top: 10px;
-    margin-top: -5px;
-    font-family: "Podkova", serif;
-    font-size: 16pt;
-    height: 40px;
-    width: 200px;
-    margin-right: 20px;
-    color: rgb(167, 48, 97);
-    letter-spacing: 2px;
+.main_menu {
+  margin: 20px auto 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #607998;
+  border-radius: 5px;
+  font-size: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: black;
+  font-family: "Nanum Myeongjo", serif;
 }
-.menu_1:hover, .menu_2:hover, .menu_3:hover, .menu_4:hover, .menu_5:hover,.menu_6:hover, .menu_7:hover, .menu_8:hover {
-    background-color: rgb(202, 193, 235);
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
-    cursor: pointer;
-    display: absolute;
-    text-decoration: none;
+.main_menu ul {
+  list-style: none; /* Убираем маркер для элементов списка */
+  display: flex; /* Горизонтальное расположение пунктов меню */
 }
 
-.menu_1::before,
-.menu_1::after {
-  content: "";
-  width: 0;
-  height: 3px;
-  background-color: var(--textUnderlinedLineColor, currentColor);
-  will-change: width;
-  transition: width .1s ease-out;
-  position: absolute;
-  bottom: 0;
+.main_menu li {
+  margin-right: 20px; /* Отступ между пунктами меню */
 }
 
+.main_menu a {
+  line-height: 50px;
+  height: 100%;
+  width: 140px;
+  font-size: 15px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s ease 0s;
+  stroke: #337AB7;
+  border-left: 3px solid #A8B4C7;
+  border-right: 3px solid #A8B4C7;
 
+}
+
+.main_menu a:hover {
+  transition: all 0.1s ease 0s;
+  stroke: #337AB7;
+  border-left: 3px solid;
+  background-color: #7F9CCA	;
+
+}
+.main_menu a:focus {
+
+
+}
+.main_menu a:active {
+    color: #C9CFDA; /* Новый цвет текста при нажатии */
+}
+/*--------------------------------*/
 .user_type_container {
     height: 30px;
     display: flex;
@@ -124,17 +141,17 @@ font-family: "Orelega One", serif;
     margin-bottom: 2px;
 }
 .user_type {
-    font-size: 14pt;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: rgb(39, 16, 172);
-    font-style:inherit;
-    border: dotted 2px;
-    height: 24px;
-    width: 300px;
-    text-align: center;
-    border-radius: 3px;
-    background-color: rgb(217, 200, 245);
-    cursor:default;
+  margin-top: 10px;
+  font-size: 14pt;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(39, 16, 172);
+  font-style:inherit;
+  height: 24px;
+  width: 300px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #A5BDD2;
+  cursor:default;
 }
 .middle_container {
     display: block;
@@ -253,3 +270,30 @@ font-family: "Orelega One", serif;
 /*-----------Окно настройки пользователя------------------------------*/
 
 /*-------------------------------------------------------*/
+.Test:focus {
+  border: solid 1px;
+  display: inline-block;
+  background-color: #7b38d8;
+  border-radius: 10px;
+  border: 4px double #cccccc;
+  color: #eeeeee;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 120px;
+  height: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.footer_container {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:30px;
+  width:100%;
+  text-align: center;
+}
+.main_footer {
+  font-family: 'Unbounded', sans-serif;
+  opacity: 0.8;
+}
