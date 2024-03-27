@@ -31,8 +31,46 @@ $('#regist_form').submit(function() {
   });
   return false;
 })
-
+/*-------------------------------------------------------------------------*/
 if ($('#user_type_label').text()=='Кабинет администратора') {
   $("#user_type option[value='СУПЕРАДМИН']").remove();
 } else {
 };
+/*-------------------------------------------------------------------------*/
+/*---------------Проверка логина------------------------------------------*/
+$('#login_regist').keyup(function() {
+  var type_login = $('#login_regist').val();
+  if (type_login.length < 4 || type_login.length > 20) {
+    $('#login_len').css({
+    'color': '#A60800',
+    'opacity': '0.7'});
+  } else {
+    $('#login_len').css({
+    'color': '#1E786C',
+    'opacity': '1.0'});
+  };
+});
+/*-------------------------------------------------------------------------*/
+/*---------------Проверка пароля ------------------------------------------*/
+$('#pass').keyup(function(){
+  var type_pass = $('#pass').val();
+  if (type_pass.length < 4 || type_pass.length > 20) {
+    $('#pass_len').css({
+    'color': '#A60800',
+    'opacity': '0.7'});
+  } else {
+    $('#pass_len').css({
+    'color': '#1E786C',
+    'opacity': '1.0'});
+  };
+  if (!/[A-Z]/.test(type_pass) || !/\d/.test(type_pass)) {
+    $('#pass_len').css({
+    'color': '#A60800',
+    'opacity': '0.7'});
+} else {
+    $('#pass_len').css({
+    'color': '#1E786C',
+    'opacity': '1.0'});
+}
+});
+/*-------------------------------------------------------------------------*/

@@ -4,7 +4,7 @@ var AddNewUserData;
 AddNewUserBtn.onclick = function() {
   modal.style.display = "block";
   ModalWindow.style.width = "400px";
-  ModalWindow.style.height = "720px";
+  ModalWindow.style.height = "750px";
   $("#InfoHead h2").text('Добавить нового пользователя');
   $("#InfoHead h2").css('font-size', '14pt');
   $.ajax({

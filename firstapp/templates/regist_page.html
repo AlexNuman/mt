@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/regist_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/regist_page.css/' %}">
     <title>Регистрация пользователя</title>
 </head>
 <body>
@@ -21,6 +21,7 @@
               <input type="text" name="user_tel" placeholder="Телефон" id="user_tel" class="user_tel" required>
               <input type="text" name="login_regist" placeholder="Логин" id="login_regist" class="login_regist" required>
               <input type="text" name="pass_in" placeholder="Пароль" id="pass" class="pass" required>
+              <span id="login_len" class="login_len">*Длина логина не менее 4 и не более 20 символов</span>
               <span id="pass_len" class="pass_len">*Длина пароля не менее 8 и не более 20 символов</span>
               <span id="pass_Az_09" class="pass_Az_09">*Пароль должен состоят из букв A-z и цифр 0-9</span>
               <span id="pass_upper_lower" class="pass_upper_lower">*Пароль должен состоят из строчных и прописных букв</span>
@@ -38,7 +39,7 @@
           </div>
       </form>
 </div>
-    <script type="text/javascript" src="{% static 'js/regist_page.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/regist_page.js/' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </body>
 </html>
