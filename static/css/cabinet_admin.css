@@ -109,16 +109,18 @@
     cursor:default;
 }
 .middle_container {
-    display: block;
-    height: 900px;
-    width: 100%;
-    text-align: center;
-    item-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
+  display: block;
+  height: 900px;
+  width: 100%;
+  text-align: center;
+  item-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+
 }
 .bottom_container {
+
     display: none;
     position: absolute;
     border: groove 3px;

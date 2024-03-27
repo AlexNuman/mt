@@ -1,22 +1,13 @@
-/*------шрифты-------*/
-@import url('https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jura:wght@300..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Nanum+Myeongjo&family=Noto+Serif+HK:wght@200..900&family=Orelega+One&family=Podkova:wght@400..800&family=Prosto+One&family=Unbounded:wght@200..900&family=Ysabeau+Infant:ital,wght@0,1..1000;1,1..1000&display=swap')
+/*------шрифты---------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap')
 /*---варианты шрифтов-------
-font-family: "Nanum Myeongjo", serif;
-font-family: "Literata", serif;
-font-family: "Prosto One", sans-serif;
-font-family: "Jura", sans-serif;
-font-family: "Ysabeau Infant", sans-serif;
-font-family: "Podkova", serif;
-font-family: "Noto Serif HK", serif;
-font-family: "Alegreya SC", serif;
-font-family: "Cormorant Garamond", serif;
-font-family: "Unbounded", sans-serif;
-font-family: "Orelega One", serif;
-----------------------------*/
+font-family: "Manrope", sans-serif;
+font-family: "Merriweather", serif;
+font-family: "Oswald", sans-serif;
+-----------------------------------------------*/
 
-/*------------ Основной стиль---------------- */
+/*------------ Основной стиль-----------------*/
 body {
-  background-color: red;
 }
 .upper_container {
   display: flex;
@@ -39,30 +30,45 @@ body {
   width: 230px;
 }
 .info_block_container {
+  margin-top: 20px;
   position: relative;
   justify-content: center;
   border: groove 2px;
-  height: 100px;
+  border-radius: 10px;
+  height: 80px;
   width: 75%;
   right: 0;
   text-align: center;
+  box-shadow: 0px 3px 5px 1px rgba(84, 84, 84, 0.3);
+  stroke: #ECEAFF;
 }
 .info_block{
-  font-size: 30pt;
-  margin-top: 20px;
-  font-family: "Orelega One", serif;
+  font-size: 20pt;
+  margin-top: 25px;
   letter-spacing: 1px;
   font-weight: 300;
-  color: rgb(74, 129, 117);
+  opacity: 0.8;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+  vertical-align: middle;
+  color: #340570;
+  transition: all 1s;
+  text-transform: uppercase;
 }
 .user_block {
+  margin-top: 20px;
   border: groove 2px;
+  border-radius: 10px;
   margin-left: auto;
   margin-right: 0em;
-  height: 100px;
-  width: 10%;
+  height: 80px;
+  width: 12%;
   text-align: center;
-  margin-top: 0;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  box-shadow: 0px 3px 5px 1px rgba(84, 84, 84, 0.3);
+  stroke: #ECEAFF;
 }
 .info_reciever {
   transition: all 0.5s ease 0s;
@@ -80,7 +86,7 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  height: 50px;
+  height: 40px;
   background-color: #607998;
   border-radius: 5px;
   font-size: 0;
@@ -88,19 +94,16 @@ body {
   flex-direction: row;
   justify-content: center;
   color: black;
-  font-family: "Nanum Myeongjo", serif;
 }
 .main_menu ul {
   list-style: none; /* Убираем маркер для элементов списка */
   display: flex; /* Горизонтальное расположение пунктов меню */
 }
-
 .main_menu li {
-  margin-right: 20px; /* Отступ между пунктами меню */
+  margin-right: 0; /* Отступ между пунктами меню */
 }
-
 .main_menu a {
-  line-height: 50px;
+  line-height: 40px;
   height: 100%;
   width: 140px;
   font-size: 15px;
@@ -115,25 +118,35 @@ body {
   transition: all 0.5s ease 0s;
   stroke: #337AB7;
   border-left: 3px solid #A8B4C7;
-  border-right: 3px solid #A8B4C7;
-
+  font-family: "Orelega One", serif;
 }
-
+.main_menu a:after {
+	display: block;
+	position: absolute;
+	left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+	width: 0;/*задаём длинну линии до наведения курсора*/
+	height: 3px; /*задаём ширину линии*/
+	background-color: #E57A7A; /*задаём цвет линии*/
+	content: "";
+	transition: width 0.3s ease-out; /*задаём время анимации*/
+}
+.main_menu a:hover:after,
+.main_menu a:focus:after {
+	width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+}
 .main_menu a:hover {
   transition: all 0.1s ease 0s;
   stroke: #337AB7;
   border-left: 3px solid;
   background-color: #7F9CCA	;
-
 }
 .main_menu a:focus {
-
-
 }
 .main_menu a:active {
     color: #C9CFDA; /* Новый цвет текста при нажатии */
 }
-/*--------------------------------*/
+
+/*------------------a--------------*/
 .user_type_container {
     height: 30px;
     display: flex;
@@ -143,15 +156,19 @@ body {
 .user_type {
   margin-top: 10px;
   font-size: 14pt;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: rgb(39, 16, 172);
+  font-family: "Merriweather", serif;
+  font-weight: 600;
+  color: #EAEBFF;
   font-style:inherit;
   height: 24px;
   width: 300px;
   text-align: center;
   border-radius: 3px;
-  background-color: #A5BDD2;
+  background-color: #551A57;
   cursor:default;
+  text-transform: uppercase;
+  box-shadow: 0px 3px 5px 1px rgba(84, 84, 84, 0.3);
+  stroke: #ECEAFF;
 }
 .middle_container {
     display: block;
@@ -294,6 +311,15 @@ body {
   text-align: center;
 }
 .main_footer {
-  font-family: 'Unbounded', sans-serif;
-  opacity: 0.8;
+  font-family: "Merriweather", serif;
+  opacity: 0.6;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #0A1A65	;
+  border-radius: 5px;
+  padding-top: 5px;
+  color: white;
+  letter-spacing: 1px;
 }

@@ -6,13 +6,16 @@ from datetime import datetime
 
 # -- кабинет Суперадминистратора -----------------------
 def SuperAdmin(request):
-    session_login = request.session['SessionLogin']
-    session_login_type = request.session['SessionLoginType']
-    if session_login == 'none' or session_login_type != 'СУПЕРАДМИН':
+    try:
+        session_login = request.session['SessionLogin']
+        session_login_type = request.session['SessionLoginType']
+        if session_login == 'none' or session_login_type != 'СУПЕРАДМИН':
+            return redirect('/')
+        else:
+            return render(request, 'super_admin.html',
+                          context={'session_login': session_login})
+    except:
         return redirect('/')
-    else:
-        return render(request, 'super_admin.html',
-                      context={'session_login': session_login})
 # ------------------------------------------------------------------------------------------
 # ----------Кабинет администратора-------------------------------------------------------
 def cabinet_admin(request):

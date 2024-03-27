@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Кабинет менеджера по продажам</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_manager.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_style.css' %}">
 
 </head>
 
@@ -27,11 +27,12 @@
     </div>
 <!------------Меню сайта ----------------------------------->
     <div class="menu_container">
-        <div id="ActiveTourBtn" class="menu_2"> Активные туры </div>
-        <div id="ClientsList" class="menu_7">Список туристов</div>
-        <!--
-        <div id="Settings" class="menu_8">Настройки</div>
-        -->
+        <nav class="main_menu">
+            <ul>
+                <li><a href="#" id="ActiveTourBtn">Активные туры</a></li>
+                <li><a href="#" id="ClientsList">Туристы</a></li>
+            </ul>
+        </nav>
     </div>
 <!-------------------------------------------------------------->
 <!------------Инфо о странице ----------------------------------->
@@ -41,12 +42,14 @@
 <!-------------------------------------------------------------->
 <!------------Основной блок ----------------------------------->
     <div class="middle_container">
-        <div id="hello_text" name="hello_text">Добро пожаловать</div>
+        <div id="hello_text" name="hello_text"></div>
         <div id="info_reciever" class="info_reciever" name="info_reciever"></div>
     </div>
 <!-------------------------------------------------------------->
 <!------------Подвал сайта ----------------------------------->
-    <div class="bottom_container">Mihrab Travel 2024</div>
+    <div class="footer_container">
+        <div class="main_footer">MIHRAB TRAVEL - 2024</div>
+    </div>
 <!-------------------------------------------------------------->
 <!------------Модальное окно информации ----------------------------------->
     <div id="ModalWindow" class="modal">

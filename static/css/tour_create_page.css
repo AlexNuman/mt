@@ -18,7 +18,7 @@ font-family: 'Unbounded', sans-serif;
   font-size: 12pt;
   padding-left: 5px;
   font-color: black;
-
+  margin-bottom: 50px;
 }
 label {
   font-family: 'Unbounded', sans-serif;
@@ -56,10 +56,15 @@ label {
   cursor: default;
   padding-left: 5px;
   font-align: center;
+  transition: transform 300ms ease, box-shadow 300ms ease;
 }
 .TourRegistBtn:hover {
   font-family: 'Unbounded', sans-serif;
-  background-color: rgb(202, 193, 235);
+  background-color: #9E94FF;
+  transform: translateY(-5px);
+  box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
+  transition: all 0.5s ease 0s;
 }
 .FlightToContainer, .FlightFromContainer, .TourContainer, .TourContainer_1, .TourContainer_2, .DeadlineContainer, .PriceContainer {
   display: block;
@@ -71,7 +76,7 @@ label {
   border: groove 3px;
   border-radius: 5px;
   width: 1100px;
-  background-color: #F8F8FF;
+  background-color: #FEFCFF;
   transition: transform 300ms ease, box-shadow 300ms ease;
 }
 .FlightToContainer:hover, .FlightFromContainer:hover, .TourContainer:hover, .TourContainer_1:hover, .TourContainer_2:hover, .DeadlineContainer:hover, .PriceContainer:hover {
@@ -84,7 +89,7 @@ label {
   font-family: 'Unbounded', sans-serif;
   border: groove 3px;
   border-radius: 5px;
-  background-color: #F8F8FF;
+  background-color: #FEFCFF;
   width: 400px;
   height: 40px;
   font-align: center;
@@ -96,7 +101,7 @@ label {
 }
 .container_label {
   border: 3px groove;
-  background-color: aliceblue;
+  background-color: #FEFCFF;
   width: 200px;
   height: 40px;
   border-radius: 5px;

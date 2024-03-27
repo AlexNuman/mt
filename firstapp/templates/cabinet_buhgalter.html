@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Кабинет бухгалтера</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_admin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_style.css' %}">
 
 </head>
 
@@ -27,11 +27,12 @@
     </div>
 <!------------Меню сайта ----------------------------------->
     <div class="menu_container">
-        <div id="ClientsBtn" class="menu_4"> Клиенты </div>
-        <!--
-        <div id="InfoBtn" class="menu_5">Информация</div>
-        <div id="StngsBtn" class="menu_6">Настройки</div>
-        -->
+        <nav class="main_menu">
+            <ul>
+                <li><a href="#" id="ClientsBtn">Клиенты</a></li>
+            </ul>
+        </nav>
+
     </div>
 <!-------------------------------------------------------------->
 <!------------Инфо о странице ----------------------------------->
@@ -45,7 +46,9 @@
     </div>
 <!-------------------------------------------------------------->
 <!------------Подвал сайта ----------------------------------->
-    <div class="bottom_container"></div>
+    <div class="footer_container">
+        <div class="main_footer">MIHRAB TRAVEL - 2024</div>
+    </div>
 <!-------------------------------------------------------------->
 <!------------Модальное окно информации ----------------------------------->
     <div id="ModalWindow" class="modal">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>СУПЕРАДМИНИСТРАТОР</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/super_admin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_style.css' %}">
 </head>
 <body class="body">
     <div class="upper_container">
@@ -23,14 +23,19 @@
     </div>
 <!------------Меню сайта ----------------------------------->
     <div class="menu_container">
-        <div id="NewTourBtn" class="menu_1">Новый тур</div>
-        <div id="ActiveTourBtn" class="menu_2"> Активные туры </div>
-        <div id="Archiv" class="menu_3">Архив</div>
-        <div id="UsersBtn" class="menu_4"> Пользователи </div>
-        <div id="InfoBtn" class="menu_5">Информация</div>
-        <div id="StngsBtn" class="menu_6">Настройки</div>
-        <div id="reservBtn_1" class="menu_7">Резерв-1</div>
-        <div id="reservBtn_2" class="menu_8">Резерв-2</div>
+        <nav class="main_menu">
+            <ul>
+                <li><a href="#" id="NewTourBtn">Новый тур</a></li>
+                <li><a href="#" id="ActiveTourBtn">Активные туры</a></li>
+                <li><a href="#" id="UsersBtn">Пользователи</a></li>
+                <li><a href="#" id="GidBtn">Гиды</a></li>
+                <li><a href="#" id="Hotels">Гостиницы</a></li>
+                <li><a href="#" id="Transfer">Трансфер</a></li>
+                <li><a href="#" id="ClientsList">Туристы</a></li>
+                <li><a href="#" id="SiteSettings">Настройки</a></li>
+                <li><a href="#" id="SiteLogs">Логи</a></li>
+            </ul>
+        </nav>
     </div>
 <!-------------------------------------------------------------->
 <!------------Инфо о странице ----------------------------------->
@@ -44,7 +49,9 @@
     </div>
 <!-------------------------------------------------------------->
 <!------------Подвал сайта ----------------------------------->
-    <div class="bottom_container"></div>
+    <div class="footer_container">
+        <div class="main_footer">MIHRAB TRAVEL - 2024</div>
+    </div>
 <!-------------------------------------------------------------->
 <!------------Модальное окно информации ----------------------------------->
     <div id="ModalWindow" class="modal">

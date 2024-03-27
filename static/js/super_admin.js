@@ -1,24 +1,21 @@
 /*--------------скрипт новый тур----------------------*/
 var modal = document.getElementById('ModalWindow');
 var btn = document.getElementById("NewTourBtn");
+var hellotxt = document.getElementById("hello_text");
 var span = document.getElementsByClassName("close")[0];
 var ModalWindow = document.getElementsByClassName("ModalWindow")[0];
 var NewTourData;
 var info;
 btn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "400px";
-  ModalWindow.style.height = "700px";
-  $("#InfoHead h2").text('Создание нового тура');
-  $("#InfoHead h2").css('font-size', '14pt');
+  hellotxt.style.display = "none";
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
     data: {switсh: 'newtour'},
     success: function(data){
-      NewTourData = data;
-      $('#ModalInfoBlock').html(NewTourData);
+      NewTour = data;
+      $('#info_reciever').html(NewTour);
     }
   });
 };
@@ -43,17 +40,6 @@ ActiveTourBtn.onclick = function() {
   });
 };
 /*------------------------------------------------------------------*/
-/*----------кнопка Архив---------------------------------------------*/
-var ArchivBtn = document.getElementById('Archiv');
-ArchivBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Архив');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет архивных данных');
-};
-/*------------------------------------------------------*/
 /*--------------скрипт вызова списка пользователей----------------------*/
 var UsersBtn = document.getElementById("UsersBtn");
 var UsersList;
@@ -70,66 +56,83 @@ UsersBtn.onclick = function() {
   });
 };
 /*------------------------------------------------------------------*/
-/*----------кнопка Информация---------------------------------------------*/
-var InfoBtn = document.getElementById('InfoBtn');
-InfoBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Информация');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет информации');
-};
-/*-------------------------------------------------------------------*/
-/*--------------скрипт настройки----------------------*/
-var StngsBtn = document.getElementById("StngsBtn");
-StngsBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Настройки');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет доступа');
-};
-/*------------------------------------------------------------------*/
-/*--------------скрипт резевр-1----------------------*/
-var ReservBtn_1 = document.getElementById("reservBtn_1");
-ReservBtn_1.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Резерв-1');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет доступа');
-};
-/*------------------------------------------------------------------*/
-/*--------------скрипт резевр-2----------------------*/
-var ReservBtn_2 = document.getElementById("reservBtn_2");
-ReservBtn_2.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Резерв-2');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $('#ModalInfoBlock').html('Нет доступа');
-};
-/*------------------------------------------------------------------*/
-/*--------------скрипт настройка пользователя----------------------*/
-var UserWindowBtn = document.getElementById('UserWindowBtn');
-var UsersInfo;
-UserWindowBtn.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "420px";
-  $("#InfoHead h2").text('Информация о пользователе');
-  $("#InfoHead h2").css('font-size', '14pt');
+/*----------кнопка гиды---------------------------------------------*/
+var GidBtn = document.getElementById('GidBtn');
+GidBtn.onclick = function() {
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'userinfo'},
+    data: {switсh: 'GidList'},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
+/*----------кнопка Гостиницы---------------------------------------------*/
+var HotelsBtn = document.getElementById('Hotels');
+HotelsBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'HotelsList'},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
+/*----------кнопка Трансфер---------------------------------------------*/
+var TransferBtn = document.getElementById('Transfer');
+TransferBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'TransferList'},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
+/*----------кнопка Список туристов---------------------------------------------*/
+var TransferBtn = document.getElementById('ClientsList');
+var sorting='All';
+TransferBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'ClientsList', Type: 'Admin', sort: sorting},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
+/*-------------------------------------------------------------------*/
+/*--------------скрипт настройка пользователя----------------------*/
+var UserWindowBtn = document.getElementById('UserWindowBtn');
+var UsersInfo;
+UserWindowBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'list_userinfo', send_login: 'user'},
     success: function(data){
       UserInfo = data;
+      modal.style.display = "block";
+      ModalWindow.style.width = "340px";
+      ModalWindow.style.height = "440px";
+      $('#ModalInfoBlock').empty();
       $('#ModalInfoBlock').html(UserInfo);
     }
   });
@@ -150,3 +153,39 @@ LogOut.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+
+/*----тест запрос AJAX-------------------
+document.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'json',
+    data: {switсh: 'Test'},
+    success: function(data){
+      InfoData = data[1];
+      alert(InfoData);
+    }
+  });
+};
+*/
+
+/*----------кнопка настройки----------------------------
+var Settings = document.getElementById('Settings');
+Settings.onclick = function() {
+  modal.style.display = "block";
+  ModalWindow.style.width = "340px";
+  ModalWindow.style.height = "300px";
+  $("#InfoHead h2").text('Настройки');
+  $("#InfoHead h2").css('font-size', '14pt');
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'SettingsPage', Request: 'Get'},
+    success: function(data){
+      SettingsPage = data;
+      $('#ModalInfoBlock').html(SettingsPage);
+    }
+  });
+};
+-----------------*/
