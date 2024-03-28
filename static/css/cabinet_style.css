@@ -52,7 +52,7 @@ body {
   font-weight: 700;
   font-style: normal;
   vertical-align: middle;
-  color: #340570;
+  color: #122120;
   transition: all 1s;
   text-transform: uppercase;
 }
@@ -87,7 +87,7 @@ body {
   right: 0;
   width: 100%;
   height: 40px;
-  background-color: #607998;
+  background-color: #009995;
   border-radius: 5px;
   font-size: 0;
   display: flex;
@@ -126,7 +126,7 @@ body {
 	left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
 	width: 0;/*задаём длинну линии до наведения курсора*/
 	height: 3px; /*задаём ширину линии*/
-	background-color: #E57A7A; /*задаём цвет линии*/
+	background-color: #aa1a30; /*задаём цвет линии*/
 	content: "";
 	transition: width 0.3s ease-out; /*задаём время анимации*/
 }
@@ -138,7 +138,7 @@ body {
   transition: all 0.1s ease 0s;
   stroke: #337AB7;
   border-left: 3px solid;
-  background-color: #7F9CCA	;
+  background-color: #37aba7;
 }
 .main_menu a:focus {
 }
@@ -164,7 +164,7 @@ body {
   width: 300px;
   text-align: center;
   border-radius: 3px;
-  background-color: #551A57;
+  background-color: #1d5957;
   cursor:default;
   text-transform: uppercase;
   box-shadow: 0px 3px 5px 1px rgba(84, 84, 84, 0.3);
@@ -208,7 +208,7 @@ body {
 .UserLoginBtn:hover, .LogOut:hover {
    border: 1px solid;
    border-radius: 5px;
-   background-color: rgb(202, 193, 235);
+   background-color: #c2cee7;
    color: rgb(88, 68, 68);
    -webkit-transition: .5s ease-in-out;
    -moz-transition: .5s ease-in-out;
@@ -317,9 +317,9 @@ body {
   right: 0;
   width: 100%;
   height: 40px;
-  background-color: #0A1A65	;
+  background-color: #009995	;
   border-radius: 5px;
   padding-top: 5px;
-  color: white;
+  color: #e1f4f2;
   letter-spacing: 1px;
 }
