@@ -75,11 +75,11 @@ body {
 }
 /*-------меню---------------*/
 .menu_container {
-    border-left: 0;
-    border-right: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  border-left: 0;
+  border-right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .main_menu {
   margin: 20px auto 0;
@@ -121,14 +121,14 @@ body {
   font-family: "Orelega One", serif;
 }
 .main_menu a:after {
-	display: block;
-	position: absolute;
-	left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
-	width: 0;/*задаём длинну линии до наведения курсора*/
-	height: 3px; /*задаём ширину линии*/
-	background-color: #aa1a30; /*задаём цвет линии*/
-	content: "";
-	transition: width 0.3s ease-out; /*задаём время анимации*/
+  display: block;
+  position: absolute;
+  left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+  width: 0;/*задаём длинну линии до наведения курсора*/
+  height: 3px; /*задаём ширину линии*/
+  background-color: #aa1a30; /*задаём цвет линии*/
+  content: "";
+  transition: width 0.3s ease-out; /*задаём время анимации*/
 }
 .main_menu a:hover:after,
 .main_menu a:focus:after {
@@ -143,15 +143,15 @@ body {
 .main_menu a:focus {
 }
 .main_menu a:active {
-    color: #C9CFDA; /* Новый цвет текста при нажатии */
+  color: #C9CFDA; /* Новый цвет текста при нажатии */
 }
 
 /*------------------a--------------*/
 .user_type_container {
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
 }
 .user_type {
   margin-top: 10px;
@@ -171,117 +171,116 @@ body {
   stroke: #ECEAFF;
 }
 .middle_container {
-    display: block;
-    height: 900px;
-    width: 100%;
-    text-align: center;
-    item-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
+  display: block;
+  height: 900px;
+  width: 100%;
+  text-align: center;
+  item-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
 }
 .bottom_container {
-    display: none;
-    position: absolute;
-    border: groove 3px;
-    width: 99%;
-    text-align: center;
+  display: none;
+  position: absolute;
+  border: groove 3px;
+  width: 99%;
+  text-align: center;
 }
 .info_reciever {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 /*-----------Стиль кнопки пользователя*------------*/
 .UserLoginBtn, .LogOut {
-   margin: 0 auto;
-   border: 1px solid transparent;
-   cursor: default;
-   padding-top: 5px;
-   margin-top: 5px;
-   padding-bottom: 5px;
-   margin-bottom: 5px;
-   width: 130px;
+  margin: 0 auto;
+  border: 1px solid transparent;
+  cursor: default;
+  padding-top: 5px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  width: 130px;
 }
 .UserLoginBtn:hover, .LogOut:hover {
-   border: 1px solid;
-   border-radius: 5px;
-   background-color: #c2cee7;
-   color: rgb(88, 68, 68);
-   -webkit-transition: .5s ease-in-out;
-   -moz-transition: .5s ease-in-out;
-   -o-transition: .5s ease-in-out;
-   transition: .5s ease-in-out;
-   cursor: pointer;
-   display: absolute;
-   text-decoration: none;
-
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #c2cee7;
+  color: rgb(88, 68, 68);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  display: absolute;
+  text-decoration: none;
 }
 /*------------------------------------------------*/
 /*------Модальный фон--------------------------------------------------------*/
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 /*----------------------------------------------------------------------------*/
 /*--------------Стиль новый тур, настройки и резерва----------------------------------------------*/
 .ModalWindow {
-    position: relative;
-    background-color: aliceblue;
-    margin: auto;
-    padding: 0;
-    border-radius: 5px;
-    width: 500px;
-    height: 700px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
+  position: relative;
+  background-color: aliceblue;
+  margin: auto;
+  padding: 0;
+  border-radius: 5px;
+  width: 500px;
+  height: 700px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
 }
 
 .ModalInfoBlock {
-    margin: 0 auto;
-    padding-top: 10px;
-    padding-left: 15px;
-
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-left: 15px;
+  font-family: "Merriweather", serif;
 }
 .close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 .close:hover, .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 .ModalWindowHeader {
-    padding: 2px 16px;
-    background-color: rgb(202, 193, 235);
-    color: rgb(74, 129, 117);
+  font-family: "Merriweather", serif;
+  padding: 2px 16px;
+  background-color: #009995;
+  color: white;
 }
 /*---------------------------------------------------*/
 /*---Анимация для модального фона--------------------*/
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
 }
 @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
 }
 /*-------------------------------------------------------*/
 /*-----------Окно настройки пользователя------------------------------*/

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
 .tourist_table, .tour_info_table {
   table-layout: fixed;
   width: 100%;
@@ -52,7 +53,10 @@ tr:hover {
 }
 .InfoTable {
 }
-
+caption {
+  font-size: 12pt;
+  font-family: 'Unbounded', sans-serif;
+}
 
 
 

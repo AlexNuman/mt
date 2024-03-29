@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
 .table {
   table-layout: fixed;
   width: 100%;
@@ -46,9 +47,14 @@ tr:hover {
   stroke: #337AB7;
   transition: all 0.5s ease 0s;
 }
+caption {
+  font-size: 14pt;
+}
 
-
-
+caption {
+  font-size: 12pt;
+  font-family: 'Unbounded', sans-serif;
+}
 
 
 
