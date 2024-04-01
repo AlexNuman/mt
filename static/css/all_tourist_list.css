@@ -58,6 +58,12 @@ caption {
   font-family: 'Unbounded', sans-serif;
 }
 
+.tourist_table th:first-child, .tourist_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 
 
 

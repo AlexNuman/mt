@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Список гидов</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/gid_list.css/' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gid_list.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
 </head>
 <body>
@@ -51,7 +51,7 @@
 
 </div>
 <p></p>
-<img style="width: 2%; height: 2%;" src="{% static 'img/person_add.png' %}" id="add_new_gid" class="add_new_gid" name="add_new_gid">
+<span data-tooltip='Добавить гида' class ='tooltip'> <img style="width: 2%; height: 2%;" src="{% static 'img/person_add.png' %}" id="add_new_gid" class="add_new_gid" name="add_new_gid"> </span>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

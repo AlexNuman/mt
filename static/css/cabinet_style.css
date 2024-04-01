@@ -153,7 +153,7 @@ body {
   justify-content: center;
   margin-bottom: 2px;
 }
-.user_type {
+.main_user_type {
   margin-top: 10px;
   font-size: 14pt;
   font-family: "Merriweather", serif;
@@ -321,4 +321,7 @@ body {
   padding-top: 5px;
   color: #e1f4f2;
   letter-spacing: 1px;
+}
+.main_footer:hover {
+  cursor: default;
 }

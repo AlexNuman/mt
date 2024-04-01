@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
-.MainContainer {
-    display: flex;
-    text-align: center;
-    item-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .hotels_table, .tour_info_table {
   table-layout: fixed;
   border-collapse: collapse;
@@ -46,6 +40,10 @@ caption {
   font-family: 'Unbounded', sans-serif;
 }
 
-
+.hotels_table th:first-child, .hotels_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 

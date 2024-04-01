@@ -1,8 +1,8 @@
 // ------ появление элементов управления при наведении мыщи----
 $('#clients_list_buh tr').mouseenter(function(){
-  var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
-  var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn.png' alt='Комментарии' class='edit_btn'>");
-  var ConfirmBtn = $("<img id='ConfirmBtn' src='/static/img/confirm_btn.png' alt='Подтвердить' class='edit_btn'>");
+  var InfoBtn = $("<span data-tooltip='Информация' class ='tooltip'><img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'></span>");
+  var CommentBtn = $("<span data-tooltip='Добавить комментарий' class ='tooltip'><img id='CommentBtn' src='/static/img/comment_btn.png' alt='Комментарии' class='edit_btn'></span>");
+  var ConfirmBtn = $("<span data-tooltip='Подтвердить оплату' class ='tooltip'><img id='ConfirmBtn' src='/static/img/confirm_btn.png' alt='Подтвердить' class='edit_btn'></span>");
   var TouristID = this.cells[11].textContent;
   var TourID = this.cells[10].textContent;
 

@@ -102,11 +102,11 @@ $('#tourist_list tr').
     var ClientId = this.cells[9].textContent;
     var ClientIIN = this.cells[4].textContent;
     var ClientName = this.cells[1].textContent;
-    var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
-    var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
-    var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'>");
-    var GroupBtn = $("<img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='info_btn'>");
-    var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='info_btn'>");
+    var CommentBtn = $("<span data-tooltip='Комментарий' class ='tooltip'><img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'></span>");
+    var InfoBtn = $("<span data-tooltip='Информация' class ='tooltip'><img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'></span>");
+    var DelBtn = $("<span data-tooltip='Удалить' class ='tooltip'><img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'></span>");
+    var GroupBtn = $("<span data-tooltip='Создать группу' class ='tooltip'><img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='info_btn'></span>");
+    var EditBtn = $("<span data-tooltip='Редактировать' class ='tooltip'><img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='info_btn'></span>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'

@@ -32,12 +32,15 @@ def cabinet_admin(request):
 # ------------------------------------------------------------------------------------------
 # ---------Кабинет директора------------------
 def cabinet_director(request):
-    session_login = request.session['SessionLogin']
-    session_login_type = request.session['SessionLoginType']
-    if session_login == 'none' or session_login_type != 'Директор':
+    try:
+        session_login = request.session['SessionLogin']
+        session_login_type = request.session['SessionLoginType']
+        if session_login == 'none' or session_login_type != 'Директор':
+            return redirect('/')
+        else:
+            return render(request, 'cabinet_director.html', context={'session_login': session_login})
+    except:
         return redirect('/')
-    else:
-        return render(request, 'cabinet_director.html', context={'session_login': session_login})
 # ------------------------------------------------------------------------------------------
 # ---------Кабинет менеджера------------------
 def cabinet_manager(request):

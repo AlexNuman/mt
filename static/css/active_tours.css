@@ -19,6 +19,12 @@ caption {
   font-family: 'Unbounded', sans-serif;
 }
 
+.tour_table th:first-child, .tour_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 
 
 

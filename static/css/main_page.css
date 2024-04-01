@@ -116,3 +116,9 @@ label {
   font-family: 'Unbounded', sans-serif;
   opacity: 0.8;
 }
+.mobile_info {
+  font-family: 'Unbounded', sans-serif;
+  opacity: 0.8;
+  text-align: center;
+}
+

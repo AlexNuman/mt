@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Список пользователей</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/users_list.css/' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/users_list.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
 </head>
 <body>
@@ -48,7 +48,7 @@
   </tfoot>
     </table>
     <p></p>
-    <img style="width: 2%; height: 2%;" src="{% static 'img/person_add.png' %}" class="add_person" id="add_new_user">
+    <span data-tooltip='Добавить пользователя' class ='tooltip'> <img style="width: 2%; height: 2%;" src="{% static 'img/person_add.png' %}" class="add_person" id="add_new_user"> </span>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/users_list.js' %}"></script>

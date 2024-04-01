@@ -39,7 +39,11 @@ caption {
   font-family: 'Unbounded', sans-serif;
 }
 
-
+.gid_table th:first-child, .gid_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 
 

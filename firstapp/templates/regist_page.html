@@ -14,13 +14,17 @@
               <div class="regist_label">Введите данные нового пользователя</div>
               <p></p>
               <input type="text" name="fio_regist" placeholder="ФИО" id="fio_regist" class="fio_regist" required>
+              <br>
               <label for="birth_regist"> Дата рождения: </label>
               <input type="date" name="birth_regist" id="birth_regist" class="birth_regist" required>
               <input type="text" name="adress_regist" placeholder="Адрес" id="adress_regist" class="adress_regist" required>
               <input type="email" name="email_regist" placeholder="Email" id="email_regist" class="email_regist" required>
               <input type="text" name="user_tel" placeholder="Телефон" id="user_tel" class="user_tel" required>
               <input type="text" name="login_regist" placeholder="Логин" id="login_regist" class="login_regist" required>
-              <input type="text" name="pass_in" placeholder="Пароль" id="pass" class="pass" required>
+              <input type="password" name="pass_in" placeholder="Пароль" id="pass" class="pass" required>
+              <div>
+                  <img style="width: 6%; height: 6%;" class="visibility" src="{% static 'img/visibility.png' %}" id="visibility">
+              </div>
               <span id="login_len" class="login_len">*Длина логина не менее 6 и не более 20 символов</span>
               <span id="pass_len" class="pass_len">*Длина пароля не менее 8 и не более 16 символов</span>
               <span id="pass_Az_09" class="pass_Az_09">*Пароль должен состоят из букв A-z и цифр 0-9</span>

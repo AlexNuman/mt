@@ -1,10 +1,10 @@
 
 // ------ появление элементов управления при наведении мыщи----
 $('#all_tourist_list tr').mouseenter(function(){
-  var CommentBtn = $("<img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'>");
-  var EditBtn = $("<img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='edit_btn'>");
-  var DelBtn = $("<img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'>");
-  var InfoBtn = $("<img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'>");
+  var CommentBtn = $("<span data-tooltip='Комментарий' class ='tooltip'><img id='CommentBtn' src='/static/img/comment_btn_2.png' alt='Комментарии' class='edit_btn'></span>");
+  var EditBtn = $("<span data-tooltip='Редактировать' class ='tooltip'><img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='edit_btn'></span>");
+  var DelBtn = $("<span data-tooltip='Удалить' class ='tooltip'><img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'></span>");
+  var InfoBtn = $("<span data-tooltip='Информация' class ='tooltip'><img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'></span>");
   var TouristID = this.cells[10].textContent;
   $(this.cells[0]).append(CommentBtn, DelBtn, EditBtn, InfoBtn);
 //-----При нажатии кнопки удалить---------------//

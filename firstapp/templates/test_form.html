@@ -4,19 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tooltip.css' %}">
 </head>
 <body>
 <div class="test_form" id="testForm">
-      <form method="post" id="ajax_form" action="">
-          {% csrf_token %}
-          <div class="test_input" id="result_form">
-              <input type="text" name="fio" placeholder="ФИО" id="fio" class="fio">
-              <input type="date" name="birth" id="birth" class="birth">
-              <input type="text" name="adress" placeholder="Адрес" id="adress" class="adress">
-              <input type="submit" name="testbtn" id="testbtn" value="Сохранить" class="testbtn">
-          </div>
-          <div id="recieve">Ничего нет</div>
-      </form>
+    <form method="post" id="ajax_form" action="">
+    {% csrf_token %}
+        <div class="test_input" id="result_form">
+            <input type="text" name="fio" placeholder="ФИО" id="fio" class="fio">
+            <input type="date" name="birth" id="birth" class="birth">
+            <input type="text" name="adress" placeholder="Адрес" id="adress" class="adress">
+            <input type="submit" name="testbtn" id="testbtn" value="Сохранить" class="testbtn">
+        </div>
+        <div id="recieve">Ничего нет</div>
+    </form>
+</div>
+<p></p>
+<p></p>
+<p></p>
+<div class="tooltip">
+    <span class="tooltip" data-tooltip="I'm small tooltip. Don't kill me!">Hover me!</span>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'js/test_form.js' %}"></script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Список гидов</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/transfer_list.css/' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/transfer_list.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
 </head>
 <body>
@@ -47,7 +47,7 @@
 
 </div>
 <p></p>
-<img style="width: 2%; height: 2%;" src="{% static 'img/add_transfer.png' %}" id="add_new_transfer" class="add_new_transfer" name="add_new_transfer">
+<span data-tooltip='Добавить трансфер' class ='tooltip'><img style="width: 2%; height: 2%;" src="{% static 'img/add_transfer.png' %}" id="add_new_transfer" class="add_new_transfer" name="add_new_transfer"> </span>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

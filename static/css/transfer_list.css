@@ -39,6 +39,13 @@ caption {
   font-family: 'Unbounded', sans-serif;
 }
 
+.transfer_table th:first-child, .transfer_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
 
 
 

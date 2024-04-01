@@ -56,5 +56,11 @@ caption {
   font-family: 'Unbounded', sans-serif;
 }
 
+.table th:first-child, .table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 
 

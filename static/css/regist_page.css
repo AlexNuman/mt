@@ -8,8 +8,6 @@ font-family: 'Tektur', sans-serif;
 font-family: 'Unbounded', sans-serif;
 */
 .regist_input {
-  display: flex;
-  flex-direction: column;
   text-align: left;
   margin: 0 auto;
   font-size: 12pt;
@@ -36,4 +34,11 @@ font-family: 'Unbounded', sans-serif;
   font-size: 12pt;
   color: #A60800;
   opacity: 0.7;
+}
+
+.visibility:hover {
+  opacity: 0.5;
+}
+.visibility:active {
+  opacity: 1.0;
 }

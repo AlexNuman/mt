@@ -123,4 +123,11 @@ function checkLength(TypeWord) {
     return TypeWord.length >= minLength && TypeWord.length <= maxLength;
 }
 
+/*------------Функция показ пароля---------------------------*/
+$('#visibility').mousedown(function(){
+  $('#pass').attr('type', 'text');
+}).mouseup(function() {
+  $('#pass').attr('type', 'password');
+});
+/*---------------------------------------*/
 
