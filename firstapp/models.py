@@ -124,6 +124,12 @@ class SiteSettings(models.Model):
     CurrencyInfo = models.CharField(max_length=10)                         # Информация валюта
     TimeInfo = models.CharField(max_length=10)                             # Информация время
 #-------Класс проверка БД --------------------------------------------------
+class SiteLogs(models.Model):
+    EventDateTime = models.DateTimeField(auto_now=True)                  # Дата и время события
+    UserInfo = models.CharField(max_length=200)                          # Информация о пользователе
+    Action = models.CharField(max_length=200)                            # Событие
+    LoginIP = models.CharField(max_length=200)                           # IP
+    Location = models.CharField(max_length=200)                          # Местоположение
 class test_db(models.Model):
     name = models.CharField(max_length=20)
     age = models.IntegerField()

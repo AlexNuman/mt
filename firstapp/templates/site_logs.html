@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Логи сайта</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/site_logs.css' %}">
+</head>
+<body>
+<p></p>
+<div>
+    <table class="log_table">
+         <caption>
+             Логи сайта
+             <p></p>
+         </caption>
+        <thead>
+            <tr>
+                <th style="width: 100px;" class="log_list">ID</th>
+                <th style="width: 400px;" class="log_list">Дата события</th>
+                <th style="width: 400px;" class="log_list">Информация о пользователе</th>
+                <th style="width: 600px;" class="log_list">Действие</th>
+                <th style="width: 200px;" class="log_list">IP</th>
+                <th style="width: 400px;" class="log_list">Местоположение</th>
+            </tr>
+        </thead>
+        <tbody id="log_list">
+        {% for i in LogData %}
+        <tr>
+            <td class="log_list">{{i.id}}</td>
+            <td class="log_list">{{i.EventDateTime}}</td>
+            <td class="log_list">{{i.UserInfo}}</td>
+            <td class="log_list">{{i.Action}}</td>
+            <td class="log_list">{{i.LoginIP}}</td>
+            <td class="log_list">{{i.Location}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/site_logs.js' %}"></script>
+</body>
+</html>

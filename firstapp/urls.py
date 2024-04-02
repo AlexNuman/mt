@@ -24,4 +24,5 @@ urlpatterns = [
     path('gid_regist_page/', views.GidRegist),
     path('gid_list/', views.GidList),
     path('vaucher/', views.Vaucher),
+    path('site_logs/', views.SiteLogs),
 ]

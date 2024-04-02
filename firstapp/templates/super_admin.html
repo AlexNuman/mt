@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>СУПЕРАДМИНИСТРАТОР</title>
+    <title>СУПЕРАДМИН</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/cabinet_style.css' %}">
+
 </head>
-<body class="body">
+
+<body>
     <div class="upper_container">
         <div class="img_logo">
             <img src="/static/img/logo.png" class="img_logo_inside" alt="">
         </div>
         <div class="info_block_container">
             <div class="info_block">
-                Туристическо-информационная система Mihrab Travel.
+                Туристическо-информационная система Mihrab Travel
             </div>
         </div>
         <div class="user_block">
@@ -32,7 +35,7 @@
                 <li><a href="#" id="Hotels">Гостиницы</a></li>
                 <li><a href="#" id="Transfer">Трансфер</a></li>
                 <li><a href="#" id="ClientsList">Туристы</a></li>
-                <li><a href="#" id="SiteSettings">Настройки</a></li>
+                <li><a href="#" id="SiteStngs">Настройки</a></li>
                 <li><a href="#" id="SiteLogs">Логи</a></li>
             </ul>
         </nav>
@@ -40,17 +43,18 @@
 <!-------------------------------------------------------------->
 <!------------Инфо о странице ----------------------------------->
     <div class="user_type_container">
-        <div class="user_type"> СУПЕРАДМИНИСТРАТОР </div>
+        <div id="user_type_label" class="main_user_type">СУПЕРАДМИН</div>
     </div>
 <!-------------------------------------------------------------->
 <!------------Основной блок ----------------------------------->
     <div class="middle_container">
-        <div id="info_reciever"></div>
+        <div id="hello_text" name="hello_text"></div>
+        <div id="info_reciever" class="info_reciever" name="info_reciever"></div>
     </div>
 <!-------------------------------------------------------------->
 <!------------Подвал сайта ----------------------------------->
     <div class="footer_container">
-        <div class="main_footer">MIHRAB TRAVEL - 2024</div>
+        <div class="main_footer" >MIHRAB TRAVEL - 2024</div>
     </div>
 <!-------------------------------------------------------------->
 <!------------Модальное окно информации ----------------------------------->
@@ -69,5 +73,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'js/super_admin.js' %}"></script>
 <!-------------------------------------------------------------->
+
 </body>
 </html>

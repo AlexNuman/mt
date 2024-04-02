@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings
+from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings, SiteLogs
 from django.http import JsonResponse
 from datetime import datetime
 
@@ -12,8 +12,12 @@ def SuperAdmin(request):
         if session_login == 'none' or session_login_type != 'СУПЕРАДМИН':
             return redirect('/')
         else:
-            return render(request, 'super_admin.html',
-                          context={'session_login': session_login})
+            DateTime = datetime.now()
+            LoggedUser = '111'
+            UserAction = 'Авторизация в кабинет'
+            UserIp = '255.255.255.0'
+            UserLocation = 'Kaz'
+            return render(request, 'super_admin.html', context={'session_login': session_login})
     except:
         return redirect('/')
 # ------------------------------------------------------------------------------------------
@@ -147,6 +151,8 @@ def check_login(request):
                 return redirect('/error_login')
             return redirect('/error_login')
 # ------------------------------------------------------------------------------------------
+def SiteLogs(request):
+    return render(request, 'site_logs.html')
 # ------------Jinja тест---------------------------------------------------------------
 def jinja_test(request):
     return render(request, 'jinja_test.html', context={'tags': 'blue'})

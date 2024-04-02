@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
+
+.log_table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 3px groove;
+  cursor: default;
+  }
+
+.log_list {
+    border: groove 3px;
+}
+tr:hover {
+    background-color: aliceblue;
+}
+
+caption {
+  font-size: 12pt;
+  font-family: 'Unbounded', sans-serif;
+}
+
+.log_table th:first-child, .log_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
