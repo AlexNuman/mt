@@ -48,12 +48,15 @@ def cabinet_director(request):
 # ------------------------------------------------------------------------------------------
 # ---------Кабинет менеджера------------------
 def cabinet_manager(request):
-    session_login = request.session['SessionLogin']
-    session_login_type = request.session['SessionLoginType']
-    if session_login == 'none' or session_login_type != 'Менеджер':
+    try:
+        session_login = request.session['SessionLogin']
+        session_login_type = request.session['SessionLoginType']
+        if session_login == 'none' or session_login_type != 'Менеджер':
+            return redirect('/')
+        else:
+            return render(request, 'cabinet_manager.html', context={'session_login': session_login})
+    except:
         return redirect('/')
-    else:
-        return render(request, 'cabinet_manager.html', context={'session_login': session_login})
 # ------------------------------------------------------------------------------------------
 # ---------Кабинет бухгалтера---------------------
 def cabinet_buhgalter(request):
@@ -103,6 +106,7 @@ def check_login(request):
                 request.session['SessionLoginType'] = login.user_type
                 request.session.save()
                 login.user_status = 'on-line'
+                login.user_login_date = datetime.now()
                 login.save()
                 return redirect('/superadmin')
             elif (login.user_pass == pass_in) and login.user_type == 'Администратор':
@@ -111,6 +115,7 @@ def check_login(request):
                 request.session['SessionLoginType'] = login.user_type
                 request.session.save()
                 login.user_status = 'on-line'
+                login.user_login_date = datetime.now()
                 login.save()
                 return redirect('/cabinet_admin')
             elif (login.user_pass == pass_in) and login.user_type == 'Менеджер':
@@ -119,6 +124,7 @@ def check_login(request):
                 request.session['SessionLoginType'] = login.user_type
                 request.session.save()
                 login.user_status = 'on-line'
+                login.user_login_date = datetime.now()
                 login.save()
                 return redirect('/cabinet_manager')
             elif (login.user_pass == pass_in) and login.user_type == 'Бухгалтер':
@@ -127,6 +133,7 @@ def check_login(request):
                 request.session['SessionLoginType'] = login.user_type
                 request.session.save()
                 login.user_status = 'on-line'
+                login.user_login_date = datetime.now()
                 login.save()
                 return redirect('/cabinet_buhgalter')
             elif (login.user_pass == pass_in) and login.user_type == 'Директор':
@@ -135,6 +142,7 @@ def check_login(request):
                 request.session['SessionLoginType'] = login.user_type
                 request.session.save()
                 login.user_status = 'on-line'
+                login.user_login_date = datetime.now()
                 login.save()
                 return redirect('/cabinet_director')
             else:
@@ -744,9 +752,9 @@ def AjaxServer(request):
             except:
                 try:
                     user = Users.objects.create(user_name=get_name, user_birth=get_birth, user_adress=get_adress,
-                                                user_email=get_email,
-                                                user_tel=get_tel, user_login=get_login, user_pass=get_pass,
-                                                user_type=get_type)
+                                                user_email=get_email, user_tel=get_tel, user_login=get_login,
+                                                user_pass=get_pass, user_type=get_type, user_regist_date=datetime.now(),
+                                                user_login_date=datetime.now(), user_status='off-line')
                     return JsonResponse(done)
                 except:
                     return JsonResponse(error)

@@ -11,8 +11,8 @@ class Users(models.Model):  #Класс для создания нового п�
     user_login = models.CharField(max_length=50)                           # Логин
     user_pass = models.CharField(max_length=50)                            # Пароль
     user_type = models.CharField(max_length=50)                            # Тип пользователя
-    user_regist_date = models.DateField(auto_now=True)                     # Дата регистрации
-    user_login_date = models.DateTimeField(auto_now=True)                  # Дата последнего входа
+    user_regist_date = models.DateTimeField()                              # Дата регистрации
+    user_login_date = models.DateTimeField()                               # Дата последнего входа
     user_status = models.CharField(max_length=10, default='off-line')      # Статус пользователя
 #----------------------------------------------------------------------------
 #-------Класс БД нового тура ------------------------------------------------
