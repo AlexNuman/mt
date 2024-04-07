@@ -71,7 +71,7 @@ class Gids (models.Model):
 class Hotels (models.Model):
     HotelName = models.CharField(max_length=50)                        # Название гостиницы
     HotelCity = models.CharField(max_length=50)                        # Город расположения
-    HotelStars = models.CharField(max_length=50)                        # Звезд гостиницы
+    HotelStars = models.CharField(max_length=50)                       # Звезд гостиницы
     HotelInfo = models.CharField(max_length=500)                       # Информация о гостинице
 #----------------------------------------------------------------------------
 #-------Класс БД трансфер -----------------------------------------------
@@ -80,6 +80,14 @@ class TourTransfer (models.Model):
     TransportQuality = models.CharField(max_length=50)               # Качество  транспорта
     TransferSeats = models.CharField(max_length=50)                  # Количество мест
     TransportInfo = models.CharField(max_length=500)                 # Информация о транспорте
+
+#----------------------------------------------------------------------------
+#-------Класс БД авиакомпания -----------------------------------------------
+class Airlines (models.Model):
+    AirlineName = models.CharField(max_length=200)                        # Назание авиакомпаний
+    AirlineClass = models.CharField(max_length=200)                       # Класс авиакомпаний
+    AirlineInfo = models.CharField(max_length=200)                        # Информация о авиакомпаний
+    AirlineAddDate = models.DateTimeField(auto_now=False, blank=True)     # Дата добавления
 
 #----------------------------------------------------------------------------
 #-------Класс БД нового туриста -----------------------------------------------
@@ -118,7 +126,7 @@ class Clients(models.Model):
 #---------------------------------------------------------------------------
 #-------Класс БД настройки --------------------------------------------------
 class SiteSettings(models.Model):
-    SettingsType = models.CharField(max_length=50)                         # типа настройки
+    SettingsType = models.CharField(max_length=50)                         # тип настройки
     Block = models.CharField(max_length=50, default='---')                 # Переключатель блок или нет
     NoticeInfo = models.CharField(max_length=500, default='---')           # Уведомление инфо
     CurrencyInfo = models.CharField(max_length=10)                         # Информация валюта
@@ -130,7 +138,3 @@ class SiteLogs(models.Model):
     Action = models.CharField(max_length=200)                            # Событие
     LoginIP = models.CharField(max_length=200)                           # IP
     Location = models.CharField(max_length=200)                          # Местоположение
-class test_db(models.Model):
-    name = models.CharField(max_length=20)
-    age = models.IntegerField()
-#----------------------------------------------------------------------------

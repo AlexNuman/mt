@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
+.currency_label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'Unbounded', sans-serif;
+}
+.currency_toggle {
+  isolation: isolate;
+  position: relative;
+  height: 24px;
+  width: 48px;
+  border-radius: 15px;
+  background: #d6d6d6;
+  overflow: hidden;
+}
+
+.currency_toggle-inner {
+  z-index: 2;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: 22px;
+  width: 46px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.currency_active-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  background: #003dda;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.05s linear 0.17s;
+}
+.currency_toggle-state {
+  display: none;
+}
+.currency_indicator {
+  height: 100%;
+  width: 200%;
+  background: white;
+  border-radius: 13px;
+  transform: translate3d(-75%, 0, 0);
+  transition: transform 0.35s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+}
+
+.currency_toggle-state:checked ~ .currency_active-bg {
+   transform: translate3d(-50%, 0, 0);
+}
+
+.currency_toggle-state:checked ~ .currency_toggle-inner .currency_indicator {
+   transform: translate3d(25%, 0, 0);
+}
+span {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10pt;
+  letter-spacing: 1px;
+}
+.StngSaveBtn {
+  font-family: 'Unbounded', sans-serif;
+  text-align: left;
+  font-size: 10pt;
+  border: 1px solid;
+  height: 20px;
+  width: 100px;
+  border-radius: 5px;
+  cursor: default;
+  padding-left: 5px;
+  font-align: center;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.StngSaveBtn:hover {
+  font-family: 'Unbounded', sans-serif;
+  background-color: #9E94FF;
+  transform: translateY(-5px);
+  box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
+  transition: all 0.5s ease 0s;
+}

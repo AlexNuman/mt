@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings, SiteLogs
+from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings, Airlines, SiteLogs
 from django.http import JsonResponse
 from datetime import datetime
 
@@ -724,6 +724,36 @@ def AjaxServer(request):
     elif switcher == 'GidList':
         GidData = Gids.objects.values()
         return render(request, 'gid_list.html', context={'GidData': GidData, 'Len': len(GidData)})
+# ---->Список авиакомпании--------------------------
+    elif switcher == 'AirlineList':
+        Request = request.GET.get('Request')
+        if Request == 'Get':
+            AirlineData = Airlines.objects.values()
+            return render(request, 'airline_list.html', context={'AirlineData': AirlineData, 'Len': len(AirlineData)})
+        elif Request == 'AddForm':
+            return render(request, 'airline_regist_page.html')
+        elif Request == 'Save':
+            done = {1: 'Авиакомпания сохранена'}
+            error = {1: 'Ошибка сохранения'}
+            try:
+                CompanyName = request.GET.get('CompanyName')
+                CompanyClass = request.GET.get('CompanyClass')
+                CompanyInfo = request.GET.get('CompanyInfo')
+                new_airline = Airlines.objects.create(AirlineName=CompanyName, AirlineClass=CompanyClass,
+                                                      AirlineInfo=CompanyInfo, AirlineAddDate=datetime.now())
+                return JsonResponse(done)
+            except:
+                return JsonResponse(error)
+        elif Request == 'Delete':
+            done = {1: 'Авиакомпания удалена!'}
+            error = {1: 'Удалить авиакомпанию не удалось!'}
+            AirlineID = request.GET.get('Airline')
+            try:
+                AirlineDB = Airlines.objects.get(id=AirlineID)
+                AirlineDB.delete()
+                return JsonResponse(done)
+            except:
+                return JsonResponse(error)
 # ---->Списка гостиниц-----------------------------
     elif switcher == 'HotelsList':
         HotelsData = Hotels.objects.values()
@@ -784,17 +814,15 @@ def AjaxServer(request):
 # ---->Настройки-----------------------------
     elif switcher == 'SettingsPage':
         Request = request.GET.get('Request')
-        Site_Blocked = request.GET.get('Site_Blocked')
-        if Site_Blocked == '':
-            Site_Blocked = '---'
-        currency_choose = request.GET.get('currency_choose')
-        time_choose = request.GET.get('time_choose')
-        SettingsType = 'Site Settings'
+        UserType = request.GET.get('UserType')
         done = {1: 'Настройки сохранены'}
         error = {1: 'Ощибка сохранения!'}
-        if Request == 'Get':
-            return render(request, 'settings_page.html')
+        if Request == 'Get' and UserType == 'Admin':
+            return render(request, 'settings_page_admin.html')
         elif Request == 'Save':
+            SettingsType = ''
+            currency_choose = ''
+            time_choose = ''
             new_settings = SiteSettings.objects.create(SettingsType=SettingsType, Block='---', NoticeInfo='---',
                                                    CurrencyInfo=currency_choose, TimeInfo=time_choose)
             return JsonResponse(done)

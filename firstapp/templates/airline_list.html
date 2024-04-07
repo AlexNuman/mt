@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список авиакомпаний</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/airline_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+</head>
+<body>
+
+<p></p>
+<div>
+    <table class="airline_table">
+         <caption>
+             Список авиакомпаний
+             <p></p>
+         </caption>
+        <thead>
+        <tr>
+            <th style="width: 100px;" class="airline_list">Действие</th>
+            <th style="width: 300px;" class="airline_list">Нзвание компаний</th>
+            <th style="width: 200px;" class="airline_list">Класс</th>
+            <th style="width: 400px;" class="airline_list">Информация</th>
+            <th style="width: 150px;" class="airline_list">Дата регистрации</th>
+            <th style="width: 70px;" class="airline_list"> ID </th>
+        </tr>
+        </thead>
+        <tbody id="airline_list">
+        {% for i in AirlineData %}
+        <tr>
+            <td class="airline_list"></td>
+            <td class="airline_list"> {{i.AirlineName}}</td>
+            <td class="airline_list"> {{i.AirlineClass}}</td>
+            <td class="airline_list"> {{i.AirlineInfo}}</td>
+            <td class="airline_list"> {{i.AirlineAddDate}}</td>
+            <td class="airline_list"> {{i.id}}</td>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Количество авиакомпаний</th>
+      <td colspan="2"> {{Len}} </td>
+    </tr>
+  </tfoot>
+    </table>
+
+</div>
+<p></p>
+<span data-tooltip='Добавить авиакомпанию' class ='tooltip'> <img style="width: 2%; height: 2%;" src="{% static 'img/airplane.png' %}" id="add_new_airline" class="add_new_airline" name="add_new_airline"> </span>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/airline_list.js' %}"></script>
+
+
+</body>
+</html>

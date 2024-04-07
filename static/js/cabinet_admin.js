@@ -101,6 +101,21 @@ TransferBtn.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+/*----------кнопка авиакомпания---------------------------------------------*/
+var TransferBtn = document.getElementById('Airline');
+TransferBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'AirlineList', Request: 'Get'},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
 /*----------кнопка Список туристов---------------------------------------------*/
 var TransferBtn = document.getElementById('ClientsList');
 var sorting='All';
@@ -117,6 +132,34 @@ TransferBtn.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+
+/*----------кнопка настройки----------------------------*/
+var SiteSettings = document.getElementById('SiteSettings');
+SiteSettings.onclick = function() {
+  modal.style.display = "block";
+  ModalWindow.style.width = "340px";
+  ModalWindow.style.height = "200px";
+  $("#InfoHead h2").text('Настройки');
+  $("#InfoHead h2").css('font-size', '14pt');
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'SettingsPage', Request: 'Get', UserType: 'Admin'},
+    success: function(data){
+      SettingsPage = data;
+      $('#ModalInfoBlock').html(SettingsPage);
+    }
+  });
+};
+
+  /*
+
+
+
+
+};
+-----------------*/
 /*-------------------------------------------------------------------*/
 /*--------------скрипт настройка пользователя----------------------*/
 var UserWindowBtn = document.getElementById('UserWindowBtn');
@@ -169,23 +212,3 @@ document.onclick = function() {
 };
 */
 
-/*----------кнопка настройки----------------------------
-var Settings = document.getElementById('Settings');
-Settings.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "300px";
-  $("#InfoHead h2").text('Настройки');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $.ajax({
-    url: '/ajax-server/',
-    method: 'get',
-    dataType: 'html',
-    data: {switсh: 'SettingsPage', Request: 'Get'},
-    success: function(data){
-      SettingsPage = data;
-      $('#ModalInfoBlock').html(SettingsPage);
-    }
-  });
-};
------------------*/

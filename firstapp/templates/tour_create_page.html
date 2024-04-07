@@ -53,10 +53,20 @@
                     <span id="WaitingTimeFrom" class="WaitingTimeFrom">0</span>
                 </p>
             </div>
+            <label for="FlightFromContainer" class="container_label">Авиакомпания: </label>
+            <p></p>
+            <div id="FlightCompanyContainer" class="FlightCompanyContainer">
+                <label for="AirlineChoose"> Выберите авиакомпанию: </label>
+                <select id="AirlineChoose" name="AirlineChoose" class="AirlineChoose" required>
+                    {% for i in GidData %}
+                    <option value="{{i.GidName}}">{{i.GidName}}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <label for="TourContainer_2" class="container_label"> Данные тура:</label>
             <p></p>
             <div id="TourContainer_2" class="TourContainer_2">
-                <input type="text" name="TouristQuantity" placeholder="Количество мест" id="TouristQuantity" class="TouristQuantity" required>
+                <input type="number" name="TouristQuantity" placeholder="Количество мест" id="TouristQuantity" class="TouristQuantity" required>
                 <br>
                 <label for="HotelMekka"> Отель в Мекке: </label>
                 <select id="HotelMekka" name="HotelMekka" class="HotelMekka" required>
@@ -121,16 +131,31 @@
             <label for="PriceContainer" class="container_label">Формирование цен ($): </label>
             <p></p>
             <div id="PriceContainer" class="PriceContainer">
-                <input type="text" placeholder="Авиабилет" name="FlightTicketPrice" id="FlightTicketPrice" class="FlightTicket" required>
-                <input type="text" placeholder="Виза туриста" name="TouristVisaPrice" id="TouristVisaPrice" class="TouristVisa" required>
-                <input type="text" placeholder="Отель в Мекке" name="MekkaHotelPrice" id="MekkaHotelPrice" class="PriceMekkaHotel" required>
-                <input type="text" placeholder="Отель в Медине" name="MedinaHotelPrice" id="MedinaHotelPrice" class="PriceMedinaHotel" required>
-                <input type="text" placeholder="Питание" name="TourFoodPrice" id="TourFoodPrice" class="TourFood" required>
-                <input type="text" placeholder="Трансфер" name="TransferPrice" id="TransferPrice" class="Transfer" required>
-                <input type="text" placeholder="Хадж набор" name="HadjKitPrice" id="HadjKitPrice" class="HadjKit" required>
-                <input type="text" placeholder="Гид" name="GidPrice" id="GidPrice" class="Gid" required>
-                <input type="text" placeholder="Комиссия" name="Comission" id="Comission" class="Comission" required>
-                <input type="text" placeholder="Скидка" name="TourDiscount" id="TourDiscount" class="TourDiscount" required>
+                <span>Основные:</span> <br>
+                <input type="number" placeholder="Авиабилет" name="FlightTicketPrice" id="FlightTicketPrice" class="FlightTicket" required>
+                <input type="number" placeholder="Виза туриста" name="TouristVisaPrice" id="TouristVisaPrice" class="TouristVisa" required>
+                <input type="number" placeholder="Отель в Мекке" name="MekkaHotelPrice" id="MekkaHotelPrice" class="PriceMekkaHotel" required>
+                <input type="number" placeholder="Отель в Медине" name="MedinaHotelPrice" id="MedinaHotelPrice" class="PriceMedinaHotel" required>
+                <input type="number" placeholder="Трансфер" name="TransferPrice" id="TransferPrice" class="Transfer" required>
+                <input type="number" placeholder="Хадж набор" name="HadjKitPrice" id="HadjKitPrice" class="HadjKit" required>
+                <input type="number" placeholder="Гид" name="GidPrice" id="GidPrice" class="Gid" required>
+                <input type="number" placeholder="Комиссия" name="Comission" id="Comission" class="Comission" required>
+                <input type="number" placeholder="Скидка" name="TourDiscount" id="TourDiscount" class="TourDiscount" required>
+                <p></p>
+                <span>Питание:</span>
+                <br>
+                <input type="number" placeholder="RO - Room Only" name="FlightTicketPrice" id="FoodPrice_RO" class="FlightTicket" required>
+                <input type="number" placeholder="BB - Bed&Breakfast" name="FlightTicketPrice" id="FoodPrice_BB" class="FlightTicket" required>
+                <input type="number" placeholder="HB - Half board" name="FlightTicketPrice" id="FoodPrice_HB" class="FlightTicket" required>
+                <input type="number" placeholder="FB - Full board" name="FlightTicketPrice" id="FoodPrice_FB" class="FlightTicket" required>
+                <input type="number" placeholder="AI - All inclusive" name="FlightTicketPrice" id="FoodPrice_AI" class="FlightTicket" required>
+                <p></p>
+                <span>Размешение:</span>
+                <br>
+                <input type="number" placeholder="Single - SGL" name="FlightTicketPrice" id="RoomPrice_SGL" class="FlightTicket" required>
+                <input type="number" placeholder="Double - DBL" name="FlightTicketPrice" id="RoomPrice_DBL" class="FlightTicket" required>
+                <input type="number" placeholder="Triple - TRP" name="FlightTicketPrice" id="RoomPrice_TRP" class="FlightTicket" required>
+                <input type="number" placeholder="Quadro - QDR" name="FlightTicketPrice" id="RoomPrice_QDR" class="FlightTicket" required>
                 <p>Итого:
                 <span id="TourSummary" class="TourSummary">0</span>
                     $

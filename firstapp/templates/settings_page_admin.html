@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings_page_admin.css' %}">
+</head>
+<body>
+    <form method="post" id="NewTourForm" action="">
+        {% csrf_token %}
+        <label class="currency_label">
+            <span>Выберите валюту:&nbsp</span>
+            <span>USD</span>
+            <div class="currency_toggle">
+                <input class="currency_toggle-state" id="currency_choose" type="checkbox" name="check" value="check" />
+                <div class="currency_toggle-inner">
+                    <div class="currency_indicator"></div>
+                </div>
+                <div class="currency_active-bg"></div>
+            </div>
+            <span>KZT</span>
+        </label>
+        <p></p>
+        <label class="currency_label">
+            <span>Показ времени: &nbsp</span>
+            <span>Часы</span>
+            <div class="currency_toggle">
+                <input class="currency_toggle-state" id="time_choose" type="checkbox" name="check" value="check" />
+                <div class="currency_toggle-inner">
+                    <div class="currency_indicator"></div>
+                </div>
+                <div class="currency_active-bg"></div>
+            </div>
+            <span>Минуты</span>
+        </label>
+        <p></p>
+        <p></p>
+        <input type="submit" id="StngSaveBtn" class="StngSaveBtn" value="Сохранить">
+    </form>
+
+<script type="text/javascript" src="{% static 'js/settings_page_admin.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

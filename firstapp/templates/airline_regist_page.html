@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/airline_regist_page.css' %}">
+    <title>Регистрация авиакомпаний</title>
+</head>
+<body>
+<div class="regist_form">
+      <form method="post" id="AirlineForm" action="">
+          {% csrf_token %}
+          <div class="regist_input">
+              <div class="regist_label">Введите данные авиакомпаний</div>
+              <p></p>
+              <input type="text" name="CompanyName" placeholder="Название аиакомпаний" id="CompanyName" class="fio_gid">
+              <input type="text" name="CompanyClass" placeholder="Класс" id="CompanyClass" class="adress_gid">
+              <input type="text" name="CompanyInfo" placeholder="Информация" id="CompanyInfo" class="email_gid">
+              <input type="submit" name="button_regist" id="button_regist" value="Сохранить" class="button_regist">
+          </div>
+      </form>
+</div>
+    <script type="text/javascript" src="{% static 'js/airline_regist_page.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

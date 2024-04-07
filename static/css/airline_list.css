@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
+.airline_table, .tour_info_table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px groove;
+  cursor: default;
+  }
+
+.airline_list, .tour_info {
+    border: groove 3px;
+}
+tr:hover {
+    background-color: aliceblue;
+}
+.add_new_airline {
+  border: 1px solid transparent;
+  cursor: default;
+  width: 250px;
+}
+.add_new_airline:hover {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: rgb(202, 193, 235);
+  color: rgb(88, 68, 68);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  display: absolute;
+  text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 0px 7px 10px 1px rgba(84, 84, 84, 0.5);
+  stroke: #337AB7;
+}
+caption {
+  font-size: 12pt;
+  font-family: 'Unbounded', sans-serif;
+}
+
+.airline_table th:first-child, .airline_table td:first-child {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
