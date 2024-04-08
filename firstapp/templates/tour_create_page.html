@@ -108,7 +108,17 @@
                     <option value="FB">FB - Full board</option>
                     <option value="AI">AI - All inclusive</option>
                 </select>
+                <span>-----</span>
+                <label for="RoomChoose"> Выберите размешение: </label>
+                <select id="RoomChoose" name="RoomChoose" class="FoodChoose" required>
+                    <option value="SGL">SGL - Single</option>
+                    <option value="DBL">DBL - Double</option>
+                    <option value="TRP">TRP - Triple</option>
+                    <option value="QDR">QDR - Quadro</option>
+                </select>
                 <br>
+                <br>
+
                 <label for="GidChoose">  Выбор гида: </label>
                 <select id="GidChoose" name="GidChoose" class="GidChoose" required>
                     {% for i in GidData %}

@@ -65,16 +65,9 @@ $('#NewTourForm').submit(function() {
 //-----------Подсчет цен ---------------------------------//
 /*
 var PriceContainer = document.getElementById('PriceContainer');
-var FlightTicket = document.getElementById('FlightTicketPrice');
-var TouristVisa = document.getElementById('TouristVisaPrice');
-var PriceMekkaHotel = document.getElementById('MekkaHotelPrice');
-var PriceMedinaHotel = document.getElementById('MedinaHotelPrice');
-var TourFood = document.getElementById('TourFoodPrice');
-var TourTrans = document.getElementById('TransferPrice');
-var HadjKit = document.getElementById('HadjKitPrice');
-var Gid = document.getElementById('GidPrice');
-var Comission = document.getElementById('Comission');
-var SummaryResult = document.getElementById('TourSummary');
+
+
+
 */
 
 /*
@@ -135,12 +128,26 @@ document.onclick = function() {
   const endDateMedina = HotelMedinaOut.startOf("day");
   MekkaHotel_Days.textContent = IsNan(endDateMekka.diff(startDateMekka, "day"));
   MedinaHotel_Days.textContent = IsNan(endDateMedina.diff(startDateMedina, "days"));
+  //подсчет цен на тур---------------
+  var SummaryResult = document.getElementById('TourSummary'); // ИТОГО ЗА ТУР
+  var FlightTicket = document.getElementById('FlightTicketPrice'); //цена за билет
+  var TouristVisa = document.getElementById('TouristVisaPrice'); // цена за визу
+  var PriceMekkaHotel = document.getElementById('MekkaHotelPrice'); // цена за отель мекка
+  var PriceMedinaHotel = document.getElementById('MedinaHotelPrice'); // цена за отель медина
+  var TourTrans = document.getElementById('TransferPrice'); //цена за трансфер
+  var HadjKit = document.getElementById('HadjKitPrice'); // цена за хадж кит
+  var Gid = document.getElementById('GidPrice'); //цена за гида
+  var Comission = document.getElementById('Comission'); //комиссия
+  var selectFood = document.getElementById('FoodChoose'); // выбаранное питание
+  var selectRoom = document.getElementById('RoomChoose'); // выбаранное размешение
+  SummaryResult.textContent = Number(FlightTicket.value)+Number(TouristVisa.value)+Number(PriceMekkaHotel.value)
+  +Number(PriceMedinaHotel.value)+Number(TourTrans.value)+Number(HadjKit.value)+Number(Gid.value)
+  +Number(Comission.value)+Number(FoodPriceChoose(selectFood.value))+Number(RoomPriceChoose(selectRoom.value));
 };
 
 
   /*
-  SummaryResult.textContent = Number(FlightTicket.value)+Number(TouristVisa.value)+Number(PriceMekkaHotel.value)+
-  Number(PriceMedinaHotel.value)+Number(TourFood.value)+Number(HadjKit.value)+Number(Gid.value)+Number(Comission.value)+Number(TourTrans.value);
+  SummaryResult.textContent = ++
 //--подсчет разницы времени---//
 
 
@@ -193,12 +200,38 @@ function getHumanizedValue(diffInHours) {
   };
 };
 //-----------------------------------------------------
-
 //-----проверка на NaN-----------------------
 function IsNan (data) {
   if (isNaN(data)) {
     return `0`;
   } else {
     return Math.ceil(data);
+  };
+};
+//-------функция определния цены за еду ----
+function FoodPriceChoose(data) {
+  if (data == 'RO') {
+    return $('#FoodPrice_RO').val();
+  } else if (data == 'BB') {
+    return $('#FoodPrice_BB').val();
+  } else if (data == 'HB') {
+    return $('#FoodPrice_HB').val();
+  } else if (data == 'FB') {
+    return $('#FoodPrice_FB').val();
+  } else if (data == 'AI') {
+    return $('#FoodPrice_AI').val();
+  };
+};
+//----------------------------------------------
+//------функция определния цены за размещения----
+function RoomPriceChoose(data) {
+  if (data == 'SGL') {
+    return $('#RoomPrice_SGL').val();
+  } else if (data == 'DBL') {
+    return $('#RoomPrice_DBL').val();
+  } else if (data == 'TRP') {
+    return $('#RoomPrice_TRP').val();
+  } else if (data == 'QDR') {
+    return $('#RoomPrice_QDR').val();
   };
 };
