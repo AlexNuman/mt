@@ -1,12 +1,6 @@
 //----Создание нового тура -------------//
 var TourData;
-var TransitToArrival_1;
-var TransitToDeparture_1;
-var TransitFromArrival_1;
-var TransitFromDeparture_1;
-var WaitingTimeTo_01;
-var WaitingTimeFrom_01;
-
+/*---отправка данных в БД для сохранения ----------
 $('#NewTourForm').submit(function() {
   $.ajax({
     url: '/ajax-server/',
@@ -66,8 +60,10 @@ $('#NewTourForm').submit(function() {
   });
   return false;
 });
+*/
 //--------------------------------------------------------//
 //-----------Подсчет цен ---------------------------------//
+/*
 var PriceContainer = document.getElementById('PriceContainer');
 var FlightTicket = document.getElementById('FlightTicketPrice');
 var TouristVisa = document.getElementById('TouristVisaPrice');
@@ -79,12 +75,18 @@ var HadjKit = document.getElementById('HadjKitPrice');
 var Gid = document.getElementById('GidPrice');
 var Comission = document.getElementById('Comission');
 var SummaryResult = document.getElementById('TourSummary');
-var WaitTimeTo = document.getElementById('WaitingTimeTo');
-var WaitTimeFrom = document.getElementById('WaitingTimeFrom');
+*/
+
+/*
 var MekkaHotel_Days = document.getElementById('MekkaHotel_Days');
 var MedinaHotel_Days = document.getElementById('MedinaHotel_Days');
+*/
 //--срабатывает на клик по документу----//
 document.onclick = function() {
+  //----переменные для подсчета дней -----------------------
+  var WaitTimeTo = document.getElementById('WaitingTimeTo');
+  var WaitTimeFrom = document.getElementById('WaitingTimeFrom');
+  //----изменения типа рейса-------------------
   if ($("#FlightType").val() == 'Прямой рейс') {
     $("#TransitToArrival").css('opacity', '0');
     $("#TransitToArrival").attr('disabled', true);
@@ -98,12 +100,6 @@ document.onclick = function() {
     $("#wait_lab_2").css('display', 'none');
     $("#lab_transit_1").css('display', 'none');
     $("#lab_transit_2").css('display', 'none');
-    TransitToArrival_1 = '1111-11-11 11:11';
-    TransitToDeparture_1 = '1111-11-11 11:11';
-    TransitFromArrival_1 = '1111-11-11 11:11';
-    TransitFromDeparture_1 = '1111-11-11 11:11';
-    WaitingTimeTo_01 = '---';
-    WaitingTimeFrom_01 = '---';
   } else {
       $("#TransitToArrival").css('opacity', '100');
       $("#TransitToArrival").attr('disabled', false);
@@ -117,50 +113,92 @@ document.onclick = function() {
       $("#wait_lab_2").css('display', '');
       $("#lab_transit_1").css('display', '');
       $("#lab_transit_2").css('display', '');
-      TransitToArrival_1 = $("#TransitToArrival").val();
-      TransitToDeparture_1 = $("#TransitToDeparture").val();
-      TransitFromArrival_1 = $("#TransitFromArrival").val();
-      TransitFromDeparture_1 = $("#TransitFromDeparture").val();
-      WaitingTimeTo_01 = $("#WaitingTimeTo").text();
-      WaitingTimeFrom_01 = $("#WaitingTimeFrom").text();
-    };
-  SummaryResult.textContent = Number(FlightTicket.value)+Number(TouristVisa.value)+Number(PriceMekkaHotel.value)+
-  Number(PriceMedinaHotel.value)+Number(TourFood.value)+Number(HadjKit.value)+Number(Gid.value)+Number(Comission.value)+Number(TourTrans.value);
-//--подсчет разницы времени---//
+  };
+  //-----------------------------------------------------------------
+  //-----подсчет разницы часов времени ожидания--------------------------------------
   const ToDateArrive = dayjs($("#TransitToDeparture").val());
   const ToDateDeparture = dayjs($("#TransitToArrival").val());
   const FromDateArrive = dayjs($("#TransitFromDeparture").val());
   const FromDateDeparture = dayjs($("#TransitFromArrival").val());
+  WaitTimeTo.textContent = convertMinutesToHoursAndMinutes(ToDateArrive.diff(ToDateDeparture, "minute"));
+  WaitTimeFrom.textContent = convertMinutesToHoursAndMinutes(FromDateArrive.diff(FromDateDeparture, "minute"));
+  //-----подсчет дней в Мекке и в Медине
+  //--------Мекка--------------------
   const HotelMekkaIn = dayjs($("#HotelMekkaIn").val());
   const HotelMekkaOut = dayjs($("#HotelMekkaOut").val());
+  const startDateMekka = HotelMekkaIn.startOf("day");
+  const endDateMekka = HotelMekkaOut.startOf("day");
+  //--------Медина-------------------
   const HotelMedinaIn = dayjs($("#HotelMedinaIn").val());
   const HotelMedinaOut = dayjs($("#HotelMedinaOut").val());
-  const getHumanizedValue = (diffInHours) => {
-    const HOURS_IN_DAY = 24;
-    const days = Math.floor(diffInHours / HOURS_IN_DAY);
-    const hours = diffInHours % HOURS_IN_DAY;
-    return `${hours}`;
-  };
-  WaitTimeTo.textContent = getHumanizedValue(ToDateArrive.diff(ToDateDeparture, "hour"));
-  WaitTimeFrom.textContent = getHumanizedValue(FromDateArrive.diff(FromDateDeparture, "hour"));
-  MekkaHotel_Days.textContent = getHumanizedValue(HotelMekkaOut.diff(HotelMekkaIn, "days"));
-  MedinaHotel_Days.textContent = getHumanizedValue(HotelMedinaOut.diff(HotelMedinaIn, "days"));
+  const startDateMedina = HotelMedinaIn.startOf("day");
+  const endDateMedina = HotelMedinaOut.startOf("day");
+  MekkaHotel_Days.textContent = IsNan(endDateMekka.diff(startDateMekka, "day"));
+  MedinaHotel_Days.textContent = IsNan(endDateMedina.diff(startDateMedina, "days"));
 };
 
-//----переключение между с пересадкой и без пересадкой
 
+  /*
+  SummaryResult.textContent = Number(FlightTicket.value)+Number(TouristVisa.value)+Number(PriceMekkaHotel.value)+
+  Number(PriceMedinaHotel.value)+Number(TourFood.value)+Number(HadjKit.value)+Number(Gid.value)+Number(Comission.value)+Number(TourTrans.value);
+//--подсчет разницы времени---//
+
+
+
+
+
+
+  */
 
 //-----------------------------------------------------------------
-/* блок для тестироания AJAX
-$.ajax({
-    url: '/ajax-server/',
-    method: 'get',
-    dataType: 'json',
-    data: {switсh: 'Test'},
-    success: function(data){
-      InfoData = data[1];
-      alert(InfoData);
-    }
-  });
+
+/*
+// Импортируем библиотеку Moment.js
+const moment = require('moment');
+
+// Две строки даты
+const first = '01/25/2020';
+const second = 'January 15, 2020';
+
+// Создаем два объекта момента с датами для сравнения
+const x = moment(first, 'L');
+const y = moment(second, 'LL');
+
+// Получаем разницу в днях
+const days = x.diff(y, 'days');
+
+console.log(days + " дней"); // Вывод: 10 дней
 */
 
+//----Функция конвертации времени------
+function convertMinutesToHoursAndMinutes(totalMinutes) {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  if (isNaN(totalMinutes)) {
+    return `0`;
+  } else {
+    return `${hours}:${minutes}`;
+  };
+};
+//--------------------------------------
+//--функция для подсчета разницы времени в минутах------
+function getHumanizedValue(diffInHours) {
+  const HOURS_IN_DAY = 24;
+  const days = Math.floor(diffInHours / HOURS_IN_DAY);
+  const hours = diffInHours % HOURS_IN_DAY;
+  if (isNaN(diffInHours)) {
+    return `0`;
+  } else {
+    return `${hours}`;
+  };
+};
+//-----------------------------------------------------
+
+//-----проверка на NaN-----------------------
+function IsNan (data) {
+  if (isNaN(data)) {
+    return `0`;
+  } else {
+    return Math.ceil(data);
+  };
+};

@@ -79,7 +79,7 @@
                     <input type="datetime-local" name="HotelMekkaIn" id="HotelMekkaIn" class="HotelMekkaIn" required>
                     <label for="HotelMekkaOut"> Выезд: </label>
                     <input type="datetime-local" name="HotelMekkaOut" id="HotelMekkaOut" class="HotelMekkaOut" required>
-                    <span style="display: none;">Дни:
+                    <span>Дни:
                         <span id="MekkaHotel_Days" class="MekkaHotel-Days">0</span>
                     </span>
                 </div>
@@ -95,7 +95,7 @@
                     <input type="datetime-local" name="HotelMedinaIn" id="HotelMedinaIn" class="HotelMedinaIn" required>
                     <label for="HotelMedinaOut"> Выезд: </label>
                     <input type="datetime-local" name="HotelMedinaOut" id="HotelMedinaOut" class="HotelMedinaOut" required>
-                    <span style="display: none;">Дни:
+                    <span>Дни:
                         <span id="MedinaHotel_Days" class="MedinaHotel-Days">0</span>
                     </span>
                 </div>
@@ -116,7 +116,7 @@
                     {% endfor %}
                 </select>
                 <br>
-                <label for="TransferChoose">  Выбор трансфера: </label>
+                <label for="TransferChoose">Выбор трансфера:</label>
                 <select id="TransferChoose" name="TransferChoose" class="TransferChoose" required>
                     {% for i in TransferData %}
                     <option value="{{i.TransportType}}">{{i.TransportType}}</option>
@@ -170,5 +170,6 @@
     <script type="text/javascript" src="{% static 'js/tour_create_page.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 </body>
 </html>
