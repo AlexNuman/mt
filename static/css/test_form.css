@@ -1,0 +1,16 @@
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    order: 2;
+}
+
+input[type="checkbox"]:checked + select {
+    pointer-events: all;
+}
+
+input[type="checkbox"]:not(:checked) + select {
+    pointer-events: none;
+}

@@ -23,15 +23,16 @@ class Tours (models.Model):
     PaketName = models.CharField(max_length=200)                                 # Название пакета
     TourRoute = models.CharField(max_length=200)                                 # Маршрут
     DepartureFromOrigin = models.DateTimeField(auto_now=False, blank=True)       # --> Дата вылета туда
-    TransitToArrival = models.DateTimeField(null=True, blank=True, default=None)     # --> Транзит туда - прилет
-    TransitToDeparture = models.DateTimeField(null=True, blank=True, default=None)   # --> Транзит туда - вылет
+    TransitToArrival = models.DateTimeField(auto_now=False, blank=True)          # --> Транзит туда - прилет
+    TransitToDeparture = models.DateTimeField(auto_now=False, blank=True)        # --> Транзит туда - вылет
     ArrivalDestination = models.DateTimeField(auto_now=False, blank=True)        # --> Дата прилета туда
-    WaitingTimeTo = models.CharField(max_length=50)                              # --> Ожидание транзит - туда
+    WaitingTimeTo = models.CharField(max_length=50, blank=True)                  # --> Ожидание транзит - туда
     DepartureFromDestination = models.DateTimeField(auto_now=False, blank=True)  # <-- Дата вылета обратно
-    TransitFromArrival = models.DateTimeField(null=True, blank=True, default=None)   # <-- Транзит обратно - прилет
-    TransitFromDeparture = models.DateTimeField(null=True, blank=True, default=None) # <-- Транзит обратно - вылет
+    TransitFromArrival = models.DateTimeField(auto_now=False, blank=True)        # <-- Транзит обратно - прилет
+    TransitFromDeparture = models.DateTimeField(auto_now=False, blank=True)      # <-- Транзит обратно - вылет
     ArrivalOrigin = models.DateTimeField(auto_now=False, blank=True)             # <-- Дата прилета обратно
-    WaitingTimeFrom = models.CharField(max_length=50)                            # <-- Ожидание транзит - обратно
+    WaitingTimeFrom = models.CharField(max_length=50, blank=True)                # <-- Ожидание транзит - обратно
+    AirlineChoose = models.CharField(max_length=200)                             # Выбор авиакомпании
     TouristQuantity = models.SmallIntegerField()                                 # Количество туристов
     HotelMekka = models.CharField(max_length=200)                                # Отель в Мекке
     HotelMekkaIn = models.DateTimeField(auto_now=False, blank=True)              # Заезд в отель в Мекке
@@ -40,6 +41,7 @@ class Tours (models.Model):
     HotelMedinaIn = models.DateTimeField(auto_now=False, blank=True)             # Заезд в отель в Медина
     HotelMedinaOut = models.DateTimeField(auto_now=False, blank=True)            # Выезд из отеля в Медина
     FoodChoose = models.CharField(max_length=200)                                # Выбор питания
+    RoomChoose = models.CharField(max_length=200)                                # Выбор размешения
     GidChoose = models.CharField(max_length=200)                                 # Выбор гида
     TransferChoose = models.CharField(max_length=200)                            # Выбор трансфера
     TourDeadline = models.DateTimeField(auto_now=False, blank=True)              # Срок последней регистрации
@@ -47,15 +49,23 @@ class Tours (models.Model):
     TouristVisaPrice = models.CharField(max_length=200)                          # Цена визы туриста
     MekkaHotelPrice = models.CharField(max_length=200)                           # Цена отеля в Мекке
     MedinaHotelPrice = models.CharField(max_length=200)                          # Цена отеля в Медина
-    TourFoodPrice = models.CharField(max_length=200)                             # Питание
     TransferPrice = models.CharField(max_length=200)                             # Трансфер
     HadjKitPrice = models.CharField(max_length=200)                              # Хадж набор
     GidPrice = models.CharField(max_length=200)                                  # Гид
     Comission = models.CharField(max_length=200)                                 # Комиссия
     TourDiscount = models.CharField(max_length=200)                              # Скидка
+    FoodPriceRO = models.CharField(max_length=200)                               # Питание за RO
+    FoodPriceBB = models.CharField(max_length=200)                               # Питание за BB
+    FoodPriceHB = models.CharField(max_length=200)                               # Питание за HB
+    FoodPriceFB = models.CharField(max_length=200)                               # Питание за FB
+    FoodPriceAI = models.CharField(max_length=200)                               # Питание за AI
+    RoomPriceSGL = models.CharField(max_length=200)                              # Цена за размешение SGL
+    RoomPriceDBL = models.CharField(max_length=200)                              # Цена за размешение DBL
+    RoomPriceTRP = models.CharField(max_length=200)                              # Цена за размешение TRP
+    RoomPriceQDR = models.CharField(max_length=200)                              # Цена за размешение QDR
     TourSummary = models.CharField(max_length=200)                               # Итого тура
     TourCreateDate = models.DateTimeField(auto_now=False, blank=True)            # Дата создания тура
-#-------------------------------------------36 строк---------------------------------
+#-------------------------------------------46 строк---------------------------------
 
 #-------Класс БД гиды -----------------------------------------------
 class Gids (models.Model):

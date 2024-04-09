@@ -58,8 +58,8 @@
             <div id="FlightCompanyContainer" class="FlightCompanyContainer">
                 <label for="AirlineChoose"> Выберите авиакомпанию: </label>
                 <select id="AirlineChoose" name="AirlineChoose" class="AirlineChoose" required>
-                    {% for i in GidData %}
-                    <option value="{{i.GidName}}">{{i.GidName}}</option>
+                    {% for i in AirlineData %}
+                    <option value="{{i.AirlineName}}">{{i.AirlineName}}</option>
                     {% endfor %}
                 </select>
             </div>

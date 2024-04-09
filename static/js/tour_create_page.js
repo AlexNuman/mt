@@ -1,6 +1,4 @@
-//----Создание нового тура -------------//
-var TourData;
-/*---отправка данных в БД для сохранения ----------
+/*---отправка данных в БД для сохранения ----------*/
 $('#NewTourForm').submit(function() {
   $.ajax({
     url: '/ajax-server/',
@@ -11,15 +9,16 @@ $('#NewTourForm').submit(function() {
       PaketName: $("#PaketName").val(),
       TourRoute: $("#TourRoute").val(),
       DepartureFromOrigin: $("#DepartureFromOrigin").val(),
-      TransitToArrival: TransitToArrival_1,
-      TransitToDeparture: TransitToDeparture_1,
+      TransitToArrival: $("#TransitToArrival").val(),
+      TransitToDeparture: $("#TransitToDeparture").val(),
       ArrivalDestination: $("#ArrivalDestination").val(),
-      WaitingTimeTo: WaitingTimeTo_01,
+      WaitingTimeTo: $("#WaitingTimeTo").text(),
       DepartureFromDestination: $("#DepartureFromDestination").val(),
-      TransitFromArrival: TransitFromArrival_1,
-      TransitFromDeparture: TransitFromDeparture_1,
+      TransitFromArrival: $("#TransitFromArrival").val(),
+      TransitFromDeparture: $("#TransitFromDeparture").val(),
       ArrivalOrigin: $("#ArrivalOrigin").val(),
-      WaitingTimeFrom: WaitingTimeFrom_01,
+      WaitingTimeFrom: $("#WaitingTimeFrom").text(),
+      AirlineChoose: $("#AirlineChoose").val(),
       TouristQuantity: $("#TouristQuantity").val(),
       HotelMekka: $("#HotelMekka").val(),
       HotelMekkaIn: $("#HotelMekkaIn").val(),
@@ -28,6 +27,7 @@ $('#NewTourForm').submit(function() {
       HotelMedinaIn: $("#HotelMedinaIn").val(),
       HotelMedinaOut: $("#HotelMedinaOut").val(),
       FoodChoose: $("#FoodChoose").val(),
+      RoomChoose: $("#RoomChoose").val(),
       GidChoose: $("#GidChoose").val(),
       TransferChoose: $("#TransferChoose").val(),
       TourDeadline: $("#TourDeadline").val(),
@@ -35,17 +35,24 @@ $('#NewTourForm').submit(function() {
       TouristVisaPrice: $("#TouristVisaPrice").val(),
       MekkaHotelPrice: $("#MekkaHotelPrice").val(),
       MedinaHotelPrice: $("#MedinaHotelPrice").val(),
-      TourFoodPrice: $("#TourFoodPrice").val(),
       TransferPrice: $("#TransferPrice").val(),
       HadjKitPrice: $("#HadjKitPrice").val(),
       GidPrice: $("#GidPrice").val(),
       Comission: $("#Comission").val(),
       TourDiscount: $("#TourDiscount").val(),
+      FoodPriceRO: $("#FoodPrice_RO").val(),
+      FoodPriceBB: $("#FoodPrice_BB").val(),
+      FoodPriceHB: $("#FoodPrice_HB").val(),
+      FoodPriceFB: $("#FoodPrice_FB").val(),
+      FoodPriceAI: $("#FoodPrice_AI").val(),
+      RoomPriceSGL: $("#RoomPrice_SGL").val(),
+      RoomPriceDBL: $("#RoomPrice_DBL").val(),
+      RoomPriceTRP: $("#RoomPrice_TRP").val(),
+      RoomPriceQDR: $("#RoomPrice_QDR").val(),
       TourSummary: $("#TourSummary").text()},
     success: function(data){
       info = data[1];
       alert(info)
-      modal.style.display = "none";
       $.ajax({
         url: '/ajax-server/',
         method: 'get',
@@ -60,25 +67,19 @@ $('#NewTourForm').submit(function() {
   });
   return false;
 });
-*/
-//--------------------------------------------------------//
-//-----------Подсчет цен ---------------------------------//
-/*
-var PriceContainer = document.getElementById('PriceContainer');
 
-
-
-*/
-
-/*
-var MekkaHotel_Days = document.getElementById('MekkaHotel_Days');
-var MedinaHotel_Days = document.getElementById('MedinaHotel_Days');
-*/
 //--срабатывает на клик по документу----//
 document.onclick = function() {
   //----переменные для подсчета дней -----------------------
   var WaitTimeTo = document.getElementById('WaitingTimeTo');
   var WaitTimeFrom = document.getElementById('WaitingTimeFrom');
+  var TourData;
+  var TransitToArrival_1;
+  var TransitToDeparture_1;
+  var TransitFromArrival_1;
+  var TransitFromDeparture_1;
+  var WaitingTimeTo_01;
+  var WaitingTimeFrom_01;
   //----изменения типа рейса-------------------
   if ($("#FlightType").val() == 'Прямой рейс') {
     $("#TransitToArrival").css('opacity', '0');
@@ -93,6 +94,12 @@ document.onclick = function() {
     $("#wait_lab_2").css('display', 'none');
     $("#lab_transit_1").css('display', 'none');
     $("#lab_transit_2").css('display', 'none');
+    $("#TransitToArrival").val('1111-11-11 11:11');
+    $("#TransitToDeparture").val('1111-11-11 11:11');
+    $("#TransitFromArrival").val('1111-11-11 11:11');
+    $("#TransitFromDeparture").val('1111-11-11 11:11');
+    $("#WaitingTimeTo").text('-----');
+    $("#WaitingTimeFrom").text('-----');
   } else {
       $("#TransitToArrival").css('opacity', '100');
       $("#TransitToArrival").attr('disabled', false);
@@ -145,38 +152,8 @@ document.onclick = function() {
   +Number(Comission.value)+Number(FoodPriceChoose(selectFood.value))+Number(RoomPriceChoose(selectRoom.value));
 };
 
-
-  /*
-  SummaryResult.textContent = ++
-//--подсчет разницы времени---//
-
-
-
-
-
-
-  */
-
-//-----------------------------------------------------------------
-
-/*
-// Импортируем библиотеку Moment.js
-const moment = require('moment');
-
-// Две строки даты
-const first = '01/25/2020';
-const second = 'January 15, 2020';
-
-// Создаем два объекта момента с датами для сравнения
-const x = moment(first, 'L');
-const y = moment(second, 'LL');
-
-// Получаем разницу в днях
-const days = x.diff(y, 'days');
-
-console.log(days + " дней"); // Вывод: 10 дней
-*/
-
+//--------------------------------------------------------------------------------------------------------------------//
+//-------------РАЗДЕЛ ФУНКЦИИ-----------------------------------------------------------------------------------------//
 //----Функция конвертации времени------
 function convertMinutesToHoursAndMinutes(totalMinutes) {
   const hours = Math.floor(totalMinutes / 60);
@@ -188,19 +165,7 @@ function convertMinutesToHoursAndMinutes(totalMinutes) {
   };
 };
 //--------------------------------------
-//--функция для подсчета разницы времени в минутах------
-function getHumanizedValue(diffInHours) {
-  const HOURS_IN_DAY = 24;
-  const days = Math.floor(diffInHours / HOURS_IN_DAY);
-  const hours = diffInHours % HOURS_IN_DAY;
-  if (isNaN(diffInHours)) {
-    return `0`;
-  } else {
-    return `${hours}`;
-  };
-};
-//-----------------------------------------------------
-//-----проверка на NaN-----------------------
+//-----функция проверки на NaN-----------------------
 function IsNan (data) {
   if (isNaN(data)) {
     return `0`;
