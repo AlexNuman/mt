@@ -63,9 +63,11 @@ class Tours (models.Model):
     RoomPriceDBL = models.CharField(max_length=200)                              # Цена за размешение DBL
     RoomPriceTRP = models.CharField(max_length=200)                              # Цена за размешение TRP
     RoomPriceQDR = models.CharField(max_length=200)                              # Цена за размешение QDR
+    TourCurrency = models.CharField(max_length=200)                              # Валюта тура
+    TourTime = models.CharField(max_length=200)                                  # Время тура
     TourSummary = models.CharField(max_length=200)                               # Итого тура
     TourCreateDate = models.DateTimeField(auto_now=False, blank=True)            # Дата создания тура
-#-------------------------------------------46 строк---------------------------------
+#-------------------------------------------48 строк---------------------------------
 
 #-------Класс БД гиды -----------------------------------------------
 class Gids (models.Model):

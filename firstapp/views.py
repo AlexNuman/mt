@@ -187,8 +187,10 @@ def AjaxServer(request):
         HotelData = Hotels.objects.values()
         TransferData = TourTransfer.objects.values()
         AirlineData = Airlines.objects.values()
+        SettingsData = SiteSettings.objects.get(SettingsType='Админ')
         return render(request, 'tour_create_page.html', context={'GidData': GidData, 'HotelData': HotelData,
-                                                                 'TransferData': TransferData, 'AirlineData':AirlineData})
+                                                                 'TransferData': TransferData, 'AirlineData': AirlineData,
+                                                                 'SettingsData': SettingsData})
 # -----------> Окно информация о пользователе----------------
     elif switcher == 'userinfo':
         login = Users.objects.get(user_login=request.session['SessionLogin'])
@@ -255,6 +257,7 @@ def AjaxServer(request):
             HotelMedinaIn = request.GET.get('HotelMedinaIn')
             HotelMedinaOut = request.GET.get('HotelMedinaOut')
             FoodChoose = request.GET.get('FoodChoose')
+            RoomChoose = request.GET.get('RoomChoose')
             GidChoose = request.GET.get('GidChoose')
             TransferChoose = request.GET.get('TransferChoose')
             TourDeadline = request.GET.get('TourDeadline')
@@ -276,6 +279,8 @@ def AjaxServer(request):
             RoomPriceDBL = request.GET.get('RoomPriceDBL')
             RoomPriceTRP = request.GET.get('RoomPriceTRP')
             RoomPriceQDR = request.GET.get('RoomPriceQDR')
+            TourCurrency = request.GET.get('TourCurrency')
+            TourTime = request.GET.get('TourTime')
             TourSummary = request.GET.get('TourSummary')
             TourCreateDate = datetime.now()
             new_tour = Tours.objects.create(FlightType=FlightType, PaketName=PaketName, TourRoute=TourRoute,
@@ -287,16 +292,16 @@ def AjaxServer(request):
                                             AirlineChoose=AirlineChoose, TouristQuantity=TouristQuantity,
                                             HotelMekka=HotelMekka, HotelMekkaIn=HotelMekkaIn, HotelMekkaOut=HotelMekkaOut,
                                             HotelMedina=HotelMedina, HotelMedinaIn=HotelMedinaIn,
-                                            HotelMedinaOut=HotelMedinaOut, FoodChoose=FoodChoose, GidChoose=GidChoose,
-                                            TransferChoose=TransferChoose, TourDeadline=TourDeadline,
+                                            HotelMedinaOut=HotelMedinaOut, FoodChoose=FoodChoose, RoomChoose=RoomChoose,
+                                            GidChoose=GidChoose, TransferChoose=TransferChoose, TourDeadline=TourDeadline,
                                             FlightTicketPrice=FlightTicketPrice, TouristVisaPrice=TouristVisaPrice,
                                             MekkaHotelPrice=MekkaHotelPrice, MedinaHotelPrice=MedinaHotelPrice,
                                             TransferPrice=TransferPrice, HadjKitPrice=HadjKitPrice, GidPrice=GidPrice,
                                             Comission=Comission, TourDiscount=TourDiscount, FoodPriceRO=FoodPriceRO,
                                             FoodPriceBB=FoodPriceBB, FoodPriceHB=FoodPriceHB, FoodPriceFB=FoodPriceFB,
                                             FoodPriceAI=FoodPriceAI, RoomPriceSGL=RoomPriceSGL, RoomPriceDBL=RoomPriceDBL,
-                                            RoomPriceTRP=RoomPriceTRP, RoomPriceQDR=RoomPriceQDR, TourSummary=TourSummary,
-                                            TourCreateDate=TourCreateDate)
+                                            RoomPriceTRP=RoomPriceTRP, RoomPriceQDR=RoomPriceQDR, TourCurrency=TourCurrency,
+                                            TourTime=TourTime, TourSummary=TourSummary, TourCreateDate=TourCreateDate)
             return JsonResponse(done)
         except:
             return JsonResponse(error)
@@ -834,14 +839,25 @@ def AjaxServer(request):
         done = {1: 'Настройки сохранены'}
         error = {1: 'Ощибка сохранения!'}
         if Request == 'Get' and UserType == 'Admin':
-            return render(request, 'settings_page_admin.html')
-        elif Request == 'Save':
-            SettingsType = ''
-            currency_choose = ''
-            time_choose = ''
-            new_settings = SiteSettings.objects.create(SettingsType=SettingsType, Block='---', NoticeInfo='---',
-                                                   CurrencyInfo=currency_choose, TimeInfo=time_choose)
-            return JsonResponse(done)
+            try:
+                NewSiteSettings = SiteSettings.objects.get(SettingsType='Админ')
+            except:
+                NewSiteSettings = SiteSettings.objects.create(SettingsType='Админ', Block='---', NoticeInfo='---',
+                                                              CurrencyInfo='Доллар', TimeInfo='Час')
+            return render(request, 'settings_page_admin.html', context={'SiteSettings': NewSiteSettings})
+        elif Request == 'Save' and UserType == 'Admin':
+            done = {1: 'Настройки сохранены!'}
+            error = {1: 'Ошибка сохранения!'}
+            SiteCurrency = request.GET.get('SiteCurrency')
+            SiteTime = request.GET.get('SiteTime')
+            try:
+                SiteSettingsDB = SiteSettings.objects.get(SettingsType='Админ')
+                SiteSettingsDB.CurrencyInfo = SiteCurrency
+                SiteSettingsDB.TimeInfo = SiteTime
+                SiteSettingsDB.save()
+                return JsonResponse(done)
+            except:
+                return JsonResponse(error)
     # ------->   раздел группирования клиентов -----------------
     elif switcher == 'TouristGroup':
         done = {1: 'Группа сохранена!'}

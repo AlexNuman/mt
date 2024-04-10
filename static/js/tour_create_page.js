@@ -29,7 +29,7 @@ $('#NewTourForm').submit(function() {
       FoodChoose: $("#FoodChoose").val(),
       RoomChoose: $("#RoomChoose").val(),
       GidChoose: $("#GidChoose").val(),
-      TransferChoose: $("#TransferChoose").val(),
+      TransferChoose: $("#TransferChooseCombo").text(),
       TourDeadline: $("#TourDeadline").val(),
       FlightTicketPrice: $("#FlightTicketPrice").val(),
       TouristVisaPrice: $("#TouristVisaPrice").val(),
@@ -49,6 +49,8 @@ $('#NewTourForm').submit(function() {
       RoomPriceDBL: $("#RoomPrice_DBL").val(),
       RoomPriceTRP: $("#RoomPrice_TRP").val(),
       RoomPriceQDR: $("#RoomPrice_QDR").val(),
+      TourCurrency: $("#site_currency").text(),
+      TourTime: $("#site_time").text(),
       TourSummary: $("#TourSummary").text()},
     success: function(data){
       info = data[1];
@@ -151,8 +153,15 @@ document.onclick = function() {
   +Number(PriceMedinaHotel.value)+Number(TourTrans.value)+Number(HadjKit.value)+Number(Gid.value)
   +Number(Comission.value)+Number(FoodPriceChoose(selectFood.value))+Number(RoomPriceChoose(selectRoom.value));
 };
-
 //--------------------------------------------------------------------------------------------------------------------//
+$('#TransferChooseCombo').text($('#TransferChoose').val());
+$('#TransferChoose').change(function() {
+  if (/-/.test($('#TransferChooseCombo').text())) {
+    $('#TransferChooseCombo').text($('#TransferChoose').val());
+  } else {
+    $('#TransferChooseCombo').text($('#TransferChooseCombo').text()+' - '+$('#TransferChoose').val());
+  };
+});
 //-------------РАЗДЕЛ ФУНКЦИИ-----------------------------------------------------------------------------------------//
 //----Функция конвертации времени------
 function convertMinutesToHoursAndMinutes(totalMinutes) {

@@ -132,8 +132,8 @@ $('#active_tours tr').
 //----Нажатие кнопки инфо -------------------------------------------------------------
       $('#InfoBtn').click(function(){
         modal.style.display = "block";
-        ModalWindow.style.width = "550px";
-        ModalWindow.style.height = "850px";
+        ModalWindow.style.width = "1100px";
+        ModalWindow.style.height = "750px";
         $('#ModalInfoBlock').empty();
         $("#InfoHead h2").text('Информация о туре');
         $("#InfoHead h2").css('font-size', '14pt');

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/settings_page_admin.css' %}">
 </head>
 <body>
-    <form method="post" id="NewTourForm" action="">
+    <form method="post" id="SiteSettingsForm" action="">
         {% csrf_token %}
         <label class="currency_label">
             <span>Выберите валюту:&nbsp</span>
@@ -36,6 +36,9 @@
         </label>
         <p></p>
         <p></p>
+        <span style="display: none;" id="SiteCurrency">{{SiteSettings.CurrencyInfo}}</span>
+        <span style="display: none;" id="SiteTime">{{SiteSettings.TimeInfo}}</span>
+        <br>
         <input type="submit" id="StngSaveBtn" class="StngSaveBtn" value="Сохранить">
     </form>
 

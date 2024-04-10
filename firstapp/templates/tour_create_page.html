@@ -35,7 +35,7 @@
                 <input type="datetime-local" name="TransitToDeparture" id="TransitToDeparture" class="TransitToDeparture" required>
                 <label for="ArrivalDestination">Прилет: </label>
                 <input type="datetime-local" name="ArrivalDestination" id="ArrivalDestination" class="ArrivalDestination" required>
-                <p id="wait_lab_1">Ожидание (часы):
+                <p id="wait_lab_1">Ожидание (<span id="site_time">{{SettingsData.TimeInfo}}</span>):
                     <span id="WaitingTimeTo" class="WaitingTimeTo">0</span>
                 </p>
             </div>
@@ -49,7 +49,7 @@
                 <input type="datetime-local" name="TransitFromDeparture" id="TransitFromDeparture" class="TransitFromDeparture" required>
                 <label for="ArrivalOrigin">Прилет: </label>
                 <input type="datetime-local" name="ArrivalOrigin" id="ArrivalOrigin" class="ArrivalOrigin" required>
-                <p id="wait_lab_2">Ожидание (часы):
+                <p id="wait_lab_2">Ожидание (<span>{{SettingsData.TimeInfo}}</span>):
                     <span id="WaitingTimeFrom" class="WaitingTimeFrom">0</span>
                 </p>
             </div>
@@ -132,13 +132,16 @@
                     <option value="{{i.TransportType}}">{{i.TransportType}}</option>
                     {% endfor %}
                 </select>
+                <span>-----><span id="TransferChooseCombo">111</span></span>
+
             </div>
             <label for="DeadlineContainer" class="container_label"> Срок регистрации туристов: </label>
             <p></p>
             <div id="DeadlineContainer" class="DeadlineContainer">
                 <input type="datetime-local" name="TourDeadline" id="TourDeadline" class="TourDeadline" required>
             </div>
-            <label for="PriceContainer" class="container_label">Формирование цен ($): </label>
+            <label for="PriceContainer" class="container_label">Формирование цен <span id="site_currency">{{SettingsData.CurrencyInfo}}</span>:</label>
+
             <p></p>
             <div id="PriceContainer" class="PriceContainer">
                 <span>Основные:</span> <br>
@@ -168,7 +171,7 @@
                 <input type="number" placeholder="Quadro - QDR" name="FlightTicketPrice" id="RoomPrice_QDR" class="FlightTicket" required>
                 <p>Итого:
                 <span id="TourSummary" class="TourSummary">0</span>
-                    $
+                    <span>{{SettingsData.CurrencyInfo}}</span>
                 </p>
 
             </div>
