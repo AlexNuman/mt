@@ -1,3 +1,4 @@
+
 //----кнопка добававить туриста ------------------------------------
 var AddNewTourist = document.getElementById('add_new_tourist');
 AddNewTourist.onclick = function() {
@@ -11,7 +12,7 @@ AddNewTourist.onclick = function() {
     success: function(data){
       Info = data;
       modal.style.display = "block";
-      ModalWindow.style.width = "340px";
+      ModalWindow.style.width = "400px";
       ModalWindow.style.height = "820px";
       $('#ModalInfoBlock').empty();
       $('#ModalInfoBlock').html(Info);
@@ -23,8 +24,8 @@ var OpenInfo = document.getElementById('OpenInfo');
 var CloseInfo = document.getElementById('CloseInfo');
 OpenInfo.onclick = function() {
   $( "#TourInfoContainer" ).css({
-    'width': '510px',
-    'height': '750px',
+    'width': '1200px',
+    'height': '600px',
 	'border-radius': '5px',
 	'border': 'groove 3px',
     'color': 'rgb(88, 68, 68)',
@@ -63,10 +64,25 @@ CloseInfo.onclick = function() {
 };
 
 //-----------Подсчет цен ---------------------------------//
-
 //--срабатывает на клик по документу----//
 $(document).ready(function(){
   document.onclick = function() {
+    // ------Получение цен из базы данных
+    $.ajax({
+      url: '/ajax-server/',
+      method: 'get',
+      dataType: 'json',
+      data: {switсh: 'TourSummaryReturn',
+        TourId: $("#tour_id").text(),
+        RoomChoose: $("#room_choose").val(),
+        FoodChoose: $("#FoodChoose").val()},
+      success: function(data){
+        info = data[1];
+        $('#tourist_summary').text(info);
+      }
+    });
+//-------------------------------------------
+  //-------расчет общей суммы тура -----------------
 // выбор галочки виза-------------------------------------
     if ($('#visa_choose').prop('checked')) {
       visa = 0;
@@ -271,7 +287,7 @@ $('#tourist_list td').each(function(){
 });
 /*----------------------------------------------------*/
 
-
+//$("#tourist_tel").mask("+7 (999) 999-9999");
 /*
 //------------------------------------------------------------------
 

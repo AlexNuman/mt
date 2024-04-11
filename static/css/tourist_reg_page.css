@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Playfair+Display&family=Poiret+One&family=Prata&family=Tektur:wght@500&family=Unbounded&display=swap');
 .tourist_input {
   display: flex;
   flex-direction: column;
@@ -7,19 +7,28 @@
   font-size: 12pt;
 }
 .tourist_label {
-  font-size: 14pt;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12pt;
+  font-family: 'Unbounded', sans-serif;
 }
 .fio_tourist, .birth_tourist, .adress_tourist,.passport_n,.tourist_IIN,.tourist_pay, .tourist_tel, .tour_type, .tourist_type, .passport_ex, .room_choose, .FoodChoose {
-  width: 300px;
+  font-family: 'Unbounded', sans-serif;
+  width: 350px;
   height: 30px;
-  font-size: 12pt;
+  font-size: 10pt;
   border-radius: 3px;
   margin-bottom: 10px;
 }
 .tourist_regist {
+  font-family: 'Unbounded', sans-serif;
   margin-top: 10px;
   height: 30px;
   width: 100px;
   border-radius: 3px;
+}
+label, span {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10pt;
+}
+input:focus {
+    outline: none;
 }

@@ -497,11 +497,11 @@ def AjaxServer(request):
     elif switcher == 'TouristList':
         TourID = request.GET.get('TourId')
         TourID = TourID.strip()
-        tour = Tours.objects.get(id=TourID)
+        TourData = Tours.objects.get(id=TourID)
         TouristData = Clients.objects.filter(TourID__exact=TourID).order_by('StatusPay')
         #TouristData = Clients.objects.values()
         return render(request, 'tourist_list.html',
-                      context={'tour': tour, 'TouristData': TouristData, 'Len': len(TouristData), 'Seats': tour.TouristQuantity-len(TouristData)})
+                      context={'TourData': TourData, 'TouristData': TouristData, 'Len': len(TouristData), 'Seats': TourData.TouristQuantity-len(TouristData)})
     elif switcher == 'AllTouristList':
         tourist = Clients.objects.values()
         return render(request, 'all_tourist_list.html', context={'TouristData': tourist, 'Len': len(tourist)})
@@ -528,7 +528,7 @@ def AjaxServer(request):
         Discount = tour.TourDiscount
         return render(request, 'tourist_reg_page.html', context={'SummaryPay': SummaryPay,
                                                                  'VisaPay': VisaPay, 'TransferPay': TransferPay,
-                                                                 'Discount': Discount})
+                                                                 'Discount': Discount, 'TourData': tour})
 # ---->Кнопка добавить Гида------------------
     elif switcher == 'AddNewGidBtn':
         return render(request, 'gid_regist_page.html')
@@ -1006,6 +1006,37 @@ def AjaxServer(request):
                     PersonReturn = 'Нет в базе!'
             done = {1: PersonReturn}
             return JsonResponse(done)
+        # -->>Запрос цен на тур-----
+    elif switcher == 'TourSummaryReturn':
+        TourId = request.GET.get('TourId')
+        RoomChoose = request.GET.get('RoomChoose')
+        FoodChoose = request.GET.get('FoodChoose')
+        TourData = Tours.objects.get(id=TourId)
+        if RoomChoose == 'SGL':
+            RoomChoose = TourData.RoomPriceSGL
+        elif RoomChoose == 'DBL':
+            RoomChoose = TourData.RoomPriceDBL
+        elif RoomChoose == 'TRP':
+            RoomChoose = TourData.RoomPriceTRP
+        elif RoomChoose == 'QDR':
+            RoomChoose = TourData.RoomPriceQDR
+        else:
+            RoomChoose = '0'
+        if FoodChoose == 'RO':
+            FoodChoose = TourData.FoodPriceRO
+        elif FoodChoose == 'BB':
+            FoodChoose = TourData.FoodPriceBB
+        elif FoodChoose == 'HB':
+            FoodChoose = TourData.FoodPriceHB
+        elif FoodChoose == 'FB':
+            FoodChoose = TourData.FoodPriceFB
+        elif FoodChoose == 'AI':
+            FoodChoose = TourData.FoodPriceAI
+        else:
+            FoodChoose = '0'
+        TourSummaryReturn = int(TourData.FlightTicketPrice)+int(TourData.TouristVisaPrice)+int(TourData.MekkaHotelPrice)+int(TourData.MedinaHotelPrice)+int(TourData.TransferPrice)+int(TourData.HadjKitPrice)+int(TourData.GidPrice)+int(TourData.Comission)+int(FoodChoose)+int(RoomChoose)
+        done = {1: TourSummaryReturn}
+        return JsonResponse(done)
 #------->   раздел тестирования функии -----------------
     elif switcher == 'Test':
         tourID = 5

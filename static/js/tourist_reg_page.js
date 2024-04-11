@@ -20,24 +20,56 @@ $('#TouristForm').submit(function() {
     success: function(data){
       info = data[1];
       alert(info)
-      modal.style.display = "none";
-      $.ajax({
-      url: '/ajax-server/',
-      method: 'get',
-      dataType: 'html',
-      data: {switсh: 'TouristList', TourId: $("#tour_id").text()},
-      success: function(data){
-        TouristList = data;
-        $('#info_reciever').html(TouristList);
+      if (info == 'Турист добавлен!') {
         modal.style.display = "none";
-      }
+      } else {
+        modal.style.display = "block";
+      };
+      $.ajax({
+        url: '/ajax-server/',
+        method: 'get',
+        dataType: 'html',
+        data: {switсh: 'TouristList', TourId: $("#tour_id").text()},
+        success: function(data){
+          TouristList = data;
+          $('#info_reciever').html(TouristList);
+        }
       });
     }
   });
   return false;
 });
 //------------------------------------------------------------------------------------
-
-
-
-
+//-------ввод телефона
+var input = document.querySelector('#tourist_tel');
+// Проверяем фокус
+input.addEventListener('focus', () => {
+    // Если там ничего нет или есть, но левое
+    if (!/^\+\d*$/.test(input.value)) {
+        // Вставляем знак плюса как значение
+        input.value = '+';
+    }
+});
+// Отменяем ввод не цифр
+input.addEventListener('keypress', (e) => {
+    if (!/\d/.test(e.key)) {
+        e.preventDefault();
+    }
+});
+//--------------------------------------------------------------------------------
+//------ввод только цифр в ИИН
+var IINinput = document.querySelector('#tourist_IIN');
+IINinput.addEventListener('keypress', (e) => {
+    if (!/\d/.test(e.key)) {
+        e.preventDefault();
+    }
+});
+//-----------------------------------------------------------------------------
+//------ввод только цифр в сумму
+var IINinput = document.querySelector('#tourist_pay');
+IINinput.addEventListener('keypress', (e) => {
+    if (!/\d/.test(e.key)) {
+        e.preventDefault();
+    }
+});
+//-----------------------------------------------------------------------------

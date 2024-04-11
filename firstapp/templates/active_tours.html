@@ -23,14 +23,14 @@
             <th style="width: 120px;" class="tour_list">Рейс</th>
             <th style="width: 150px;" class="tour_list">Название пакета</th>
             <th style="width: 300px;" class="tour_list">Маршрут</th>
-            <th style="width: 150px;" class="tour_list">Вылет туда</th>
-            <th style="width: 150px;" class="tour_list">Прилет туда</th>
-            <th style="width: 150px;" class="tour_list">Вылет обратно</th>
-            <th style="width: 150px;" class="tour_list">Прилет обратно</th>
-            <th style="width: 110px;" class="tour_list">Туристы(чел)</th>
-            <th style="width: 150px;" class="tour_list">Срок последней регистрации</th>
-            <th style="width: 80px;" class="tour_list">Итого($)</th>
-            <th style="width: 150px;" class="tour_list">Дата создания</th>
+            <th style="width: 100px;" class="tour_list">Вылет туда</th>
+            <th style="width: 100px;" class="tour_list">Прилет туда</th>
+            <th style="width: 100px;" class="tour_list">Вылет обратно</th>
+            <th style="width: 100px;" class="tour_list">Прилет обратно</th>
+            <th style="width: 100px;" class="tour_list">Туристы(чел)</th>
+            <th style="width: 100px;" class="tour_list">Срок последней регистрации</th>
+            <th style="width: 150px;" class="tour_list">Итого($)</th>
+            <th style="width: 100px;" class="tour_list">Дата создания</th>
             <th style="width: 50px;" class="tour_list"> ID </th>
         </tr>
         </thead>
@@ -47,7 +47,7 @@
             <td class="tour_list"> {{i.ArrivalOrigin}}</td>
             <td class="tour_list"> {{i.TouristQuantity}}</td>
             <td class="tour_list"> {{i.TourDeadline}}</td>
-            <td class="tour_list"> {{i.TourSummary}}</td>
+            <td class="tour_list"> {{i.TourSummary}} - {{i.TourCurrency}}</td>
             <td class="tour_list"> {{i.TourCreateDate}}</td>
             <td class="tour_list"> {{i.id}}</td>
             {% endfor %}

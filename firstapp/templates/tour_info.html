@@ -28,134 +28,25 @@
         <tbody>
             <tr>
                 <td>
-                    Дата вылета туда
+                    Направление рейса
                 </td>
                 <td>
-                    {{TourData.DepartureFromOrigin}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Транзит туда - прилет
+                    {{TourData.FlightType}}
                 </td>
                 <td>
-                    {{TourData.TransitToArrival}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Транзит туда - вылет
-                </td>
-                <td>
-                    {{TourData.TransitToDeparture}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Дата прилета туда
-                </td>
-                <td>
-                    {{TourData.ArrivalDestination}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Ожидание транзит - туда
-                </td>
-                <td>
-                    {{TourData.WaitingTimeTo}}
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Дата вылета обратно
-                </td>
-                <td>
-                    {{TourData.DepartureFromDestination}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Транзит обратно - прилет
-                </td>
-                <td>
-                    {{TourData.TransitFromArrival}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Транзит обратно - вылет
-                </td>
-                <td>
-                    {{TourData.TransitFromDeparture}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Дата прилета обратно
-                </td>
-                <td>
-                    {{TourData.ArrivalOrigin}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Ожидание транзит - обратно
-                </td>
-                <td>
-                    {{TourData.WaitingTimeFrom}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Количество туристов
-                </td>
-                <td>
-                    {{TourData.TouristQuantity}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Отель в Мекке
-                </td>
-                <td>
-                    {{TourData.HotelMekka}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Отель в Медина
-                </td>
-                <td>
-                    {{TourData.HotelMedina}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Выбор питания
-                </td>
-                <td>
-                    {{TourData.FoodChoose}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Выбор гида
-                </td>
-                <td>
-                    {{TourData.GidChoose}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Выбор трансфера
+                    Трансфер
                 </td>
                 <td>
                     {{TourData.TransferChoose}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Название пакета
+                </td>
+                <td>
+                    {{TourData.PaketName}}
+                </td>
                 <td>
                     Срок последней регистрации
                 </td>
@@ -165,93 +56,305 @@
             </tr>
             <tr>
                 <td>
+                    Маршрут
+                </td>
+                <td>
+                    {{TourData.TourRoute}}
+                </td>
+                <td>
                     Цена авиабилета
                 </td>
                 <td>
-                    {{TourData.FlightTicketPrice}}
+                    {{TourData.FlightTicketPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Дата вылета туда
+                </td>
+                <td>
+                    {{TourData.DepartureFromOrigin}}
+                </td>
                 <td>
                     Цена визы туриста
                 </td>
                 <td>
-                    {{TourData.TouristVisaPrice}}
+                    {{TourData.TouristVisaPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Транзит туда - прилет
+                </td>
+                <td>
+                    {{TourData.TransitToArrival}}
+                </td>
                 <td>
                     Цена отеля в Мекке
                 </td>
                 <td>
-                    {{TourData.MekkaHotelPrice}}
+                    {{TourData.MekkaHotelPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Транзит туда - вылет
+                </td>
+                <td>
+                    {{TourData.TransitToDeparture}}
+                </td>
                 <td>
                     Цена отеля в Медина
                 </td>
                 <td>
-                    {{TourData.MedinaHotelPrice}}
+                    {{TourData.MedinaHotelPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
                 <td>
-                    Питание
+                    Дата прилета туда
                 </td>
                 <td>
-                    {{TourData.TourFoodPrice}}
+                    {{TourData.ArrivalDestination}}
+                </td>
+                <td>
+                    Цена трансфер
+                </td>
+                <td>
+                    {{TourData.TransferPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
                 <td>
-                    Трансфер
+                    Ожидание транзит - туда
                 </td>
                 <td>
-                    {{TourData.TransferPrice}}
+                    {{TourData.WaitingTimeTo}} ({{TourData.TourTime}})
                 </td>
-            </tr>
-            <tr>
                 <td>
                     Хадж набор
                 </td>
                 <td>
-                    {{TourData.HadjKitPrice}}
+                    {{TourData.HadjKitPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Дата вылета обратно
+                </td>
+                <td>
+                    {{TourData.DepartureFromDestination}}
+                </td>
                 <td>
                     Гид
                 </td>
                 <td>
-                    {{TourData.GidPrice}}
+                    {{TourData.GidPrice}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Транзит обратно - прилет
+                </td>
+                <td>
+                    {{TourData.TransitFromArrival}}
+                </td>
                 <td>
                     Комиссия
                 </td>
                 <td>
-                    {{TourData.Comission}}
+                    {{TourData.Comission}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Транзит обратно - вылет
+                </td>
+                <td>
+                    {{TourData.TransitFromDeparture}}
+                </td>
                 <td>
                     Скидка
                 </td>
                 <td>
-                    {{TourData.TourDiscount}}
+                    {{TourData.TourDiscount}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Дата прилета обратно
+                </td>
+                <td>
+                    {{TourData.ArrivalOrigin}}
+                </td>
+                <td>
+                    Питание за RO
+                </td>
+                <td>
+                    {{TourData.FoodPriceRO}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ожидание транзит - обратно
+                </td>
+                <td>
+                    {{TourData.WaitingTimeFrom}} ({{TourData.TourTime}})
+                </td>
+                <td>
+                    Питание за BB
+                </td>
+                <td>
+                    {{TourData.FoodPriceBB}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выбор авиакомпании
+                </td>
+                <td>
+                    {{TourData.AirlineChoose}}
+                </td>
+                <td>
+                    Питание за HB
+                </td>
+                <td>
+                    {{TourData.FoodPriceHB}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Количество туристов
+                </td>
+                <td>
+                    {{TourData.GidChoose}}
+                </td>
+                <td>
+                    Питание за FB
+                </td>
+                <td>
+                    {{TourData.FoodPriceFB}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Отель в Мекке
+                </td>
+                <td>
+                    {{TourData.HotelMekka}}
+                </td>
+                <td>
+                    Питание за AI
+                </td>
+                <td>
+                    {{TourData.FoodPriceAI}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Заезд в отель в Мекке
+                </td>
+                <td>
+                    {{TourData.HotelMekkaIn}}
+                </td>
+                <td>
+                    Цена за размешение SGL
+                </td>
+                <td>
+                    {{TourData.RoomPriceSGL}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выезд из отеля в Мекке
+                </td>
+                <td>
+                    {{TourData.HotelMekkaOut}}
+                </td>
+                <td>
+                    Цена за размешение DBL
+                </td>
+                <td>
+                    {{TourData.RoomPriceDBL}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Отель в Медина
+                </td>
+                <td>
+                    {{TourData.HotelMedina}}
+                </td>
+                <td>
+                    Цена за размешение TRP
+                </td>
+                <td>
+                    {{TourData.RoomPriceTRP}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Заезд в отель в Медина
+                </td>
+                <td>
+                    {{TourData.HotelMedinaIn}}
+                </td>
+                <td>
+                    Цена за размешение QDR
+                </td>
+                <td>
+                    {{TourData.RoomPriceQDR}} - {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выезд из отеля в Медина
+                </td>
+                <td>
+                    {{TourData.HotelMedinaOut}}
+                </td>
+                <td>
+                    Валюта тура
+                </td>
+                <td>
+                    {{TourData.TourCurrency}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выбор питания
+                </td>
+                <td>
+                    {{TourData.FoodChoose}}
+                </td>
+                <td>
+                    Время тура
+                </td>
+                <td>
+                    {{TourData.TourTime}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выбор размешения
+                </td>
+                <td>
+                    {{TourData.RoomChoose}}
+                </td>
                 <td>
                     Итого тура
                 </td>
                 <td>
-                    {{TourData.TourSummary}}
+                    {{TourData.TourSummary}} - {{TourData.TourCurrency}}
                 </td>
             </tr>
             <tr>
+                <td>
+                    Выбор гида
+                </td>
+                <td>
+                    {{TourData.GidChoose}}
+                </td>
                 <td>
                     Дата создания тура
                 </td>
@@ -259,8 +362,6 @@
                     {{TourData.TourCreateDate}}
                 </td>
             </tr>
-
-
         </tbody>
     </table>
 </div>

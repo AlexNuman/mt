@@ -13,15 +13,15 @@
           {% csrf_token %}
           <div class="tourist_input">
               <div class="tourist_label">Введите данные туриста</div><br>
-              <input type="text" name="fio_tourist" placeholder="ФИО" id="fio_tourist" class="fio_tourist" >
+              <input type="text" name="fio_tourist" placeholder="ФИО" id="fio_tourist" class="fio_tourist" required>
               <label for="birth_tourist"> Дата рождения: </label>
-              <input type="date" name="birth_tourist" id="birth_tourist" class="birth_tourist" >
-              <input type="text" name="adress_tourist" placeholder="Адрес" id="adress_tourist" class="adress_tourist" >
-              <input type="text" name="tourist_IIN" placeholder="ИИН" id="tourist_IIN" class="tourist_IIN" >
-              <input type="text" name="passport_n" placeholder="№ паспорта" id="passport_n" class="passport_n" >
+              <input type="date" name="birth_tourist" id="birth_tourist" class="birth_tourist" required>
+              <input type="text" name="adress_tourist" placeholder="Адрес" id="adress_tourist" class="adress_tourist" required>
+              <input type="text" name="tourist_IIN" placeholder="ИИН" id="tourist_IIN" class="tourist_IIN" required>
+              <input type="text" name="passport_n" placeholder="№ паспорта" id="passport_n" class="passport_n" required>
               <label for="passport_ex"> Срок паспорта: </label>
-              <input type="date" name="passport_ex" id="passport_ex" class="passport_ex">
-              <input type="text" name="tourist_tel" placeholder="Телефон" id="tourist_tel" class="tourist_tel">
+              <input type="date" name="passport_ex" id="passport_ex" class="passport_ex" required>
+              <input type="text" name="tourist_tel" placeholder="Телефон" id="tourist_tel" class="tourist_tel" required>
               <label for="room_choose"> Размещение: </label>
               <select id="room_choose" name="room_choose" class="room_choose" required>
                   <option value="SGL">SGL</option>
@@ -37,21 +37,23 @@
                   <option value="FB">FB - Full board</option>
                   <option value="AI">AI - All inclusive</option>
               </select>
-              <label><input type="checkbox" name="visa_choose" id="visa_choose" value="visa" checked>Виза (<span id="VisaPay">{{VisaPay}}</span> $)</label>
-              <label><input type="checkbox" name="transfer_choose" id="transfer_choose" value="transfer" checked>Трансфер (<span id="TransferPay">{{TransferPay}}</span> $)</label>
-              <label><input type="checkbox" name="discount_choose" id="discount_choose" value="discount_choose">Скидка (<span id="Discount">{{Discount}}</span> $)</label>
+              <label><input type="checkbox" name="visa_choose" id="visa_choose" value="visa" checked>Виза - <span id="VisaPay">{{VisaPay}}</span> {{TourData.TourCurrency}}</label>
+              <label><input type="checkbox" name="transfer_choose" id="transfer_choose" value="transfer" checked>Трансфер - <span id="TransferPay">{{TransferPay}}</span> {{TourData.TourCurrency}}</label>
+              <label><input type="checkbox" name="discount_choose" id="discount_choose" value="discount_choose">Скидка - <span id="Discount">{{Discount}}</span> {{TourData.TourCurrency}}</label>
               <br>
               <div id="summary_container" class="summary_container">
                   <span> Цена тура:
                       <span id="tourist_summary" class="tourist_summary">{{SummaryPay}}</span>
-                      $
+                      {{TourData.TourCurrency}}
                   </span>
-                  <span> ---> К оплате:<span id="summary_pay" class="summary_pay">0</span> $</span>
+                  <br>
+                  <span> ---> К оплате: <span id="summary_pay" class="summary_pay">0</span> {{TourData.TourCurrency}}</span>
                   <p></p>
                   <input type="text" name="tourist_pay" placeholder="Сумма/задаток" id="tourist_pay" class="tourist_pay" required>
+                  <br>
                   <span> Остаток:
                       <span id="tourist_debt" class="tourist_debt">0</span>
-                      $
+                      {{TourData.TourCurrency}}
                   </span>
               </div>
               <br>
@@ -61,5 +63,6 @@
 </div>
     <script type="text/javascript" src="{% static 'js/tourist_reg_page.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
 </body>
 </html>
