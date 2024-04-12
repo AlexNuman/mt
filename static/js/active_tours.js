@@ -143,11 +143,17 @@ $('#active_tours tr').
           'flex-direction': 'row',
           'justify-content': 'space-around'
         });
+        if ($('#user_type_label').text() == 'Менеджер по продажам') {
+          var type = 'manager';
+          ModalWindow.style.height = "500px";
+        } else {
+          var type = 'all';
+        };
         $.ajax({
           url: '/ajax-server/',
           method: 'get',
           dataType: 'html',
-          data: {switсh: 'TourInfo', TourId: TourId},
+          data: {switсh: 'TourInfo', TourId: TourId, Type: type},
           success: function(data){
             TourList = data;
             $('#ModalInfoBlock').html(TourList);

@@ -726,11 +726,13 @@ def AjaxServer(request):
     elif switcher == 'ClientInfo':
         ClientId = request.GET.get('Tourist')
         ClientData = Clients.objects.get(id=ClientId)
+        TourData = Tours.objects.get(id=ClientData.TourID)
         return render(request, 'tourist_info.html',
-                      context={'TouristData': ClientData})
+                      context={'TouristData': ClientData, 'TourData': TourData})
 # ---->Информация о туре-----------------------------
     elif switcher == 'TourInfo':
         TourId = request.GET.get('TourId')
+        Type = request.GET.get('Type')
         TourData = Tours.objects.get(id=TourId)
         if TourData.FlightType == 'Прямой рейс':
             TourData.WaitingTimeTo = '---'
@@ -739,8 +741,12 @@ def AjaxServer(request):
             TourData.TransitToDeparture = '---'
             TourData.TransitFromArrival = '---'
             TourData.TransitFromDeparture = '---'
-        return render(request, 'tour_info.html',
-                      context={'TourData': TourData})
+        if Type == 'manager':
+            return render(request, 'tour_info_manager.html',
+                          context={'TourData': TourData})
+        else:
+            return render(request, 'tour_info.html',
+                          context={'TourData': TourData})
 # ---->Список гидов-----------------------------
     elif switcher == 'GidList':
         GidData = Gids.objects.values()

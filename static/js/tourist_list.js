@@ -1,4 +1,8 @@
+if ($('#user_type_label').text() == 'Менеджер по продажам') {
+  $('#TourInfoContainer').css('display', 'none');
+} else {
 
+};
 //----кнопка добававить туриста ------------------------------------
 var AddNewTourist = document.getElementById('add_new_tourist');
 AddNewTourist.onclick = function() {
