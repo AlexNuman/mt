@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings, Airlines
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+
 from datetime import datetime
 
 
@@ -1043,6 +1044,13 @@ def AjaxServer(request):
         TourSummaryReturn = int(TourData.FlightTicketPrice)+int(TourData.TouristVisaPrice)+int(TourData.MekkaHotelPrice)+int(TourData.MedinaHotelPrice)+int(TourData.TransferPrice)+int(TourData.HadjKitPrice)+int(TourData.GidPrice)+int(TourData.Comission)+int(FoodChoose)+int(RoomChoose)
         done = {1: TourSummaryReturn}
         return JsonResponse(done)
+#-------> Запрос на Ваучер------------------------------
+    elif switcher == 'Vaucher':
+        TouristID = request.GET.get('TouristID')
+        TourId = request.GET.get('TourId')
+        tour_info = Tours.objects.get(id=TourId)
+        login = Clients.objects.get(id=TouristID)
+        return render(request, 'vaucher.html', context={'TouristInfo': login, 'TourInfo': tour_info})
 #------->   раздел тестирования функии -----------------
     elif switcher == 'Test':
         tourID = 5
@@ -1056,7 +1064,6 @@ def AjaxServer(request):
                 res = 'No'
         done = {1: res}
         return JsonResponse(done)
-
 
 # -------------------------------------------------------------------------------------------------------------------
 def ActiveTours(request):
@@ -1081,3 +1088,4 @@ def GidList(requst):
 # -------------------------------------------------------------------------------------------------------------------
 def Vaucher(request):
     return render(request, 'vaucher.html')
+

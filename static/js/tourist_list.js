@@ -127,11 +127,12 @@ $('#tourist_list tr').
     var DelBtn = $("<span data-tooltip='Удалить' class ='tooltip'><img id='DeleteBtn' src='/static/img/delete_user.png' alt='Удалить' class='del_btn'></span>");
     var GroupBtn = $("<span data-tooltip='Создать группу' class ='tooltip'><img id='GroupBtn' src='/static/img/add_group.png' alt='Группа' class='info_btn'></span>");
     var EditBtn = $("<span data-tooltip='Редактировать' class ='tooltip'><img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='info_btn'></span>");
+    var VaucherBtn = $("<span data-tooltip='Ваучер' class ='tooltip'><img id='VaucherBtn' src='/static/img/vaucher.png' alt='Ваучер' class='info_btn'></span>");
     if (this.cells[0].textContent!='Действие') {
       $(this.cells[0]).css({
          'cursor': 'pointer'
-      }).append(InfoBtn, CommentBtn, DelBtn, GroupBtn, EditBtn);
-//----Нажатие кнопки инфо -------------------------------------------------------------
+      }).append(InfoBtn, CommentBtn, DelBtn, GroupBtn, EditBtn, VaucherBtn);
+      //----Нажатие кнопки инфо -------------------------------------------------------------
       $('#InfoBtn').click(function(){
         modal.style.display = "block";
         ModalWindow.style.width = "550px";
@@ -168,14 +169,14 @@ $('#tourist_list tr').
           success: function(data){
             Info = data;
             modal.style.display = "block";
-            ModalWindow.style.width = "340px";
+            ModalWindow.style.width = "400px";
             ModalWindow.style.height = "720px";
             $('#ModalInfoBlock').empty();
             $('#ModalInfoBlock').html(Info);
           }
         });
       });
-//----Нажатие кнопки удалить --------------------------------------------------
+      //----Нажатие кнопки удалить --------------------------------------------------
       $('#DeleteBtn').click(function(){
         var DeleteTourist = confirm('Точно удалить туриста?');
         if (DeleteTourist == true) {
@@ -238,7 +239,7 @@ $('#tourist_list tr').
           }
         });
       });
-//----Нажатие кнопки группа -------------
+      //----Нажатие кнопки группа -------------
       $('#GroupBtn').click(function(){
         modal.style.display = "block";
         $("#InfoHead h2").text('Создание группы');
@@ -274,6 +275,24 @@ $('#tourist_list tr').
             };
           }
         });
+      });
+      // ----кнопка нажатие ваучер--------------
+      $('#VaucherBtn').click(function(){
+        $.ajax({
+          url: '/ajax-server/',
+          method: 'get',
+          dataType: 'html',
+          data: {switсh: 'Vaucher', TouristID: ClientId, TourId: $("#tour_id").text()},
+          success: function(data){
+            InfoData = data;
+            var url = '';
+            var win = window.open(url, '_blank');
+            win.document.write(InfoData);
+            win.document.close();
+            win.focus();
+          }
+        });
+
       });
     };
   }).
