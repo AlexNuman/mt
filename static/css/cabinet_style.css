@@ -36,7 +36,7 @@ body {
   border: groove 2px;
   border-radius: 10px;
   height: 80px;
-  width: 75%;
+  width: 70%;
   right: 0;
   text-align: center;
   box-shadow: 0px 3px 5px 1px rgba(84, 84, 84, 0.3);
@@ -63,7 +63,7 @@ body {
   margin-left: auto;
   margin-right: 0em;
   height: 80px;
-  width: 12%;
+  width: 16%;
   text-align: center;
   font-family: "Merriweather", serif;
   font-weight: 300;
@@ -202,7 +202,7 @@ body {
   margin-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 5px;
-  width: 130px;
+  width: 250px;
 }
 .UserLoginBtn:hover, .LogOut:hover {
   border: 1px solid;

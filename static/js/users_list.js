@@ -22,7 +22,7 @@ AddNewUserBtn.onclick = function() {
 $('#users_table tr').mouseenter(function(){
   var EditBtn = $("<span data-tooltip='Редактировать' class ='tooltip'><img id='EditBtn' src='/static/img/person_edit_btn.png' alt='Редактировать' class='edit_btn'></span>");
   var DelBtn = $("<span data-tooltip='Удалить' class ='tooltip'><img id='DeleteBtn' src='/static/img/delete.png' alt='Удалить' class='del_btn'></span>");
-  var BlockBtn = $("<span data-tooltip='Заблокировать' class ='tooltip'><img id='BlockBtn' src='/static/img/block_btn.png' alt='Блок' class='block_btn'></span>");
+  var BlockBtn = $("<span data-tooltip='Заблокировать/Разблокировать' class ='tooltip'><img id='BlockBtn' src='/static/img/block_btn.png' alt='Блок' class='block_btn'></span>");
   var InfoBtn = $("<span data-tooltip='Информация' class ='tooltip'><img id='InfoBtn' src='/static/img/info_btn.png' alt='Инфо' class='info_btn'></span>");
   var cursor_login = this.cells[2].textContent;
   var user_type = this.cells[3].textContent;

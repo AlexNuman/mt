@@ -35,7 +35,7 @@ $('#hotels_list tr').mouseenter(function(){
         url: '/ajax-server/',
         method: 'get',
         dataType: 'json',
-        data: {switсh: 'HotelEdit', Hotel: HotelID},
+        data: {switсh: 'HotelDelete', Hotel: HotelID},
         success: function(data){
           InfoData = data[1];
           alert(InfoData);

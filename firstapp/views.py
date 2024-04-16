@@ -1050,7 +1050,7 @@ def AjaxServer(request):
         TourId = request.GET.get('TourId')
         tour_info = Tours.objects.get(id=TourId)
         login = Clients.objects.get(id=TouristID)
-        return render(request, 'vaucher.html', context={'TouristInfo': login, 'TourInfo': tour_info})
+        return render(request, 'vaucher2.html', context={'TouristInfo': login, 'TourInfo': tour_info})
 #------->   раздел тестирования функии -----------------
     elif switcher == 'Test':
         tourID = 5
@@ -1087,5 +1087,5 @@ def GidList(requst):
     return render(requst, 'gid_list.html')
 # -------------------------------------------------------------------------------------------------------------------
 def Vaucher(request):
-    return render(request, 'vaucher.html')
+    return render(request, 'vaucher2.html')
 
