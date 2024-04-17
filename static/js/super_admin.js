@@ -101,6 +101,21 @@ TransferBtn.onclick = function() {
   });
 };
 /*-------------------------------------------------------------------*/
+/*----------кнопка авиакомпания---------------------------------------------*/
+var TransferBtn = document.getElementById('Airline');
+TransferBtn.onclick = function() {
+  $.ajax({
+    url: '/ajax-server/',
+    method: 'get',
+    dataType: 'html',
+    data: {switсh: 'AirlineList', Request: 'Get'},
+    success: function(data){
+      UsersList = data;
+      $('#info_reciever').html(UsersList);
+    }
+  });
+};
+/*-------------------------------------------------------------------*/
 /*----------кнопка Список туристов---------------------------------------------*/
 var TransferBtn = document.getElementById('ClientsList');
 var sorting='All';
@@ -118,21 +133,21 @@ TransferBtn.onclick = function() {
 };
 /*-------------------------------------------------------------------*/
 /*--------------кнопка настройки----------------------*/
-var StngsBtn = document.getElementById('SiteStngs');
-StngsBtn.onclick = function() {
+var SiteSettings = document.getElementById('SiteSettings');
+SiteSettings.onclick = function() {
+  modal.style.display = "block";
+  ModalWindow.style.width = "340px";
+  ModalWindow.style.height = "200px";
+  $("#InfoHead h2").text('Настройки');
+  $("#InfoHead h2").css('font-size', '14pt');
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'SettingsPage', Request: 'Get'},
+    data: {switсh: 'SettingsPage', Request: 'Get', UserType: 'Admin'},
     success: function(data){
-      UserInfo = data;
-      modal.style.display = "block";
-      ModalWindow.style.width = "340px";
-      ModalWindow.style.height = "320px";
-      $("#InfoHead h2").text('Настройки');
-      $('#ModalInfoBlock').empty();
-      $('#ModalInfoBlock').html(UserInfo);
+      SettingsPage = data;
+      $('#ModalInfoBlock').html(SettingsPage);
     }
   });
 };
@@ -166,6 +181,8 @@ UserWindowBtn.onclick = function() {
       modal.style.display = "block";
       ModalWindow.style.width = "340px";
       ModalWindow.style.height = "440px";
+      $("#InfoHead h2").text('Информация о пользователе');
+      $("#InfoHead h2").css('font-size', '14pt');
       $('#ModalInfoBlock').empty();
       $('#ModalInfoBlock').html(UserInfo);
     }
@@ -188,38 +205,3 @@ LogOut.onclick = function() {
 };
 /*-------------------------------------------------------------------*/
 
-/*----тест запрос AJAX-------------------
-document.onclick = function() {
-  $.ajax({
-    url: '/ajax-server/',
-    method: 'get',
-    dataType: 'json',
-    data: {switсh: 'Test'},
-    success: function(data){
-      InfoData = data[1];
-      alert(InfoData);
-    }
-  });
-};
-*/
-
-/*----------кнопка настройки----------------------------
-var Settings = document.getElementById('Settings');
-Settings.onclick = function() {
-  modal.style.display = "block";
-  ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "300px";
-  $("#InfoHead h2").text('Настройки');
-  $("#InfoHead h2").css('font-size', '14pt');
-  $.ajax({
-    url: '/ajax-server/',
-    method: 'get',
-    dataType: 'html',
-    data: {switсh: 'SettingsPage', Request: 'Get'},
-    success: function(data){
-      SettingsPage = data;
-      $('#ModalInfoBlock').html(SettingsPage);
-    }
-  });
-};
------------------*/

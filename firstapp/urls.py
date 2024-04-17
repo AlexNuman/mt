@@ -15,7 +15,7 @@ urlpatterns = [
     path('users_list/', views.users_list),
     path('tour_create_page/', views.NewTour),
     path('user_info/', views.user_info),
-    path('test_form/', views.test_form),
+    path('test_page/', views.test_page),
     path('ajax-server/', views.AjaxServer),
     path('active_tours/', views.ActiveTours),
     path('tourist_regist/', views.TouristRegist),

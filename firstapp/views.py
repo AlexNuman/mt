@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings, Airlines
+from .models import Users, Clients, Gids, Hotels, TourTransfer, Tours, SiteSettings, Airlines, SiteEventLogs
 from django.http import JsonResponse, HttpResponse
-
 from datetime import datetime
+
 
 
 # -- кабинет Суперадминистратора -----------------------
@@ -13,11 +13,6 @@ def SuperAdmin(request):
         if session_login == 'none' or session_login_type != 'СУПЕРАДМИН':
             return redirect('/')
         else:
-            DateTime = datetime.now()
-            LoggedUser = '111'
-            UserAction = 'Авторизация в кабинет'
-            UserIp = '255.255.255.0'
-            UserLocation = 'Kaz'
             return render(request, 'super_admin.html', context={'session_login': session_login})
     except:
         return redirect('/')
@@ -109,6 +104,10 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.user_login_date = datetime.now()
                 login.save()
+                action = 'Аторизация на сайт'
+                user_ip = get_client_ip(request)
+                login_info =login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return redirect('/superadmin')
             elif (login.user_pass == pass_in) and login.user_type == 'Администратор':
                 request.session['SessionLogin'] = login.user_login
@@ -118,6 +117,10 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.user_login_date = datetime.now()
                 login.save()
+                action = 'Аторизация на сайт'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return redirect('/cabinet_admin')
             elif (login.user_pass == pass_in) and login.user_type == 'Менеджер':
                 request.session['SessionLogin'] = login.user_login
@@ -127,6 +130,10 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.user_login_date = datetime.now()
                 login.save()
+                action = 'Аторизация на сайт'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return redirect('/cabinet_manager')
             elif (login.user_pass == pass_in) and login.user_type == 'Бухгалтер':
                 request.session['SessionLogin'] = login.user_login
@@ -136,6 +143,10 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.user_login_date = datetime.now()
                 login.save()
+                action = 'Аторизация на сайт'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return redirect('/cabinet_buhgalter')
             elif (login.user_pass == pass_in) and login.user_type == 'Директор':
                 request.session['SessionLogin'] = login.user_login
@@ -145,6 +156,10 @@ def check_login(request):
                 login.user_status = 'on-line'
                 login.user_login_date = datetime.now()
                 login.save()
+                action = 'Аторизация на сайт'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return redirect('/cabinet_director')
             else:
                 return redirect('/')
@@ -161,7 +176,8 @@ def check_login(request):
             return redirect('/error_login')
 # ------------------------------------------------------------------------------------------
 def SiteLogs(request):
-    return render(request, 'site_logs.html')
+    LogsDB = SiteEventLogs.objects.values()
+    return render(request, 'site_logs.html', context={'LogData': LogsDB})
 # ------------Jinja тест---------------------------------------------------------------
 def jinja_test(request):
     return render(request, 'jinja_test.html', context={'tags': 'blue'})
@@ -174,9 +190,9 @@ def NewTour(request):
     return render(request, 'tour_create_page.html')
 def user_info(request):
     return render(request, 'user_info.html')
-def test_form(request, check='No'):
+def test_page(request, check='No'):
     check = request.GET.get('check')
-    return render(request, 'test_form.html', context={'info': check})
+    return render(request, 'test_page.html', context={'info': check})
 # ------------------------------------------------------------------------------------------
 
 # ---------- СЕРВЕР ОБРАБОКИ AJAX-ЗАПРОСОВ ПО СЕЛЕКТОРУ --------------------------
@@ -189,6 +205,11 @@ def AjaxServer(request):
         TransferData = TourTransfer.objects.values()
         AirlineData = Airlines.objects.values()
         SettingsData = SiteSettings.objects.get(SettingsType='Админ')
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Открыт окно новый тур'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'tour_create_page.html', context={'GidData': GidData, 'HotelData': HotelData,
                                                                  'TransferData': TransferData, 'AirlineData': AirlineData,
                                                                  'SettingsData': SettingsData})
@@ -198,6 +219,10 @@ def AjaxServer(request):
         user_info = request.GET.get('send_login')
         switcher = request.GET.get('switcher')
         send_data = Users.objects.get(user_login=user_info)
+        action = 'Просмотр информации о пользователе'+'- //'+send_data.user_name+'//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         if switcher == 'info':
             if send_data.user_type == 'СУПЕРАДМИН':
                 send_data.user_pass = '********'
@@ -220,6 +245,10 @@ def AjaxServer(request):
 # ----------> Кнопка выйти ----------------------------------------------
     elif switcher == 'LogOut':
         login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Выход из системы'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         request.session['SessionLogin'] = 'none'
         request.session['SessionLoginType'] = 'none'
         request.session.save()
@@ -303,6 +332,11 @@ def AjaxServer(request):
                                             FoodPriceAI=FoodPriceAI, RoomPriceSGL=RoomPriceSGL, RoomPriceDBL=RoomPriceDBL,
                                             RoomPriceTRP=RoomPriceTRP, RoomPriceQDR=RoomPriceQDR, TourCurrency=TourCurrency,
                                             TourTime=TourTime, TourSummary=TourSummary, TourCreateDate=TourCreateDate)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Создан новый тура' + '- //' + new_tour.PaketName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         except:
             return JsonResponse(error)
@@ -323,6 +357,10 @@ def AjaxServer(request):
             login.user_email = user_email
             login.user_birth = user_birth
             login.save()
+            action = 'Изменение данных о пользователе' + ' //' + login.user_name
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         except:
             return JsonResponse(error)
@@ -340,6 +378,10 @@ def AjaxServer(request):
         else:
             login = Users.objects.get(user_login=send_login)
             login.delete()
+            action = 'Пользователь удален' + '- //' + login.user_name + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
 # ------> Удаление тура ---------------------------
     elif switcher == 'TourDelete':
@@ -348,6 +390,11 @@ def AjaxServer(request):
         TourId = request.GET.get('TourId')
         try:
             Tour = Tours.objects.get(id=TourId)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Тур удален' + '- //' + Tour.PaketName + '-' + Tour.TourRoute + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             Tour.delete()
             return JsonResponse(done)
         except:
@@ -359,6 +406,11 @@ def AjaxServer(request):
         TouristID = request.GET.get('Tourist')
         try:
             TouristDB = Clients.objects.get(id=TouristID)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Турист удален' + '- //' + TouristDB.TouristName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             TouristDB.delete()
             return JsonResponse(done)
         except:
@@ -370,6 +422,11 @@ def AjaxServer(request):
         GidID = request.GET.get('Gid')
         try:
             GidDB = Gids.objects.get(id=GidID)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Гид удален' + '- //' + GidDB.GidName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             GidDB.delete()
             return JsonResponse(done)
         except:
@@ -381,6 +438,11 @@ def AjaxServer(request):
         HotelID = request.GET.get('Hotel')
         try:
             HotelDB = Hotels.objects.get(id=HotelID)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Гостиница удалена' + '- //' + HotelDB.HotelName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             HotelDB.delete()
             return JsonResponse(done)
         except:
@@ -392,6 +454,11 @@ def AjaxServer(request):
         TransferID = request.GET.get('Transfer')
         try:
             TransferDB = TourTransfer.objects.get(id=TransferID)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Трансфер удален' + '- //' + TransferDB.TransportType + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             TransferDB.delete()
             return JsonResponse(done)
         except:
@@ -407,6 +474,11 @@ def AjaxServer(request):
         GidDB = Gids.objects.get(id=GidID)
         request.session['CheckedGidId'] = GidID
         request.session.save()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Редактирование гида' + '- //' + GidDB.GidName + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'gid_edit_page.html', context={'GidData': GidDB})
 # ------> Кнопка редактировать гостиницу ---------------------------
     elif switcher == 'HotelEdit':
@@ -414,6 +486,11 @@ def AjaxServer(request):
         HotelDB = Hotels.objects.get(id=HotelID)
         request.session['CheckedHotelId'] = HotelID
         request.session.save()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Редактирование гостиницы' + '- //' + HotelDB.HotelName + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'hotel_edit_page.html', context={'hotel_name': HotelDB.HotelName,
                                                                 'hotel_city': HotelDB.HotelCity,
                                                                 'hotel_stars': HotelDB.HotelStars,
@@ -424,6 +501,11 @@ def AjaxServer(request):
         TransferDB = TourTransfer.objects.get(id=TransferID)
         request.session['CheckedTransferId'] = TransferID
         request.session.save()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Редактирование трансфера' + '- //' + TransferDB.TransportType + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'transfer_edit_page.html', context={'TransportType': TransferDB.TransportType,
                                                                 'TransportQuality': TransferDB.TransportQuality,
                                                                 'TransferSeats': TransferDB.TransferSeats,
@@ -447,6 +529,11 @@ def AjaxServer(request):
             GidDB.save()
             request.session['CheckedGidId'] = ''
             request.session.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Сохранение изменения данных гида' + '- //' + GidName + '-->'+ GidDB.GidName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         except:
             return JsonResponse(error)
@@ -467,6 +554,11 @@ def AjaxServer(request):
             Hotel.save()
             request.session['CheckedHotelId'] = ''
             request.session.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Сохранение изменения данных гостиницы' + '- //' + '-->' + Hotel.HotelName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         except:
             return JsonResponse(error)
@@ -487,12 +579,22 @@ def AjaxServer(request):
             TransferDB.save()
             request.session['CheckedTransferId'] = ''
             request.session.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Сохранение изменения данных трансфера' + '- //' + '-->' + TransferDB.TransportType + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         except:
             return JsonResponse(error)
 # ---->Активные туры------------------------
     elif switcher == 'ActiveTours':
         tours = Tours.objects.values()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр активных туров'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'active_tours.html', context={'tour_data': tours, 'len': len(tours)})
 # ---->Страница тура со списком туристов------------------------
     elif switcher == 'TouristList':
@@ -501,10 +603,20 @@ def AjaxServer(request):
         TourData = Tours.objects.get(id=TourID)
         TouristData = Clients.objects.filter(TourID__exact=TourID).order_by('StatusPay')
         #TouristData = Clients.objects.values()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка туристов тура' + ' - //' + TourData.PaketName + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'tourist_list.html',
                       context={'TourData': TourData, 'TouristData': TouristData, 'Len': len(TouristData), 'Seats': TourData.TouristQuantity-len(TouristData)})
     elif switcher == 'AllTouristList':
         tourist = Clients.objects.values()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка всех туристов'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'all_tourist_list.html', context={'TouristData': tourist, 'Len': len(tourist)})
 # ---->Подтверждение оплаты туриста------------------------
     elif switcher == 'TouristConfirm':
@@ -516,6 +628,11 @@ def AjaxServer(request):
             TouristData.ConfirmBuh = request.session['SessionLogin']
             TouristData.StatusPay = 'Оплачено'
             TouristData.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Подтверждение оплаты туриста' + ' -//' + TouristData.TouristName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         except:
             return JsonResponse(error)
@@ -527,23 +644,44 @@ def AjaxServer(request):
         VisaPay = tour.TouristVisaPrice
         TransferPay = tour.TransferPrice
         Discount = tour.TourDiscount
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Добавление туриста в тур' + ' -//' + tour.PaketName + '- id -' + TourId + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'tourist_reg_page.html', context={'SummaryPay': SummaryPay,
                                                                  'VisaPay': VisaPay, 'TransferPay': TransferPay,
                                                                  'Discount': Discount, 'TourData': tour})
 # ---->Кнопка добавить Гида------------------
     elif switcher == 'AddNewGidBtn':
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Кнопка добавление гида'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'gid_regist_page.html')
 # ---->Кнопка добавить гостиницу------------------
     elif switcher == 'AddNewHotelBtn':
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Кнопка добавление гостиницы'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'hotel_regist_page.html', context={'hotel_name': 'Назание гостиницы',
                                                                   'hotel_city': 'Город расположения',
                                                                   'hotel_stars': 'Уровень', 'hotel_info': 'Информация'})
 # ---->Кнопка добавить трансфер------------------
     elif switcher == 'AddNewTransferBtn':
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Кнопка добавление трансфера'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'transfer_regist_page.html')
 # ---->Добавлении туриста в базу данных------------------
     elif switcher == 'TouristData':
         tourID = request.GET.get('TourId')
+        tour = Tours.objects.get(id=tourID)
         done = {1: 'Турист добавлен!'}
         error = {1: 'Ощибка добавления туриста в базу!'}
         already_exist = {1: 'Такой турист уже добавлен в тур!'}
@@ -574,6 +712,11 @@ def AjaxServer(request):
                     return JsonResponse(already_exist)
                 else:
                     continue
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Турист добавлен в тур' + ' -//' + tour.PaketName + '- id -' + tourID + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             new_client = Clients.objects.create(TouristName=touristName, TouristBirth=touristBirth,
                                                 TouristAdress=touristAdress, TouristIIN=touristIIN,
                                                 TouristPassNumber=touristPassNumber, TouristPassEx=touristPassEx,
@@ -598,6 +741,11 @@ def AjaxServer(request):
             GidEmail = request.GET.get('GidEmail')      # Эл.почта
             GidTel = request.GET.get('GidTel')          # Сотовый телефон
             GidRegDate = datetime.now()                 # Дата регистрации
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Гид добавлен в базу'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             new_gid = Gids.objects.create(GidName=GidFIO, GidBirth=GidBirth,
                                                 GidAdress=GidAdress, GidEmail=GidEmail,
                                                 GidTel=GidTel, GidCreateDate=GidRegDate)
@@ -613,6 +761,11 @@ def AjaxServer(request):
             HotelCity = request.GET.get('HotelCity')  # Город
             HotelStars = request.GET.get('HotelStars')  # уровень
             HotelInfo = request.GET.get('HotelInfo')  # Инфо
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Гостиница добавлена в базу'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             new_hotel = Hotels.objects.create(HotelName=HotelName, HotelCity=HotelCity,
                                           HotelStars=HotelStars, HotelInfo=HotelInfo)
             return JsonResponse(done)
@@ -627,6 +780,11 @@ def AjaxServer(request):
             TransportQuality = request.GET.get('transport_quality')
             TransferSeats = request.GET.get('transfer_seats')
             TransportInfo = request.GET.get('transport_info')
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Трансфер добавлен в базу'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             new_transfer = TourTransfer.objects.create(TransportType=TransportType, TransportQuality=TransportQuality,
                                               TransferSeats=TransferSeats, TransportInfo=TransportInfo)
             return JsonResponse(done)
@@ -635,12 +793,22 @@ def AjaxServer(request):
 # ---->Список пользователей-----------------------------
     elif switcher == 'UsersList':
         people = Users.objects.values()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка пользователей'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'users_list.html', context={'db_data': people})
 # ---->Список клиентов-----------------------------
     elif switcher == 'ClientsList':
         TouristID = request.GET.get('TouristID')
         ClientsData = Clients.objects.values()
         Type = request.GET.get('Type')
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка туристов в туре'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         #-----> Запрос от бухгальтера-----
         if Type == 'buh':
             sort = request.GET.get('sort')
@@ -656,12 +824,22 @@ def AjaxServer(request):
         elif Type == 'comment':
             TouristData = Clients.objects.get(id=TouristID)
             done = {1: TouristData.Comments}
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Просмотр комментария туриста' + ' - //' + TouristData.TouristName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         #--> редактирвоание туриста
         elif Type == 'TouristEdit':
             request.session['TouristSendId'] = TouristID
             request.session.save()
             TouristData = Clients.objects.get(id=TouristID)
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Редактирование туриста' + '- //' + TouristData.TouristName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return render(request, 'tourist_edit_page.html',
                           context={'TouristData': TouristData})
         # --> сохранение редактирвоание туриста
@@ -694,6 +872,11 @@ def AjaxServer(request):
                 TouristDB.save()
                 request.session['TouristSendId'] = ''
                 request.session.save()
+                login = Users.objects.get(user_login=request.session['SessionLogin'])
+                action = 'Сохранения данных туриста в базы' + '- //' + TouristDB.TouristName + '//'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return JsonResponse(done)
             except:
                 return JsonResponse(error)
@@ -706,11 +889,21 @@ def AjaxServer(request):
                 TouristData = Clients.objects.get(id=TouristID)
                 TouristData.Comments = comments
                 TouristData.save()
+                login = Users.objects.get(user_login=request.session['SessionLogin'])
+                action = 'Сохранения комментария' + '- //' + TouristData.TouristName + '//'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 return JsonResponse(done)
             except:
                 return JsonResponse(error)
         # --> админ запрос на список туристов
         elif Type == 'Admin':
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Просмотр списка туристов с сортировкой'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             sort = request.GET.get('sort')
             if sort == 'All':
                 ClientsData = Clients.objects.values()
@@ -728,6 +921,11 @@ def AjaxServer(request):
         ClientId = request.GET.get('Tourist')
         ClientData = Clients.objects.get(id=ClientId)
         TourData = Tours.objects.get(id=ClientData.TourID)
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр информации о клиенте' + ' - //' + ClientData.TouristName + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'tourist_info.html',
                       context={'TouristData': ClientData, 'TourData': TourData})
 # ---->Информация о туре-----------------------------
@@ -735,6 +933,11 @@ def AjaxServer(request):
         TourId = request.GET.get('TourId')
         Type = request.GET.get('Type')
         TourData = Tours.objects.get(id=TourId)
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр информации о туре'  + ' - //' + TourData.PaketName + '//'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         if TourData.FlightType == 'Прямой рейс':
             TourData.WaitingTimeTo = '---'
             TourData.WaitingTimeFrom = '---'
@@ -751,14 +954,29 @@ def AjaxServer(request):
 # ---->Список гидов-----------------------------
     elif switcher == 'GidList':
         GidData = Gids.objects.values()
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка гидов'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'gid_list.html', context={'GidData': GidData, 'Len': len(GidData)})
 # ---->Список авиакомпании--------------------------
     elif switcher == 'AirlineList':
         Request = request.GET.get('Request')
         if Request == 'Get':
             AirlineData = Airlines.objects.values()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Просмотр списка авиакомпаний'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return render(request, 'airline_list.html', context={'AirlineData': AirlineData, 'Len': len(AirlineData)})
         elif Request == 'AddForm':
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Кнопка добавления авиакомпаний'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return render(request, 'airline_regist_page.html')
         elif Request == 'Save':
             done = {1: 'Авиакомпания сохранена'}
@@ -767,6 +985,11 @@ def AjaxServer(request):
                 CompanyName = request.GET.get('CompanyName')
                 CompanyClass = request.GET.get('CompanyClass')
                 CompanyInfo = request.GET.get('CompanyInfo')
+                login = Users.objects.get(user_login=request.session['SessionLogin'])
+                action = 'Сохранение авиакомпаний в базе'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 new_airline = Airlines.objects.create(AirlineName=CompanyName, AirlineClass=CompanyClass,
                                                       AirlineInfo=CompanyInfo, AirlineAddDate=datetime.now())
                 return JsonResponse(done)
@@ -778,16 +1001,31 @@ def AjaxServer(request):
             AirlineID = request.GET.get('Airline')
             try:
                 AirlineDB = Airlines.objects.get(id=AirlineID)
+                login = Users.objects.get(user_login=request.session['SessionLogin'])
+                action = 'Авиакомпания удалене' + ' - //' + AirlineDB.AirlineName + '//'
+                user_ip = get_client_ip(request)
+                login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                 AirlineDB.delete()
                 return JsonResponse(done)
             except:
                 return JsonResponse(error)
 # ---->Списка гостиниц-----------------------------
     elif switcher == 'HotelsList':
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка гостиниц'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         HotelsData = Hotels.objects.values()
         return render(request, 'hotels_list.html', context={'HotelsData': HotelsData, 'Len': len(HotelsData)})
 # ---->Списка трансфер-----------------------------
     elif switcher == 'TransferList':
+        login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр списка трансфера'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         TransferData = TourTransfer.objects.values()
         return render(request, 'transfer_list.html', context={'TransferData': TransferData, 'Len': len(TransferData)})
 # ------> Добавление нового пользователя----------------------
@@ -813,6 +1051,11 @@ def AjaxServer(request):
                                                 user_email=get_email, user_tel=get_tel, user_login=get_login,
                                                 user_pass=get_pass, user_type=get_type, user_regist_date=datetime.now(),
                                                 user_login_date=datetime.now(), user_status='off-line')
+                    login = Users.objects.get(user_login=request.session['SessionLogin'])
+                    action = 'Добавлен новый пользователь' + ' - //' + user.user_name + '//'
+                    user_ip = get_client_ip(request)
+                    login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+                    SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
                     return JsonResponse(done)
                 except:
                     return JsonResponse(error)
@@ -834,6 +1077,11 @@ def AjaxServer(request):
         elif choosen_login.user_status == 'on-line' or choosen_login.user_status == 'off-line':
             choosen_login.user_status = 'blocked'
             choosen_login.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Пользователь заблокирован' + ' - //' + choosen_login.user_name + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(Block)
         elif choosen_login.user_status == 'blocked':
             choosen_login.user_status = 'off-line'
@@ -897,6 +1145,11 @@ def AjaxServer(request):
             request.session['TouristThreeSession'] = TouristData.PersonThree
             request.session['TouristFourSession'] = TouristData.PersonFour
             request.session.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Получение информации о группе туриста' + ' - //' + TouristData.TouristName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return render(request, 'tourist_group_page.html', context={'TouristData': TouristData,
                                                                        'PersonOneName': PersonOneName,
                                                                        'PersonTwoName': PersonTwoName,
@@ -994,6 +1247,11 @@ def AjaxServer(request):
             request.session['TouristFourSession'] = ''
             request.session['TouristSendId'] = ''
             request.session.save()
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Сохранение данных о группе туриста' + ' - //' + TouristData.TouristName + '//'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return JsonResponse(done)
         #-->>Проверка туриста в базе
         elif Type == 'Check':
@@ -1050,20 +1308,21 @@ def AjaxServer(request):
         TourId = request.GET.get('TourId')
         tour_info = Tours.objects.get(id=TourId)
         login = Clients.objects.get(id=TouristID)
+        login_us = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Запрос ваучера для туриста' + ' - //' + login.TouristName + '//'
+        user_ip = get_client_ip(request)
+        login_info = login_us.user_login + ' - ' + login_us.user_type + ' - //' + login_us.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'vaucher2.html', context={'TouristInfo': login, 'TourInfo': tour_info})
 #------->   раздел тестирования функии -----------------
     elif switcher == 'Test':
-        tourID = 5
-        already_regist = {1: 'Такой турист уже добавлен в тур!'}
-        TouristData = Clients.objects.filter(TourID__exact=tourID)
-        for i in TouristData:
-            if i.TouristIIN == '2':
-                res = 'Yes'
-                break
-            else:
-                res = 'No'
-        done = {1: res}
-        return JsonResponse(done)
+        done = {1: 'Логи записаны'}
+        error = {1: 'Ошибка записи лога!'}
+        if SiteEventSave(datetime.now(), 'scorp', 'Test', '0.0.0.0', 'kaz') == 'done':
+            return JsonResponse(done)
+        else:
+            return JsonResponse(error)
+
 
 # -------------------------------------------------------------------------------------------------------------------
 def ActiveTours(request):
@@ -1088,4 +1347,25 @@ def GidList(requst):
 # -------------------------------------------------------------------------------------------------------------------
 def Vaucher(request):
     return render(request, 'vaucher2.html')
+
+# ----------функция сохранения логов -----------------------------------------------------------------------------------
+def SiteEventSave(event_date, user_info='null', action='none', login_ip='0.0.0.0', location='error'):
+    done = 'done'
+    error = 'error'
+    try:
+        new_logs = SiteEventLogs.objects.create(EventDateTime=event_date, UserInfo=user_info, Action=action,
+                                                LoginIP=login_ip, Location=location)
+        return done
+    except:
+        return error
+# -------------------------------------------------------------------------------------------------------------------
+# ----------функция получения IP -----------------------------------------------------------------------------------
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+# -------------------------------------------------------------------------------------------------------------------
 

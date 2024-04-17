@@ -152,14 +152,6 @@ SiteSettings.onclick = function() {
     }
   });
 };
-
-  /*
-
-
-
-
-};
------------------*/
 /*-------------------------------------------------------------------*/
 /*--------------скрипт настройка пользователя----------------------*/
 var UserWindowBtn = document.getElementById('UserWindowBtn');
@@ -197,18 +189,5 @@ LogOut.onclick = function() {
 };
 /*-------------------------------------------------------------------*/
 
-/*----тест запрос AJAX-------------------
-document.onclick = function() {
-  $.ajax({
-    url: '/ajax-server/',
-    method: 'get',
-    dataType: 'json',
-    data: {switсh: 'Test'},
-    success: function(data){
-      InfoData = data[1];
-      alert(InfoData);
-    }
-  });
-};
-*/
+
 
