@@ -238,6 +238,10 @@ def AjaxServer(request):
             login = Users.objects.get(user_login=request.GET.get('send_login'))
         except:
             login = Users.objects.get(user_login=request.session['SessionLogin'])
+        action = 'Просмотр информации авторизованного пользователе'
+        user_ip = get_client_ip(request)
+        login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+        SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
         return render(request, 'user_info.html',
                       context={'get_user_name': login.user_name, 'get_birth': login.user_birth,
                                'get_adress': login.user_adress, 'get_email': login.user_email,
@@ -900,7 +904,7 @@ def AjaxServer(request):
         # --> админ запрос на список туристов
         elif Type == 'Admin':
             login = Users.objects.get(user_login=request.session['SessionLogin'])
-            action = 'Просмотр списка туристов с сортировкой'
+            action = 'Просмотр списка всех туристов'
             user_ip = get_client_ip(request)
             login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
             SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
@@ -1099,7 +1103,24 @@ def AjaxServer(request):
             except:
                 NewSiteSettings = SiteSettings.objects.create(SettingsType='Админ', Block='---', NoticeInfo='---',
                                                               CurrencyInfo='Доллар', TimeInfo='Час')
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Просмотр настроек сайта'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
             return render(request, 'settings_page_admin.html', context={'SiteSettings': NewSiteSettings})
+        elif Request == 'Get' and UserType == 'Superadmin':
+            try:
+                NewSiteSettings = SiteSettings.objects.get(SettingsType='Суперадмин')
+            except:
+                NewSiteSettings = SiteSettings.objects.create(SettingsType='Суперадмин', Block='---', NoticeInfo='---',
+                                                              CurrencyInfo='Доллар', TimeInfo='Час')
+            login = Users.objects.get(user_login=request.session['SessionLogin'])
+            action = 'Просмотр настроек сайта'
+            user_ip = get_client_ip(request)
+            login_info = login.user_login + ' - ' + login.user_type + ' - //' + login.user_name + '//'
+            SiteEventSave(datetime.now(), login_info, action, user_ip, 'none')
+            return render(request, 'settings_page_superadmin.html', context={'SiteSettings': NewSiteSettings})
         elif Request == 'Save' and UserType == 'Admin':
             done = {1: 'Настройки сохранены!'}
             error = {1: 'Ошибка сохранения!'}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings_page_superadmin.css' %}">
+</head>
+<body>
+    <form method="post" id="SiteSettingsForm" action="">
+        {% csrf_token %}
+        <label class="currency_label">
+            <span>Заблокировать сайт</span>
+            <div class="currency_toggle">
+                <input class="currency_toggle-state" id="site_block" type="checkbox" name="check" value="check" />
+                <div class="currency_toggle-inner">
+                    <div class="currency_indicator"></div>
+                </div>
+                <div class="currency_active-bg"></div>
+            </div>
+            <span>Разблокировать сайт</span>
+        </label>
+        <p></p>
+        <label class="currency_label">
+            <span>Выберите валюту:&nbsp</span>
+            <span>USD</span>
+            <div class="currency_toggle">
+                <input class="currency_toggle-state" id="currency_choose" type="checkbox" name="check" value="check" />
+                <div class="currency_toggle-inner">
+                    <div class="currency_indicator"></div>
+                </div>
+                <div class="currency_active-bg"></div>
+            </div>
+            <span>KZT</span>
+        </label>
+        <p></p>
+        <label class="currency_label">
+            <span>Показ времени: &nbsp</span>
+            <span>Часы</span>
+            <div class="currency_toggle">
+                <input class="currency_toggle-state" id="time_choose" type="checkbox" name="check" value="check" />
+                <div class="currency_toggle-inner">
+                    <div class="currency_indicator"></div>
+                </div>
+                <div class="currency_active-bg"></div>
+            </div>
+            <span>Минуты</span>
+        </label>
+        <p></p>
+        <label class="currency_label">
+            <span>Включить логи</span>
+            <div class="currency_toggle">
+                <input class="currency_toggle-state" id="site_logging" type="checkbox" name="check" value="check" />
+                <div class="currency_toggle-inner">
+                    <div class="currency_indicator"></div>
+                </div>
+                <div class="currency_active-bg"></div>
+            </div>
+            <span>Отключить логи</span>
+        </label>
+        <p></p>
+        <span style="display: none;" id="SiteCurrency">{{SiteSettings.CurrencyInfo}}</span>
+        <span style="display: none;" id="SiteTime">{{SiteSettings.TimeInfo}}</span>
+        <br>
+        <input type="submit" id="StngSaveBtn" class="StngSaveBtn" value="Сохранить">
+    </form>
+
+<script type="text/javascript" src="{% static 'js/settings_page_superadmin.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>

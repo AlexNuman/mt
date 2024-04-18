@@ -137,14 +137,14 @@ var SiteSettings = document.getElementById('SiteSettings');
 SiteSettings.onclick = function() {
   modal.style.display = "block";
   ModalWindow.style.width = "340px";
-  ModalWindow.style.height = "200px";
+  ModalWindow.style.height = "300px";
   $("#InfoHead h2").text('Настройки');
   $("#InfoHead h2").css('font-size', '14pt');
   $.ajax({
     url: '/ajax-server/',
     method: 'get',
     dataType: 'html',
-    data: {switсh: 'SettingsPage', Request: 'Get', UserType: 'Admin'},
+    data: {switсh: 'SettingsPage', Request: 'Get', UserType: 'Superadmin'},
     success: function(data){
       SettingsPage = data;
       $('#ModalInfoBlock').html(SettingsPage);
